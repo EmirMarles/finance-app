@@ -130,6 +130,16 @@ export function getLatestTransactionsByCategory(transactions, category) {
     return returnTransactions
 }
 
+
+export function calculateLimit(budgetData){
+    let limit = 0
+
+    for (let i = 0; i < budgetData.length; i++){
+        limit = limit + budgetData[i].maximum
+    }
+
+    return limit
+}
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',
 // //     name: 'Swift Ride Share',

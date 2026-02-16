@@ -8,12 +8,6 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
     const budgetData = moneyData.budgets
     const transactions = moneyData.transactions
 
-    const oneBudget = {
-        "category": "Entertainment",
-        "maximum": 50.00,
-        "theme": "#277C78"
-    }
-
     return (
         <div className='page-layout'>
             <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
@@ -23,7 +17,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
                     <button>Add New Budget</button>
                 </div>
                 <div className="budget-dashboard">
-                    <SpendingSummary />
+                    <SpendingSummary budgetData={budgetData} transactions={transactions}/>
                     <div className="budgets-column">
                         {Array.isArray(budgetData) && budgetData.length > 0
                             && budgetData.map((budget, index) => {
