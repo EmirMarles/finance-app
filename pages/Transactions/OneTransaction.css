@@ -1,0 +1,40 @@
+.one-board-transaction{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(76, 66, 66, 0.3);
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 1fr;
+}
+
+.sender-rec{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1.5rem;
+    gap: 1rem;
+}
+
+.sender-rec img{
+    border-radius: 50vw;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.one{
+    width: 40%;
+}
+
+.trans-data{
+    text-align: left;
+}
+
+.money{
+    font-weight: 700;
+}
+
+.lots-money{
+    font-weight: 700;
+    color: var(--green);
+}

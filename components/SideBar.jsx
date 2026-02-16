@@ -1,0 +1,97 @@
+import './SideBar.css'
+import Logo from '../public/assets/images/logo-large.svg?react'
+import LogoMini from '../public/assets/images/logo-small.svg?react'
+
+import HomeIcon from '../public/assets/images/icon-nav-overview.svg?react'
+import BudjetIcon from '../public/assets/images/icon-nav-budgets.svg?react'
+import PotsIcon from '../public/assets/images/icon-nav-pots.svg?react'
+import RecurringIcon from '../public/assets/images/icon-nav-recurring-bills.svg?react'
+import TransactionsIcon from '../public/assets/images/icon-nav-transactions.svg?react'
+import MinimizeIcon from '../public/assets/images/icon-minimize-menu.svg?react'
+
+
+import { useWindowWidth } from '../customHooks/useWindowWidth'
+import { useState } from 'react'
+
+export function SideBar({ chosenTab, setChosenTab }) {
+
+    const [isMinimized, setIsMinimized] = useState(false)
+
+    const toggleMinimize = () => {
+        setIsMinimized(!isMinimized)
+    }
+
+    const setTab = (tab) => {
+        setChosenTab(tab)
+    }
+
+    const width = useWindowWidth()
+
+    if (!isMinimized) {
+        return (
+            <div className="sidebar-desktop">
+                <div className="logo">
+                    <Logo></Logo>
+                </div>
+                <div className="nav-bar">
+                    <div className={`nav-bar-element ${chosenTab === '/home' ? 'chosen-element' : ''}`} onClick={() => setTab('/home')}>
+                        <HomeIcon className={chosenTab === '/home' ? 'chosen' : ''}></HomeIcon>
+                        <p>Overview</p>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/transactions' ? 'chosen-element' : ''}`} onClick={() => setTab('/transactions')}>
+                        <TransactionsIcon className={chosenTab === '/transactions' ? 'chosen' : ''}></TransactionsIcon>
+                        <p>Transactions</p>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/budget' ? 'chosen-element' : ''}`} onClick={() => setTab('/budget')}>
+                        <BudjetIcon className={chosenTab === '/budget' ? 'chosen' : ''}></BudjetIcon>
+                        <p>Budgets</p>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/pots' ? 'chosen-element' : ''}`} onClick={() => setTab('/pots')}>
+                        <PotsIcon className={chosenTab === '/pots' ? 'chosen' : ''}></PotsIcon>
+                        <p>Pots</p>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/recurring' ? 'chosen-element' : ''}`} onClick={() => setTab('/recurring')}>
+                        <RecurringIcon className={chosenTab === '/recurring' ? 'chosen' : ''}></RecurringIcon>
+                        <p>Recurring bills</p>
+                    </div>
+                </div>
+
+                <div className="minimize nav-bar-element" onClick={toggleMinimize}>
+                    <MinimizeIcon></MinimizeIcon>
+                    <p>Minimize Menu</p>
+                </div>
+            </div>
+        )
+    }
+
+    if (isMinimized) {
+        return (
+            <div className="sidebar-desktop-minimized">
+                <div className="logo">
+                    <LogoMini></LogoMini>
+                </div>
+                <div className="nav-bar">
+                    <div className={`nav-bar-element ${chosenTab === '/home' ? 'chosen-element' : ''}`} onClick={() => setTab('/home')}>
+                        <HomeIcon className={chosenTab === '/home' ? 'chosen' : ''}></HomeIcon>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/transactions' ? 'chosen-element' : ''}`} onClick={() => setTab('/transactions')}>
+                        <TransactionsIcon className={chosenTab === '/transactions' ? 'chosen' : ''}></TransactionsIcon>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/budget' ? 'chosen-element' : ''}`} onClick={() => setTab('/budget')}>
+                        <BudjetIcon className={chosenTab === '/budget' ? 'chosen' : ''}></BudjetIcon>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/pots' ? 'chosen-element' : ''}`} onClick={() => setTab('/pots')}>
+                        <PotsIcon className={chosenTab === '/pots' ? 'chosen' : ''}></PotsIcon>
+                    </div>
+                    <div className={`nav-bar-element ${chosenTab === '/recurring' ? 'chosen-element' : ''}`} onClick={() => setTab('/recurring')}>
+                        <RecurringIcon className={chosenTab === '/recurring' ? 'chosen' : ''}></RecurringIcon>
+                    </div>
+                </div>
+
+                <div className="minimize nav-bar-element" onClick={toggleMinimize}>
+                    <MinimizeIcon></MinimizeIcon>
+                </div>
+            </div>
+        )
+    }
+}

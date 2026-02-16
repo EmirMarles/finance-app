@@ -1,0 +1,37 @@
+.page-layout{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.main-page-budgets{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    width: 80%;
+}
+
+.budgets-header{
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.budget-dashboard{
+    border-radius: 10px;
+    margin-top: 2rem;
+    width: 100%;
+    /* background-color: white; */
+    height: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+
+.budgets-column{
+    display: flex;
+    flex-direction: column;
+}

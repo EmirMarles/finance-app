@@ -1,0 +1,180 @@
+:root {
+    --color: #82C9D7;
+
+    --general-width: 85%;
+
+    --margin-bottom-elements: 1rem;
+
+    --margin-bottom-progress: 0.5rem;
+}
+
+.budget-card {
+    background-color: white;
+    border-radius: 10px;
+    /* width: 20%; */
+    width: 32rem;
+    /* height: 45rem; */
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 0.6rem;
+    /* margin-left: 1.5rem; */
+    width: var(--general-width);
+    margin-top: 1.5rem;
+    margin-bottom: var(--margin-bottom-elements);
+}
+
+.theme {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50vw;
+    background-color: var(--color);
+}
+
+.card-header h4 {
+    margin: 0;
+}
+
+.one-budget-data {
+    width: var(--general-width);
+    margin-bottom: var(--margin-bottom-elements);
+    /* background-color: yellow;    */
+}
+
+.one-budget-data p {
+    margin: 0;
+    text-align: left;
+}
+
+
+.maximum-p {
+    width: 100%;
+    text-align: left;
+    color: grey;
+    margin-bottom: var(--margin-bottom-progress);
+}
+
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 25px;
+    /* background-color: var(--color); */
+    margin-bottom: var(--margin-bottom-progress);
+}
+
+progress::-webkit-progress-bar {
+    /* You can set height properties here, but it's often inherited from the parent progress element's height */
+    background-color: var(--color);
+    /* Example track color */
+    border-radius: 2px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--color);
+    /* Example progress value color */
+    border-radius: 2px;
+}
+
+/* Styles for Firefox */
+progress::-moz-progress-bar {
+    background-color: var(--color);
+    /* Example progress value color */
+    /* Height is set on the main 'progress' selector */
+}
+
+.spent-remaining {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* line-height: 1rem; */
+}
+
+.spent {
+    padding-left: 1rem;
+    border-left: 5px solid var(--color);
+    /* border-radius: 10px; */
+}
+
+.remaining {
+    padding-left: 1rem;
+    border-left: 5px solid var(--grey);
+}
+
+.latest-spending {
+    border-radius: 5px;
+    width: var(--general-width);
+    background-color: var(--biege);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--margin-bottom-elements);
+}
+
+.latest-spending-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.latest-spending-head h3 {
+    margin: 0;
+    margin-left: 1rem;
+}
+
+.latest-spending-head p {
+    margin-right: 1rem;
+}
+
+.last-transaction {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding: 0.2rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.last-transaction:nth-child(4) {
+    border-bottom: none;
+}
+
+.avatar-late {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.avatar-late img {
+    width: 2rem;
+    border-radius: 50vw;
+}
+
+.latest-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.latest-data p {
+    margin: 0;
+}
