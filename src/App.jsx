@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePage chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
+        <Route path='/' element={<HomePage moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
         <Route path='/transactions' element={<Transactions moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
         <Route path='/budgets' element={<Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets>}></Route>
         <Route path='/pots' element={<Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots>}></Route>

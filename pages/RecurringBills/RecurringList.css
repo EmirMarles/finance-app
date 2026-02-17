@@ -1,0 +1,53 @@
+.recurring-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sort-by{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.list-of-recurring{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 1rem;    
+}
+
+.one-recurring-bill{
+    border-bottom: 1px solid lightgrey;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bill-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 30%;
+}
+
+.bill-name img{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}

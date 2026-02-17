@@ -25,6 +25,26 @@ export function formatTime(isoString, short) {
     }
 }
 
+export function formatTimeForRecurring(isoString) {
+    const dateObject = new Date(isoString)
+
+    let formatted = dateObject.toLocaleDateString('en-GB', {
+        day: '2-digit',
+    }).replace(',', ''); // "11 Aug 2024"
+
+    if (formatted === '1') {
+        formatted = formatted + 'st'
+    } else if (formatted === '2') {
+        formatted = formatted + 'nd'
+    } else if (formatted === '3') {
+        formatted = formatted + 'rd'
+    } else {
+        formatted = formatted + 'th'
+    }
+
+    return formatted
+}
+
 export function countTransactionsPages(transactions) {
     const len = transactions.length;
     const pages = len / 18
