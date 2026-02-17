@@ -1,0 +1,41 @@
+.recurring-bills{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.recurring-main{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 80%;
+}
+
+.recurring-header{
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.recurring-grid{
+    /* margin-top: 10rem; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 99%;
+
+    border: 1px solid green;
+}
+
+.total{
+    border : 1px solid black;
+}
+
+.recurring-bills-list{
+    width: 90%;
+    border: 1px solid red;
+}

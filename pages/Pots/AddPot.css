@@ -1,0 +1,10 @@
+.add-pot-form{
+    background-color: white;
+    border-radius: 10px;
+    width: 32rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}

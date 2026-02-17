@@ -16,3 +16,16 @@ export function addDollarSign(amont) {
     const res = arr.join("")
     return res
 }
+
+export function getRecurringTransactions(transactions) {
+
+    let recurringTransactions = []
+    let j = 0;
+    for (let i = 0; i < transactions.length; i++) {
+        if (transactions[i].recurring) {
+            recurringTransactions[j] = transactions[i]
+            j++
+        }   
+    }
+    return recurringTransactions
+}

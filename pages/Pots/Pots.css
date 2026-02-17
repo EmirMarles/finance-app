@@ -1,0 +1,48 @@
+.pots-page{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+}
+
+.main-pots{
+    justify-self: self-start;
+    width: 75%;
+    /* width: 100%; */
+    /* height: 200px; */
+    /* background-color: #f0f0f0; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pots-header{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;  
+    width: 90%;
+}
+
+.pots-grid{
+    /* margin-top: 10rem; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 102%;
+}
+
+
+.add-pot-form-show{
+    /* position: absolute; */
+    /* top: 0%; */
+    /* left: 0%; */
+}
+

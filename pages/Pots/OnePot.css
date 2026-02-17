@@ -1,0 +1,124 @@
+:root{
+    --pot-theme: red;
+}
+
+h4{
+    margin: 0;
+}
+
+
+h5{
+    font-weight: normal;
+    margin: 0;
+    color: grey;
+}
+
+p{
+    margin: 0;
+}
+
+.one-pot{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pot-header{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.sub-header-pot{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--pot-theme);
+}
+
+.save-data{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}
+
+.total-saved{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.progress-pot{
+    width: 90%;
+    height: 1.3rem;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: none;
+    overflow: hidden;
+}
+
+.progress-pot::-webkit-progress-bar {
+    background-color: var(--pot-theme);
+    border-radius: 2px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--pot-theme);
+    border-radius: 2px;
+}
+
+/* Styles for Firefox */
+progress::-moz-progress-bar {
+    background-color: var(--pot-theme);
+    /* Example progress value color */
+    /* Height is set on the main 'progress' selector */
+}
+
+
+.percentage{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.buttons{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+
+.buttons button{
+    width: 48%;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--biege);
+    color: black;
+    cursor: pointer;
+}

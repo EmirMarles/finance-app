@@ -2,6 +2,8 @@ import './App.css'
 import { HomePage } from '../pages/HomePage'
 import { Transactions } from '../pages/Transactions/Transactions'
 import { Budgets } from '../pages/Budgets/Budgets'
+import { Pots } from '../pages/Pots/Pots'
+import { RecurringBills } from '../pages/RecurringBills/RecurringBills'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import moneyData from '../data.json'
@@ -16,6 +18,8 @@ function App() {
         <Route path='/' element={<HomePage chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
         <Route path='/transactions' element={<Transactions moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
         <Route path='/budgets' element={<Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets>}></Route>
+        <Route path='/pots' element={<Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots>}></Route>
+        <Route path='/recurring-bills' element={<RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills>}></Route>
       </Routes>
     </BrowserRouter>
   )

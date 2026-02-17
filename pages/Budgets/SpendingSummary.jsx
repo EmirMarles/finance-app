@@ -7,7 +7,7 @@ export function SpendingSummary({ budgetData, transactions }) {
 
     return (
         <div className="spending-summary">
-            <div className="pie-chart">
+            <div className="pie-chart">-
                 <p> of ${limit} limit</p>
             </div>
 
