@@ -1,0 +1,14 @@
+.transactions-board{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.b-header{
+    margin-top: 0.2rem;
+    width: 85%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
