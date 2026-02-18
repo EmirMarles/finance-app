@@ -89,6 +89,10 @@ p {
     border-radius: 10px;
 }
 
+.register{
+    height: 26rem;
+}
+
 .input-container{
     display: flex;
     flex-direction: column;
@@ -147,4 +151,11 @@ h1{
 .account-create{
     /* margin-top: 1rem; */
     margin-top: 2rem;
+}
+
+.sign-up{
+    color: var(--dark-grey);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
 }
