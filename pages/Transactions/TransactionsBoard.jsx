@@ -14,7 +14,7 @@ export function TransactionsBoard({ transactions }) {
 
     const [inputSearch, setInputSearch] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const [transPerPage, setTransPerPage] = useState(18)
+    const [transPerPage, setTransPerPage] = useState(17)
     const [totalPages, setTotalPages] = useState(() => {
         return countTransactionsPages(transactions)
     })
@@ -171,14 +171,13 @@ export function TransactionsBoard({ transactions }) {
             <div className="transactions-table">
                 <div className="transactions-table-h">
                     <p className='rec-sender'>Recipient/Sender</p>
-                    <p>Category</p>
-                    <p>Transaction Date</p>
-                    <p>Amount</p>
+                    <p className='cat-h'>Category</p>
+                    <p className='trans-h'>Transaction Date</p>
+                    <p className='amount-h'>Amount</p>
                 </div>
 
                 <div className="transactions-rows">
                     {Array.isArray(currentTransactions) &&
-                        // transactions.slice(currentPage, transPerPage)
                         currentTransactions.map((transaction, index) => {
                             return <OneTransaction key={index} transaction={transaction}></OneTransaction>
                         })

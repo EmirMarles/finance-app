@@ -1,11 +1,8 @@
 import './Transactions.css'
 import { SideBar } from "../../components/SideBar"
 import { TransactionsBoard } from './TransactionsBoard'
-import { useState } from 'react'
 
 export function Transactions({ moneyData, chosenTab, setChosenTab }) {
-
-    
     // function to get the money data // 
 
     /// useAuth, useLogin, etc

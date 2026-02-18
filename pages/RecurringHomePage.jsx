@@ -1,10 +1,17 @@
 import './RecurringHomePage.css'
 import IconCaretRight from '../public/assets/images/icon-caret-right.svg?react'
+import { useNavigate } from 'react-router-dom'
 
 export function RecurringHomePage({ transactions, moneyData }) {
 
     const recurringTransactions = transactions.filter(transaction => transaction.recurring === true)
     const firstThreeRecurring = recurringTransactions.slice(0, 3)
+    const navigate = useNavigate()
+
+    const handleNavigateToRecurring = () => {
+        navigate('/recurring-bills')
+    }
+
     const budgetData = moneyData.budgets   
     
     const getThemeForRecurring = (transaction) => {
@@ -16,7 +23,7 @@ export function RecurringHomePage({ transactions, moneyData }) {
         <div className="b recurring-bills-home" style={{ gridArea: 'box4' }}>
             <div className="bills-header">
                 <h3>Recurring bills</h3>
-                <button >See more<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <button onClick={handleNavigateToRecurring}>See more<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <div className="bills-grid-home">
                 {Array.isArray(firstThreeRecurring) && firstThreeRecurring.length > 0 ? (

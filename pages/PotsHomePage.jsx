@@ -2,12 +2,18 @@ import './PotsHomePage.css'
 import IconPot from '../public/assets/images/icon-pot.svg?react'
 import IconCaretRight from '../public/assets/images/icon-caret-right.svg?react'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function PotsHomePage({ pots }) {
 
     const firstFourPots = pots.slice(0, 4)
     const totalSaved = pots.reduce((sum, pot) => sum + pot.total, 0)
 
+    const navigate = useNavigate()
+
+    const handleNavigateToPots = () => {
+        navigate('/pots')
+    }
 
     useEffect(()=>{
         console.log('pots in pots home page', pots)
@@ -17,7 +23,7 @@ export function PotsHomePage({ pots }) {
         <div className="b pots" style={{ gridArea: 'box1' }}>
             <div className="pots-header">
                 <h4>Pots</h4>
-                <button>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <button onClick={handleNavigateToPots}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <div className="pots-data">
                 <div className="total-saved-info">

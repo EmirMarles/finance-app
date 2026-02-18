@@ -2,9 +2,13 @@
     display: flex;
     flex-flow: row;
     gap : 2rem;
+    height: 100vh;
+    margin-top: var(--margin-top-pages);
+    /* height: fit-content; */
 }
 
 .transactions-page-layout{
+    height: 90%;
     width: 80%;
     display: flex;
     flex-direction: column;

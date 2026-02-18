@@ -18,6 +18,9 @@
   --green: rgb(39, 124, 120);
   --grey: rgb(105, 104, 104);
   --dark-grey: rgb(32, 31, 36);
+
+
+  --margin-top-pages: 2rem;
 }
 
 @font-face {

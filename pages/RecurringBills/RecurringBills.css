@@ -32,10 +32,9 @@
 }
 
 .recurring-grid{
-    /* margin-top: 10rem; */
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     gap: 1rem;
     width: 99%;

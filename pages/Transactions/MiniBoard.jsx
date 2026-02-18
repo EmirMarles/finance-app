@@ -9,8 +9,8 @@ export function MiniBoard({ transactions }) {
     const currentTransactions = transactions.slice(0, 5)
 
     return (
-        <div className='board'>
-            <div className="transactions-table">
+        <div className='board-mini'>
+            <div className="transactions-table-mini">
                 <div className="transactions-rows-mini">
                     {Array.isArray(currentTransactions) &&
                         currentTransactions.map((transaction, index) => {

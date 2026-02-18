@@ -1,18 +1,25 @@
 import './BudgetHomePage.css'
 import { PieChart } from './Budgets/PieChart'
 import IconCaretRight from '../public/assets/images/icon-caret-right.svg?react'
+import { useNavigate } from 'react-router-dom'
 
 export function BudgetHomePage({ budgets, moneyData }) {
 
     const transactions = moneyData.transactions
     const budgetData = budgets
 
+    const navigate = useNavigate()
+
+    const handleNavigateToBudgets = () => {
+        navigate('/budgets')
+    }
+
     return (
         <div className="b budgets" style={{ gridArea: 'box2' }}>
             {/* <div className="doughnut"> */}
             <div className="budgets-header-home">
                 <h2>Budgets</h2>
-                <button >See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <button onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <div className="budgets-overview">
                 <PieChart budgetData={budgetData} transactions={transactions} className="doughnut" isSmall={true} />

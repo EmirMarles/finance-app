@@ -6,7 +6,10 @@
     width: 100%;
     background-color: white;
     border-radius: 10px;
+
+    /* margin-top: var(--margin-top-pages); */
 }
+
 
 .list-header{
     display: flex;
@@ -42,7 +45,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 30%;
+    width: 35%;
 }
 
 .bill-name img{
@@ -50,4 +53,18 @@
     height: 1.5rem;
     border-radius: 50%;
     margin-right: 0.5rem;
+}
+
+.due-date{
+    width: 25%;
+}
+
+.due-date p{
+    margin: 0;
+    text-align: left;
+}
+
+.one-recurring-bill:last-child{
+    border-bottom: none;
+    margin-bottom: 0.5rem;
 }

@@ -13,12 +13,10 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     const pots = moneyData.pots
     const transactions = moneyData.transactions
     const budgets = moneyData.budgets
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         console.log('pots', pots)
-    },[pots])
-
-
+    }, [pots])
 
     return (
         <div className="home-page-desktop">
@@ -40,10 +38,10 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                     </div>
                 </div>
                 <div className="bento-grid">
-                    <PotsHomePage pots={pots}></PotsHomePage>
-                    <BudgetHomePage budgets={budgets} moneyData={moneyData}></BudgetHomePage>
-                    <TransHomePage  transactions={transactions} moneyData={moneyData} ></TransHomePage>
-                    <RecurringHomePage transactions={transactions} moneyData={moneyData}></RecurringHomePage>
+                    <PotsHomePage className="bento-element" pots={pots}></PotsHomePage>
+                    <BudgetHomePage className="bento-element" budgets={budgets} moneyData={moneyData}></BudgetHomePage>
+                    <TransHomePage className="bento-element" transactions={transactions} moneyData={moneyData} ></TransHomePage>
+                    <RecurringHomePage className="bento-element" transactions={transactions} moneyData={moneyData}></RecurringHomePage>
                 </div>
             </div>
         </div>

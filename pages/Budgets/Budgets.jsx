@@ -2,7 +2,7 @@ import './Budgets.css'
 import { SideBar } from '../../components/SideBar'
 import { SpendingSummary } from './SpendingSummary'
 import { OneBudget } from './OneBudget'
-
+// import plusIcon 
 export function Budgets({ moneyData, chosenTab, setChosenTab }) {
 
     const budgetData = moneyData.budgets
