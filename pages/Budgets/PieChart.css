@@ -1,0 +1,46 @@
+.pie-chart-inside{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    position: relative;
+}
+
+
+.pie-chart-inside p{
+    margin: 0;
+    font-size: 0.9rem;
+    color: grey;
+
+    position: absolute;
+    margin-top: 1rem;
+}
+
+
+
+.pie-chart-inside h2{
+    margin: 0;
+    color: black;
+}
+
+.pie-svg{
+    width: 90%;
+    overflow: visible;
+    margin-top: 1rem;
+    /* position: absolute; */
+    top: 0;
+}
+
+
+.small{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    position: relative;
+}
+

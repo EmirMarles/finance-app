@@ -1,5 +1,6 @@
 import './SpendingSummary.css'
 import { calculateMoneySpentOnCategory, calculateLimit } from '../../utils/Helper'
+import { PieChart } from './PieChart'
 
 export function SpendingSummary({ budgetData, transactions }) {
 
@@ -7,8 +8,8 @@ export function SpendingSummary({ budgetData, transactions }) {
 
     return (
         <div className="spending-summary">
-            <div className="pie-chart">-
-                <p> of ${limit} limit</p>
+            <div className="pie-chart">
+                <PieChart budgetData={budgetData} transactions={transactions} limit={limit}/>
             </div>
 
             <div className="summary">
@@ -17,7 +18,7 @@ export function SpendingSummary({ budgetData, transactions }) {
                     {Array.isArray(budgetData) && budgetData.length > 0 &&
                         budgetData.map((budget) => {
                             return <div className='budget-category'
-                                style={{ "--theme": budget.theme }}
+                                style={{ "--theme-budget": budget.theme }}
                             >
                                 <div className="budget-st">
                                     <p>{budget.category}</p>

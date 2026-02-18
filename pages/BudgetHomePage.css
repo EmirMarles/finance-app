@@ -1,0 +1,49 @@
+:root{
+    --color-themes-bud: #007bff;
+}
+
+
+.budgets{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dougnut{
+    width: 90%;
+}
+
+.budgets-overview{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.budget-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.one-info{
+    width: 100%;
+    border-left: 3px solid var(--color-themes-bud);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+}
+
+.one-info p{
+    margin: 0;
+}
+
+.one-info h4{
+    margin: 0;
+}   

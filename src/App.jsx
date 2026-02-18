@@ -7,6 +7,10 @@ import { RecurringBills } from '../pages/RecurringBills/RecurringBills'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import moneyData from '../data.json'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 function App() {
 

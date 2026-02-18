@@ -13,7 +13,7 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
             <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             <div className="recurring-main">
                 <div className="recurring-header">
-                    <h4>Recurring Bills</h4>
+                    <h2>Recurring Bills</h2>
                     <button>Add New Recurring Bill</button>
                 </div>
 

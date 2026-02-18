@@ -1,5 +1,5 @@
 :root{
-    --theme: red;
+    --theme-budget: red;
 }
 
 .spending-summary{
@@ -33,7 +33,7 @@
 }
 
 .budget-st p{
-    border-left: 3px solid var(--theme);
+    border-left: 3px solid var(--theme-budget);
     padding-left: 0.5rem;
     /* width: 40%; */
 }
@@ -45,4 +45,11 @@
 .max{
     color: grey;
     font-size: 0.7rem;
+}
+
+.pie-chart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
 }

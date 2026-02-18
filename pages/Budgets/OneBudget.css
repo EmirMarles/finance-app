@@ -1,5 +1,5 @@
 :root {
-    --color: #82C9D7;
+    --color-themes: #82C9D7;
 
     --general-width: 85%;
 
@@ -36,7 +36,7 @@
     width: 1rem;
     height: 1rem;
     border-radius: 50vw;
-    background-color: var(--color);
+    background-color: var(--color-themes);
 }
 
 .card-header h4 {
@@ -63,7 +63,7 @@
 }
 
 
-progress {
+.budget-progress {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -75,22 +75,22 @@ progress {
     margin-bottom: var(--margin-bottom-progress);
 }
 
-progress::-webkit-progress-bar {
+.budget-progress::-webkit-progress-bar {
     /* You can set height properties here, but it's often inherited from the parent progress element's height */
-    background-color: var(--color);
+    background-color: var(--color-themes);
     /* Example track color */
     border-radius: 2px;
 }
 
-progress::-webkit-progress-value {
-    background-color: var(--color);
+.budget-progress::-webkit-progress-value {
+    background-color: var(--color-themes);
     /* Example progress value color */
     border-radius: 2px;
 }
 
 /* Styles for Firefox */
-progress::-moz-progress-bar {
-    background-color: var(--color);
+.budget-progress::-moz-progress-bar {
+    background-color: var(--color-themes);
     /* Example progress value color */
     /* Height is set on the main 'progress' selector */
 }
@@ -104,7 +104,7 @@ progress::-moz-progress-bar {
 
 .spent {
     padding-left: 1rem;
-    border-left: 5px solid var(--color);
+    border-left: 5px solid var(--color-themes);
     /* border-radius: 10px; */
 }
 

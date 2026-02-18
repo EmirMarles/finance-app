@@ -26,7 +26,7 @@ export function OneBudget({ OneBudgetData, transactions }) {
 
     return (
         <div className='budget-card'
-            style={{ "--color": OneBudgetData.theme }}
+            style={{ "--color-themes": OneBudgetData.theme }}
         >
             <div className="card-header">
                 <div className="theme"></div>
@@ -34,7 +34,7 @@ export function OneBudget({ OneBudgetData, transactions }) {
             </div>
             <div className="one-budget-data">
                 <span className='maximum-p'>Maximum of ${OneBudgetData.maximum}</span>
-                <progress value={percentage} max={100}></progress>
+                <progress className="budget-progress" value={percentage} max={100}></progress>
                 <div className="spent-remaining">
                     <div className="spent">
                         <p>Spent</p>

@@ -13,10 +13,22 @@
 }
 
 .recurring-header{
-    width: inherit;
+    width: 99%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.recurring-header button{
+    /* background-color: var(--color-themes); */
+    /* color: white; */
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    /* height: 20%; */
 }
 
 .recurring-grid{

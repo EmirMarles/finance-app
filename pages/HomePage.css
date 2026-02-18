@@ -18,6 +18,11 @@ h1{
     width: 80%;
 }
 
+.overview{
+    width: 100%;
+    text-align: left;
+}
+
 .grid-cards{
     display: flex;
     flex-direction: row;
@@ -32,6 +37,7 @@ h1{
     color: white;
     border-radius: 10px;
     width: 33%;
+    padding: 0.9rem;
 }
 
 .card p{
