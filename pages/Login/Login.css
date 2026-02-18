@@ -1,0 +1,150 @@
+.login-page {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    height: 100vh;
+    margin-top: var(--margin-top-pages);
+    /* align-items: center; */
+}
+
+
+.left-screen {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-banner {
+    height: 100%;
+    width: 80%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../public/assets/images/illustration-authentication.svg');
+    background-size: cover;
+    background-position: -6% 50%;
+}
+
+
+.login-banner {
+    border-radius: 15px;
+}
+
+.logo-large {
+    position: absolute;
+    top: 5%;
+    left: -2%;
+    width: 50%;
+}
+
+
+.text-container{
+    position: absolute;
+    bottom: 2%;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: white
+}
+
+h2 {
+    margin: 0;
+    text-align: left;
+}
+
+p {
+    margin: 0;
+    text-align: left; 
+    font-size: 0.9rem;
+}
+
+/* auth container */
+.right-side{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+.auth-container {
+    width: 60%;
+    height: 21rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+h1{
+    margin: 0;
+    text-align: left;
+    width: 85%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.login-form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container input{
+    background-color: white;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    color: black;
+}
+
+.email-p{
+    color: lightgry;
+    font-size: 0.8rem;
+    width: 105%;
+    text-align: left;
+    margin: 0;
+}
+
+.login-button{
+    width: 105%;
+    border-radius: 5px;
+    color: white;
+    background-color: var(--dark-grey);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+}
+
+.account-create{
+    /* margin-top: 1rem; */
+    margin-top: 2rem;
+}

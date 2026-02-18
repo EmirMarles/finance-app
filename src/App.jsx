@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import moneyData from '../data.json'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Login } from '../pages/Login/Login'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/budgets' element={<Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets>}></Route>
         <Route path='/pots' element={<Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots>}></Route>
         <Route path='/recurring-bills' element={<RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills>}></Route>
+        <Route path='/login' element={<Login />}></Route>
       </Routes>
     </BrowserRouter>
   )
