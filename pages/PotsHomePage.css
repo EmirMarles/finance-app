@@ -1,3 +1,7 @@
+:root {
+    --pot-home-color: #82C9D7;
+}
+
 .pots{
     display: flex;
     flex-direction: column;
@@ -32,6 +36,20 @@
 
 .o-pot{
     text-align: left;
-    border-left: 1px solid red;
+    border-left: 3px solid var(--pot-home-color);
     padding-left: 1rem;
+}
+
+button{
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+}
+
+button:hover{
+    cursor: pointer;
 }

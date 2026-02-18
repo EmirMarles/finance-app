@@ -20,6 +20,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    gap: 1rem;
 }
 
 .budget-info{
@@ -38,6 +39,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.1rem;
+    padding-left: 0.5rem;
 }
 
 .one-info p{
@@ -47,3 +49,11 @@
 .one-info h4{
     margin: 0;
 }   
+
+.budgets-header-home{
+    width:90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

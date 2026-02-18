@@ -13,7 +13,6 @@ export function MiniBoard({ transactions }) {
             <div className="transactions-table">
                 <div className="transactions-rows-mini">
                     {Array.isArray(currentTransactions) &&
-                        // transactions.slice(currentPage, transPerPage)
                         currentTransactions.map((transaction, index) => {
                             return <div className='one-board-transaction-mini'>
                                 <div className="sender-rec">

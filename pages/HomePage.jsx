@@ -5,8 +5,21 @@ import { PotsHomePage } from './PotsHomePage'
 import { BudgetHomePage } from './BudgetHomePage'
 import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
+import { useEffect } from 'react'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
+
+    const balance = moneyData.balance
+    const pots = moneyData.pots
+    const transactions = moneyData.transactions
+    const budgets = moneyData.budgets
+    
+    useEffect(()=>{
+        console.log('pots', pots)
+    },[pots])
+
+
+
     return (
         <div className="home-page-desktop">
             <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
@@ -15,22 +28,22 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                 <div className="grid-cards">
                     <div className="card">
                         <p>Current Balance</p>
-                        <h1>$900.00</h1>
+                        <h1>${balance.current}</h1>
                     </div>
                     <div className="card white-card">
                         <p>Income</p>
-                        <h1>$1,700.00</h1>
+                        <h1>${balance.income}</h1>
                     </div>
                     <div className="card white-card">
                         <p>Expenses</p>
-                        <h1>$1,500.00</h1>
+                        <h1>${balance.expenses}</h1>
                     </div>
                 </div>
                 <div className="bento-grid">
-                    <PotsHomePage></PotsHomePage>
-                    <BudgetHomePage moneyData={moneyData}></BudgetHomePage>
-                    <TransHomePage moneyData={moneyData} ></TransHomePage>
-                    <RecurringHomePage></RecurringHomePage>
+                    <PotsHomePage pots={pots}></PotsHomePage>
+                    <BudgetHomePage budgets={budgets} moneyData={moneyData}></BudgetHomePage>
+                    <TransHomePage  transactions={transactions} moneyData={moneyData} ></TransHomePage>
+                    <RecurringHomePage transactions={transactions} moneyData={moneyData}></RecurringHomePage>
                 </div>
             </div>
         </div>
