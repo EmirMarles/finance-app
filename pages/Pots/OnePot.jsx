@@ -1,12 +1,28 @@
 import './OnePot.css';
 import IconEllipsis from '../../public/assets/images/icon-ellipsis.svg?react';
+import { useState } from 'react';
 
 
-export function OnePot({ potData }) {
+export function OnePot({ potsButton, setPotsButton, potData }) {
 
+
+    const [openPotOptions, setOpenPotOptions] = useState(false)
+
+    const toggleOpenPot = () => {
+        setOpenPotOptions(!openPotOptions)
+    }
+
+    const handleOpenDeleteOption = (action) =>{
+        console.log(action)
+        setOpenPotOptions(false)
+        setPotsButton({
+            action: action,
+            show: true
+        })
+    }
 
     const percentage = Math.round((potData.total / potData.target) * 100)
-    
+
     return (
         <div className="one-pot"
             style={{ "--pot-theme": potData.theme }}
@@ -16,7 +32,15 @@ export function OnePot({ potData }) {
                     <div className="color"></div>
                     <h3>{potData.name}</h3>
                 </div>
-                <IconEllipsis className="ellipsis-icon"></IconEllipsis>
+                <div className="ellipsis-container">
+                    <IconEllipsis onClick={toggleOpenPot} className="ellipsis"></IconEllipsis>
+                    {openPotOptions &&
+                        <div className="options-edit-delete">
+                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('edit')}>Edit Pot</p>
+                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('delete')}>Delete Pot</p>
+                        </div>
+                    }
+                </div>
             </div>
 
             <div className="save-data">

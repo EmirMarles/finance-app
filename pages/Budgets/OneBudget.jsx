@@ -1,36 +1,49 @@
 import './OneBudget.css'
 import { calculateMoneySpentOnCategory, calculatePercentageBudgetSpent, getLatestTransactionsByCategory } from '../../utils/Helper'
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { addDollarSign } from '../../utils/moneyDataManilpulation';
 import { formatTime } from '../../utils/Helper';
+import Ellipsis from '../../public/assets/images/icon-ellipsis.svg?react'
 
-export function OneBudget({ OneBudgetData, transactions }) {
+export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transactions, deleteBudget, setDeleteBudget }) {
 
-    // function to get the latest spendings 
-    // function to calculate the amount spent on this category   
-
-    // useEffect(() => {
-    //     console.log('setting the following theme:', OneBudgetData.theme)
-    //     document.documentElement.style.setProperty('--color', OneBudgetData.theme);
-    // }, [OneBudgetData.theme])
-
-    // const oneBudget = {
-    //     "category": "Entertainment",
-    //     "maximum": 50.00,
-    //     "theme": "rgb(39, 124, 120)"
-    // }
+    const [showBudgetOptions, setShowBudgetOptions] = useState(false)
 
     const moneySpent = calculateMoneySpentOnCategory(OneBudgetData.category, transactions)
     const percentage = calculatePercentageBudgetSpent(OneBudgetData.maximum, moneySpent)
     const threeLatestTransactions = getLatestTransactionsByCategory(transactions, OneBudgetData.category)
+
+    const handleOpenOptions = () => {
+        setShowBudgetOptions(!showBudgetOptions)
+    }
+
+    const handleOpenDeleteOption = (action) => {
+        setBudgetButton({
+            action: action,
+            show: true
+        })
+    }
 
     return (
         <div className='budget-card'
             style={{ "--color-themes": OneBudgetData.theme }}
         >
             <div className="card-header">
-                <div className="theme"></div>
-                <h4>{OneBudgetData.category}</h4>
+                <div className="together">
+                    <div className="theme"></div>
+                    <h4>{OneBudgetData.category}</h4>
+                </div>
+
+                <div className="ellipsis-container">
+                    <Ellipsis className='ellipsis' onClick={handleOpenOptions}></Ellipsis>
+                    {showBudgetOptions &&
+                        <div className="options-edit-delete">
+                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('edit')}>Edit Budget</p>
+                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('delete')}>Delete Budget</p>
+                        </div>
+                    }
+                </div>
+
             </div>
             <div className="one-budget-data">
                 <span className='maximum-p'>Maximum of ${OneBudgetData.maximum}</span>

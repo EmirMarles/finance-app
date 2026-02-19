@@ -20,16 +20,60 @@
     align-items: center;
 }
 
+.together{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ellipsis:hover{
+    cursor: pointer;
+}
+
 .card-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
     gap: 0.6rem;
     /* margin-left: 1.5rem; */
     width: var(--general-width);
     margin-top: 1.5rem;
     margin-bottom: var(--margin-bottom-elements);
+}
+
+.ellipsis-container{
+    width: 4rem;
+    position: relative;;
+}
+
+.ellipsis{
+    justify-self: right;
+}
+
+.options-edit-delete{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
+    position: absolute;
+    left: -20%;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.option-edit{
+    cursor: pointer;
+    text-align: center;
+    /* width: 100%; */
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+.option-edit:last-child{
+    border-bottom: 0px;
 }
 
 .theme {

@@ -9,7 +9,17 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
     const potsData = moneyData.pots
 
     const [showAddPotForm, setShowAddPotForm] = useState(false)
+    const [potsButton, setPotsButton] = useState({
+        action: 'add',
+        show: false
+    })
 
+    const togglePotsButtonAdd = (action) => {
+        setPotsButton({
+            action: action,
+            show: !potsButton.show
+        })
+    }
 
     const toggleAddPotForm = () => {
         console.log('clicked')
@@ -22,12 +32,12 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
             <div className="main-pots">
                 <div className="pots-header">
                     <h4>Pots</h4>
-                    <button onClick={toggleAddPotForm}>Add New Pot</button>
+                    <button onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
                 </div>
                 <div className="pots-grid">
                     {Array.isArray(potsData) && potsData.length > 0 &&
                         potsData.map((pot, index) => {
-                            return <OnePot key={index} potData={pot}></OnePot>
+                            return <OnePot potsButton={potsButton} setPotsButton={setPotsButton} key={index} potData={pot}></OnePot>
                         })
                     }
                 </div>
@@ -37,6 +47,9 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                     </div>
                 }
             </div>
+            {potsButton.show &&
+                <AddPot potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>
+            }
         </div >
     )
 }
