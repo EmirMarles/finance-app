@@ -9,6 +9,7 @@ import { useState } from 'react'
 import moneyData from '../data.json'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Login } from '../pages/Login/Login'
+import { ProtectedRoutes } from '../customHooks/ProtectedRoutes'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -21,10 +22,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
-        <Route path='/transactions' element={<Transactions moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
-        <Route path='/budgets' element={<Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets>}></Route>
-        <Route path='/pots' element={<Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots>}></Route>
-        <Route path='/recurring-bills' element={<RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills>}></Route>
+        <Route path='/transactions' element={<ProtectedRoutes><Transactions moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} /></ProtectedRoutes>} ></Route>
+        <Route path='/budgets' element={<ProtectedRoutes><Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets></ProtectedRoutes>}></Route>
+        <Route path='/pots' element={<ProtectedRoutes><Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots></ProtectedRoutes>}></Route>
+        <Route path='/recurring-bills' element={<ProtectedRoutes><RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills></ProtectedRoutes>}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
     </BrowserRouter>

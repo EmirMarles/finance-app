@@ -2,30 +2,69 @@ import './Login.css';
 import LoginBanner from '../../public/assets/images/illustration-authentication.svg?react'
 import Logo from '../../public/assets/images/logo-large.svg?react'
 // import loginBanner from '../../public/assets/images/illustration-authentication.svg'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../customHooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
 
-    const [login, setLogin] = useState(true)
+    const [loginContainer, setLogin] = useState(true)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [err, setErr] = useState({
+        showErr: false,
+        errMessage: null
+    })
+
+    const { login, logout } = useAuth();
+    const { user } = useAuth();
 
     const toggleLogin = () => {
         setLogin(prev => !prev)
     }
 
-    if (login) {
-        console.log('login')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (err.showErr === false) return
+
+        const errTimeout = setTimeout(() => {
+            setErr(prev => (
+                {
+                    ...prev,
+                    showErr: false
+                }
+            ))
+        }, 1500)
+
+        return () => clearTimeout(errTimeout)
+    }, [err])
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            await login({ email, password });
+            navigate('/')
+        } catch (err) {
+            setErr({
+                showErr: true,
+                errMessage: err.message
+            })
+        }
+
     }
 
-    if (!login) {
-        console.log('register')
+    const handlePasswordInput = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const handleEmailInput = (e) => {
+        setEmail(e.target.value)
     }
 
     return (
         <div className='login-page'>
-
             <div className="left-screen">
                 <div className="auth-banner">
                     <Logo className="logo-large" style={{ color: "black" }}> </Logo>
@@ -38,21 +77,27 @@ export function Login() {
                 </div>
             </div>
             <div className="right-side">
-                {login ?
+                {loginContainer ?
                     <div className="auth-container">
                         <h1>Login</h1>
                         <form className="login-form">
                             <div className="input-container">
                                 <p className='email-p'>Email</p>
-                                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required value={email} onChange={handleEmailInput} />
                                 <p className='email-p'>Password</p>
-                                <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required hidden={false} value={password} onChange={handlePasswordInput} />
                             </div>
-                            <button className="login-button" type="submit">Login</button>
+                            <button className="login-button" type="submit" onClick={handleLogin}>Login</button>
                         </form>
                         <div className="account-create">
                             <p>Need to create an account? <span className="sign-up" onClick={toggleLogin}>Sign Up</span></p>
                         </div>
+
+                        {err.showErr &&
+                            <div className="error-message">
+                                <p>{err.errMessage}!</p>
+                            </div>
+                        }
                     </div>
                     :
                     <div className="auth-container register">
@@ -60,11 +105,11 @@ export function Login() {
                         <form className="login-form">
                             <div className="input-container">
                                 <p className='email-p'>Email</p>
-                                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required value={email} onChange={handleEmailInput} />
                                 <p className='email-p'>Password</p>
-                                <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required value={password} onChange={handlePasswordInput} />
                                 <p className='email-p'>Repeat Password</p>
-                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required />
+                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
                             <button className="login-button" type="submit">Register</button>
                         </form>

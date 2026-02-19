@@ -5,7 +5,6 @@ import { PotsHomePage } from './PotsHomePage'
 import { BudgetHomePage } from './BudgetHomePage'
 import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
-import { useEffect } from 'react'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
@@ -14,9 +13,9 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     const transactions = moneyData.transactions
     const budgets = moneyData.budgets
 
-    useEffect(() => {
-        console.log('pots', pots)
-    }, [pots])
+    // useEffect(() => {
+    //     console.log('pots', pots)
+    // }, [pots])
 
     return (
         <div className="home-page-desktop">
