@@ -12,10 +12,12 @@ import MinimizeIcon from '../public/assets/images/icon-minimize-menu.svg?react'
 
 import { useWindowWidth } from '../customHooks/useWindowWidth'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function SideBar({ chosenTab, setChosenTab }) {
 
     const [isMinimized, setIsMinimized] = useState(false)
+    const navigate = useNavigate();
 
     const toggleMinimize = () => {
         setIsMinimized(!isMinimized)
@@ -23,6 +25,7 @@ export function SideBar({ chosenTab, setChosenTab }) {
 
     const setTab = (tab) => {
         setChosenTab(tab)
+        navigate(tab)
     }
 
     const width = useWindowWidth()
@@ -34,24 +37,24 @@ export function SideBar({ chosenTab, setChosenTab }) {
                     <Logo></Logo>
                 </div>
                 <div className="nav-bar">
-                    <div className={`nav-bar-element ${chosenTab === '/home' ? 'chosen-element' : ''}`} onClick={() => setTab('/home')}>
-                        <HomeIcon className={chosenTab === '/home' ? 'chosen' : ''}></HomeIcon>
+                    <div className={`nav-bar-element ${chosenTab === '/' ? 'chosen-element' : ''}`} onClick={() => setTab('/')}>
+                        <HomeIcon className={chosenTab === '/' ? 'chosen' : ''}></HomeIcon>
                         <p>Overview</p>
                     </div>
                     <div className={`nav-bar-element ${chosenTab === '/transactions' ? 'chosen-element' : ''}`} onClick={() => setTab('/transactions')}>
                         <TransactionsIcon className={chosenTab === '/transactions' ? 'chosen' : ''}></TransactionsIcon>
                         <p>Transactions</p>
                     </div>
-                    <div className={`nav-bar-element ${chosenTab === '/budget' ? 'chosen-element' : ''}`} onClick={() => setTab('/budget')}>
-                        <BudjetIcon className={chosenTab === '/budget' ? 'chosen' : ''}></BudjetIcon>
+                    <div className={`nav-bar-element ${chosenTab === '/budgets' ? 'chosen-element' : ''}`} onClick={() => setTab('/budgets')}>
+                        <BudjetIcon className={chosenTab === '/budgets' ? 'chosen' : ''}></BudjetIcon>
                         <p>Budgets</p>
                     </div>
                     <div className={`nav-bar-element ${chosenTab === '/pots' ? 'chosen-element' : ''}`} onClick={() => setTab('/pots')}>
                         <PotsIcon className={chosenTab === '/pots' ? 'chosen' : ''}></PotsIcon>
                         <p>Pots</p>
                     </div>
-                    <div className={`nav-bar-element ${chosenTab === '/recurring' ? 'chosen-element' : ''}`} onClick={() => setTab('/recurring')}>
-                        <RecurringIcon className={chosenTab === '/recurring' ? 'chosen' : ''}></RecurringIcon>
+                    <div className={`nav-bar-element ${chosenTab === '/recurring-bills' ? 'chosen-element' : ''}`} onClick={() => setTab('/recurring-bills')}>
+                        <RecurringIcon className={chosenTab === '/recurring-bills' ? 'chosen' : ''}></RecurringIcon>
                         <p>Recurring bills</p>
                     </div>
                 </div>
