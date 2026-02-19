@@ -15,13 +15,27 @@ export function AuthProvider({ children }) {
             const { token, user } = response.data
             localStorage.setItem("token", token)
             setUser(user)
+            return ({ success: true })
         } catch (err) {
-            if (err.response){
-                throw new Error(err.response.data.message);
-            } else if (err.request){
-                throw new Error("Server not responding")
-            } else {
-                throw new Error("Something went wrong")
+            return {
+                success: false,
+                message: err.response?.data?.message || "Login Failed"
+            }
+        }
+    }
+
+    const register = async (userData) => {
+        try {
+            // first comparison of both passwords
+            const response = await axios.post("http://localhost:5000/api/auth/register", {
+                email: userData.email,
+                password: userData.password
+            })
+            return ({ success: true, message: response.data.message })
+        } catch (err) {
+            return {
+                success: false,
+                message: err.response?.data?.message || "Registration Failed"
             }
         }
     }
@@ -31,7 +45,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, register }}>
             {children}
         </AuthContext.Provider>
     )

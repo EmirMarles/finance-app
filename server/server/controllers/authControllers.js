@@ -24,6 +24,7 @@ exports.register = async (req, res) => {
     }
 
     users.push(newUser)
+    return res.status(201).json({ message: "User registered successfully" });
 }
 
 exports.login = async (req, res) => {

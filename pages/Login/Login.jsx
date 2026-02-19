@@ -17,7 +17,7 @@ export function Login() {
         errMessage: null
     })
 
-    const { login, logout } = useAuth();
+    const { login, logout, register } = useAuth();
     const { user } = useAuth();
 
     const toggleLogin = () => {
@@ -43,16 +43,41 @@ export function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        try {
-            await login({ email, password });
+        const resulst = await login({ email, password });
+
+        if (resulst.success) {
             navigate('/')
-        } catch (err) {
+        }
+        else {
             setErr({
                 showErr: true,
-                errMessage: err.message
+                errMessage: resulst.message
             })
         }
+    }
 
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        const result = await register({ email, password })
+        // const result = await
+        if (result.success) {
+            console.log('registration successful!')
+            navigate('/login')
+            setErr({
+                showErr: true,
+                errMessage: 'Registration successful!'
+            })
+            setTimeout(() => {
+                window.location.reload()
+            }, 500)
+        } else {
+            setErr(
+                {
+                    showErr: true,
+                    errMessage: result.message
+                }
+            )
+        }
     }
 
     const handlePasswordInput = (e) => {
@@ -111,11 +136,16 @@ export function Login() {
                                 <p className='email-p'>Repeat Password</p>
                                 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
-                            <button className="login-button" type="submit">Register</button>
+                            <button className="login-button" type="submit" onClick={handleRegister}>Register</button>
                         </form>
                         <div className="account-create">
                             <p>Already Registered? <span className="sign-up" onClick={toggleLogin}>Create an account</span></p>
                         </div>
+                        {err.showErr &&
+                            <div className="error-message">
+                                <p>{err.errMessage}!</p>
+                            </div>
+                        }
                     </div>
                 }
             </div>
