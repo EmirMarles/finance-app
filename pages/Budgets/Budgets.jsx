@@ -5,6 +5,7 @@ import { OneBudget } from './OneBudget'
 import { useState } from 'react'
 // import plusIcon 
 import { AddBudget } from './AddBudget'
+import { useEffect } from 'react'
 
 export function Budgets({ moneyData, chosenTab, setChosenTab }) {
 
@@ -23,6 +24,10 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
             show: !budgetButton.show
         })
     }
+
+    useEffect(()=>{
+        console.log('money data:', moneyData.budgets)
+    }, [moneyData])
 
     return (
         <div className='page-layout'>

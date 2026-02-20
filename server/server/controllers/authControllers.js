@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt");
-const { use } = require("react");
+// const { use } = require("react");
 
 
 let users = []
@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const newUser = {
-        id: Date.now(),
+        id: crypto.randomUUID(),
         email,
         password: hashedPassword,
         role: "user"

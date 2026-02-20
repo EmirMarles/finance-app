@@ -3,6 +3,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
 const authRoutes = require('./routes/authRoutes')
+const crudRoutes = require('./routes/crudRoutes') 
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(cors())
 const PORT = 5000
 
 app.use('/api/auth', authRoutes)
-
+app.use('/api/buget', crudRoutes)
 
 app.listen(PORT, ()=>{
     console.log('server is running on PORT 5000')
