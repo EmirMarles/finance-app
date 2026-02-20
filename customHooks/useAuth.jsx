@@ -7,7 +7,6 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(() => {
         const user = localStorage.getItem("user")
         const userData = user ? JSON.parse(user) : null
-
         return userData
     })
 

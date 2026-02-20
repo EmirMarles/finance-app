@@ -9,7 +9,6 @@ import RecurringIcon from '../public/assets/images/icon-nav-recurring-bills.svg?
 import TransactionsIcon from '../public/assets/images/icon-nav-transactions.svg?react'
 import MinimizeIcon from '../public/assets/images/icon-minimize-menu.svg?react'
 
-
 import { useWindowWidth } from '../customHooks/useWindowWidth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -29,7 +28,7 @@ export function SideBar({ chosenTab, setChosenTab }) {
         navigate(tab)
     }
 
-    const width = useWindowWidth()
+    const width = useWindowWidth();
 
     const { logout } = useAuth()
     const handleLogout = () =>{
