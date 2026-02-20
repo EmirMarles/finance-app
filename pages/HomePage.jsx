@@ -5,6 +5,9 @@ import { PotsHomePage } from './PotsHomePage'
 import { BudgetHomePage } from './BudgetHomePage'
 import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
+import { useAuth } from '../customHooks/useAuth'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
@@ -17,10 +20,21 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     //     console.log('pots', pots)
     // }, [pots])
 
+    const { user } = useAuth()
+    const navigate = useNavigate()
+
+    // useEffect(() => {
+    //     if (!user) {
+    //         navigate('/login')
+    //         console.log('no user', user)
+    //     }
+    // }, [user])
+
     return (
         <div className="home-page-desktop">
             <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             <div className="home-page">
+                <button onClick={() => (console.log(`Hello, ${user}`))}>greet user</button>
                 <h2 className='overview'>Overview</h2>
                 <div className="grid-cards">
                     <div className="card">

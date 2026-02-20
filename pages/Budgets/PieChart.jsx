@@ -15,12 +15,11 @@ export function PieChart({ budgetData, transactions, limit, isSmall }) {
     const totalBudget = budgetData.reduce((acc, value) => acc + value.maximum, 0)
 
     useEffect(() => {
-        console.log('categories', categories);
-        console.log('dataSets', dataSetData);
+        // console.log('categories', categories);
+        // console.log('dataSets', dataSetData);
     }, [categories, dataSetData])
 
     const data = {
-        // labels: ['categoryNames'],
         datasets: [
             {
                 data: dataSetData,
@@ -42,7 +41,7 @@ export function PieChart({ budgetData, transactions, limit, isSmall }) {
     if (isSmall) {
         return (
             <div className="pie-chart-inside small">
-                <p> <h2>${totalSpent}</h2> of ${totalBudget} limit</p>
+                <p> <span>${totalSpent}</span> of ${totalBudget} limit</p>
                 <Doughnut data={data} options={options} className='pie-svg'></Doughnut>
             </div>
         )

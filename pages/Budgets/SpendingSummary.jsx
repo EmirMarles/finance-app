@@ -16,8 +16,8 @@ export function SpendingSummary({ budgetData, transactions }) {
                 <h4>Spending Summary</h4>
                 <div className="spendings">
                     {Array.isArray(budgetData) && budgetData.length > 0 &&
-                        budgetData.map((budget) => {
-                            return <div className='budget-category'
+                        budgetData.map((budget, index) => {
+                            return <div key={index} className='budget-category'
                                 style={{ "--theme-budget": budget.theme }}
                             >
                                 <div className="budget-st">

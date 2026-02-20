@@ -21,11 +21,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePage moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} />} ></Route>
-        <Route path='/transactions' element={<ProtectedRoutes><Transactions moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} /></ProtectedRoutes>} ></Route>
-        <Route path='/budgets' element={<ProtectedRoutes><Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets></ProtectedRoutes>}></Route>
-        <Route path='/pots' element={<ProtectedRoutes><Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots></ProtectedRoutes>}></Route>
-        <Route path='/recurring-bills' element={<ProtectedRoutes><RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills></ProtectedRoutes>}></Route>
+        <Route path='/' element={
+          <ProtectedRoutes> <HomePage moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} /> </ProtectedRoutes>}  ></Route>
+        <Route path='/transactions' element={
+          <ProtectedRoutes><Transactions moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab} /></ProtectedRoutes>} ></Route>
+        <Route path='/budgets' element={
+          <ProtectedRoutes><Budgets moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Budgets></ProtectedRoutes>}></Route>
+        <Route path='/pots' element={
+          <ProtectedRoutes><Pots moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></Pots></ProtectedRoutes>}></Route>
+        <Route path='/recurring-bills' element={
+          <ProtectedRoutes><RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills></ProtectedRoutes>}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
     </BrowserRouter>

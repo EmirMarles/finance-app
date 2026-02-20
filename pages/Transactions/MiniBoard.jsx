@@ -14,7 +14,7 @@ export function MiniBoard({ transactions }) {
                 <div className="transactions-rows-mini">
                     {Array.isArray(currentTransactions) &&
                         currentTransactions.map((transaction, index) => {
-                            return <div className='one-board-transaction-mini'>
+                            return <div key={index} className='one-board-transaction-mini'>
                                 <div className="sender-rec">
                                     <img src={transaction.avatar} alt="avatar picture" />
                                     <p>{transaction.name}</p>

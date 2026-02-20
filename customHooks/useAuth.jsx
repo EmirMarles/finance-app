@@ -1,10 +1,15 @@
 import { useState, createContext, useContext } from "react";
 import axios from "axios";
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(() => {
+        const user = localStorage.getItem("user")
+        const userData = user ? JSON.parse(user) : null
+
+        return null
+    })
 
     const login = async (userData) => {
         try {
@@ -13,7 +18,8 @@ export function AuthProvider({ children }) {
                 password: userData.password
             })
             const { token, user } = response.data
-            localStorage.setItem("token", token)
+            localStorage.setItem("user", JSON.stringify(user))
+            localStorage.setItem("token", JSON.stringify(token))
             setUser(user)
             return ({ success: true })
         } catch (err) {
@@ -50,7 +56,6 @@ export function AuthProvider({ children }) {
         </AuthContext.Provider>
     )
 }
-
 
 export function useAuth() {
     return useContext(AuthContext)

@@ -16,7 +16,7 @@ export function PotsHomePage({ pots }) {
     }
 
     useEffect(()=>{
-        console.log('pots in pots home page', pots)
+        // console.log('pots in pots home page', pots)
     })
 
     return (
