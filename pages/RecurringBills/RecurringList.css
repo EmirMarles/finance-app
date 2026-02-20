@@ -1,4 +1,4 @@
-.recurring-list{
+.recurring-list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,30 +10,61 @@
     /* margin-top: var(--margin-top-pages); */
 }
 
-
-.list-header{
+.list-header {
+    margin-top: 1rem;
+    width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.sort-by{
+.sort-by {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
+
 }
 
-.list-of-recurring{
+
+.sort-button {
+    display: flex;
+    border: 1px solid grey;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    align-items: center;
+    position: relative;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid grey;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.filters p:first-child{
+    border-bottom: 1px solid grey;
+}
+
+
+.list-of-recurring {
     width: 90%;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    gap: 1rem;    
+    gap: 1rem;
 }
 
-.one-recurring-bill{
+.one-recurring-bill {
     border-bottom: 1px solid lightgrey;
     padding: 0.6rem;
     display: flex;
@@ -41,30 +72,57 @@
     justify-content: space-between;
 }
 
-.bill-name{
+.bill-name {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 35%;
 }
 
-.bill-name img{
+.bill-name img {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
     margin-right: 0.5rem;
 }
 
-.due-date{
+.due-date {
     width: 25%;
 }
 
-.due-date p{
+.due-date p {
     margin: 0;
     text-align: left;
 }
 
-.one-recurring-bill:last-child{
+.one-recurring-bill:last-child {
     border-bottom: none;
     margin-bottom: 0.5rem;
+}
+
+.searc-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid grey;
+    width: 17rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+
+.searc-list input {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 90%;
+    width: 75%;
+    border-right: none;
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.icon-search-input {
+    margin-right: 0.5rem;
 }

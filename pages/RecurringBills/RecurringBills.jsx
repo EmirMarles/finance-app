@@ -79,7 +79,6 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
             <div className="recurring-main">
                 <div className="recurring-header">
                     <h2>Recurring Bills</h2>
-                    <button>Add New Recurring Bill</button>
                 </div>
 
                 <div className="recurring-grid">
