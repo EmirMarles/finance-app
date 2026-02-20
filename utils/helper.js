@@ -151,14 +151,27 @@ export function getLatestTransactionsByCategory(transactions, category) {
 }
 
 
-export function calculateLimit(budgetData){
+export function calculateLimit(budgetData) {
     let limit = 0
 
-    for (let i = 0; i < budgetData.length; i++){
+    for (let i = 0; i < budgetData.length; i++) {
         limit = limit + budgetData[i].maximum
     }
 
     return limit
+}
+
+export function searchForBills(searchString, recurringBillsData) {
+    let searchResults = []
+
+    let j = 0;
+    for (let i = 0; i < recurringBillsData.length; i++) {
+        if (recurringBillsData[i].name.toUpperCase() === searchString.toUpperCase()){
+            searchResults[j] = recurringBillsData[i]
+        }
+    }
+
+    return searchResults
 }
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',

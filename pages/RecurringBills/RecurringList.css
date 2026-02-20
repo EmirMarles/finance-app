@@ -51,10 +51,9 @@
     border-bottom-right-radius: 5px;
 }
 
-.filters p:first-child{
+.filters p:first-child {
     border-bottom: 1px solid grey;
 }
-
 
 .list-of-recurring {
     width: 90%;
@@ -125,4 +124,12 @@
 
 .icon-search-input {
     margin-right: 0.5rem;
+}
+
+.no-bills {
+    margin-bottom: 1rem;
+}
+
+.loading {
+    margin-bottom: 1rem;
 }

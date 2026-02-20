@@ -3,6 +3,7 @@ import { formatTimeForRecurring } from '../../utils/Helper'
 import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
+import { searchForBills } from '../../utils/Helper'
 
 import { useState, useEffect } from 'react'
 
@@ -15,9 +16,12 @@ export function RecurringList({ recurringBillsData }) {
         show: false
     })
 
+    const [loading, setLoading] = useState(false)
+
     const searchQuery = useDebouncedSearch(searchInput)
 
     const handleSearchInput = (e) => {
+        setLoading(true)
         setSearchInput(e.target.value)
     }
 
@@ -36,11 +40,30 @@ export function RecurringList({ recurringBillsData }) {
     }
 
     useEffect(() => {
-        console.log(searchQuery)
+        if (searchInput.length <= 0) {
+            setLoading(false);
+            setBillsForDisplay(recurringBillsData)
+        }
+    }, [searchInput])
+
+    useEffect(() => {
+        if (searchQuery.length === 0) {
+            setLoading(false)
+            setBillsForDisplay(recurringBillsData)
+            return
+        }
+        console.log('what we are sending for search function:', searchQuery, recurringBillsData)
+        const result = searchForBills(searchQuery, recurringBillsData)
+        if (result) {
+            setBillsForDisplay(result)
+            console.log('resutl of the stuff', result)
+        }
+        setLoading(false)
     }, [searchQuery])
 
     useEffect(() => {
         setBillsForDisplay(recurringBillsData)
+        console.log('recurring bills data', recurringBillsData)
     }, [recurringBillsData])
 
     return (
@@ -66,24 +89,26 @@ export function RecurringList({ recurringBillsData }) {
                 </div>
             </div>
             <div className="list-of-recurring">
-                {Array.isArray(billsForDisplay) && billsForDisplay.length > 0 ?
-                    recurringBillsData.map((bill, index) => {
-                        return <div key={index} className="one-recurring-bill">
-                            <div className="bill-name">
-                                <img src={bill.avatar} alt="avatar" className="avatar" />
-                                <h5>{bill.name}</h5>
+                {loading
+                    ? <div className='loading'>Loading...</div>
+                    : Array.isArray(billsForDisplay) && billsForDisplay.length > 0 ?
+                        billsForDisplay.map((bill, index) => {
+                            return <div key={index} className="one-recurring-bill">
+                                <div className="bill-name">
+                                    <img src={bill.avatar} alt="avatar" className="avatar" />
+                                    <h5>{bill.name}</h5>
+                                </div>
+                                <div className="due-date">
+                                    <p>Monthly {formatTimeForRecurring(bill.date)}</p>
+                                </div>
+                                <div className="bill-amount">
+                                    <h5>${bill.amount}</h5>
+                                </div>
                             </div>
-                            <div className="due-date">
-                                <p>Monthly {formatTimeForRecurring(bill.date)}</p>
-                            </div>
-                            <div className="bill-amount">
-                                <h5>${bill.amount}</h5>
-                            </div>
+                        })
+                        : <div className='no-bills'>
+                            <div>No Such Recurring Bills</div>
                         </div>
-                    })
-                    : <div className='no-bills'>
-                        <p>No Recurring Bills</p>
-                    </div>
                 }
             </div>
         </div>
