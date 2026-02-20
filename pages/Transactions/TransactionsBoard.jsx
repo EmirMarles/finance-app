@@ -5,10 +5,11 @@ import ArrowDown from '../../public/assets/images/icon-caret-down.svg?react'
 import IconRight from '../../public/assets/images/icon-caret-right.svg?react'
 import IconLeft from '../../public/assets/images/icon-caret-left.svg?react'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { countTransactionsPages } from '../../utils/Helper'
 import { getAllCategories, filterTransactions } from '../../utils/Helper'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
+import { searchForBills } from '../../utils/Helper'
 
 export function TransactionsBoard({ transactions }) {
 
@@ -31,33 +32,48 @@ export function TransactionsBoard({ transactions }) {
 
     const [transactionsForDisplay, setTransactionsForDisplay] = useState(transactions)
 
-    const [loading, setLoading] = useState({
-        blinkInputFocus: false,
-        isLoading: false
-    })
+    const [loading, setLoading] = useState(false)
+
+    // const [transactionsForDisplay, setTransactionForDisplay] = useState([])
+
+
+    // useEffect(() => {
+    //     setTransactionForDisplay(transactions)
+    // }, [transactions])
+
 
     // effect for search
-    const search = useDebouncedSearch(inputSearch)
+    const searchQuery = useDebouncedSearch(inputSearch)
 
     useEffect(() => {
-        // searching done in here and then setting it up
-        console.log(search)
-    }, [search])
+        if (inputSearch.length === 0) {
+            setLoading(false)
+            setTransactionsForDisplay(transactions)
+        }
+    }, [inputSearch])
 
-    const inputRef = useRef(null)
+    useEffect(() => {
+        if (searchQuery.length === 0) {
+            setTransactionsForDisplay(transactions)
+            return
+        }
+        // searching done in here and then setting it up
+        const result = searchForBills(searchQuery, transactions)
+        if (result.length > 0) {
+            setLoading(false)
+            setTransactionsForDisplay(result)
+        }
+        else {
+            setLoading(false)
+            setTransactionsForDisplay([])
+        }
+        console.log('result of search', result)
+    }, [searchQuery])
+
 
     const handleInputSearch = (event) => {
+        setLoading(true)
         setInputSearch(event.target.value)
-    }
-
-    const handleInputFocus = () => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-            setLoading(prev => ({
-                ...prev,
-                blinkInputFocus: true
-            }))
-        }
     }
 
     const togglePages = (action) => {
@@ -124,16 +140,9 @@ export function TransactionsBoard({ transactions }) {
     return (
         <div className='board'>
             <div className="board-header">
-                <div className="input-search" onClick={handleInputFocus}>
-                    {loading.blinkInputFocus
-                        ? <p>
-                            {inputSearch}
-                            <span className='blink'>|</span>
-                        </p>
-                        : <p>type in to search</p>
-                    }
+                <div className="input-search">
+                    <input type="text" onChange={handleInputSearch} />
                     <IconSearch className='search-icon'></IconSearch>
-                    <input ref={inputRef} type="text" onChange={handleInputSearch} />
                 </div>
                 <div className='sort-cat'>
                     <div className="category">
@@ -177,32 +186,36 @@ export function TransactionsBoard({ transactions }) {
                 </div>
 
                 <div className="transactions-rows">
-                    {Array.isArray(currentTransactions) &&
-                        currentTransactions.map((transaction, index) => {
-                            return <OneTransaction key={index} transaction={transaction}></OneTransaction>
-                        })
+                    {!loading
+                        ? Array.isArray(currentTransactions) && currentTransactions.length > 0 ?
+                            currentTransactions.map((transaction, index) => {
+                                return <OneTransaction key={index} transaction={transaction}></OneTransaction>
+                            })
+                            : <div>No such transactions...</div>
+                        : <div>Loading...</div>
                     }
                 </div>
-
-                <div className="pages-buttons">
-                    <button className="prev-button prev" onClick={() => { togglePages('-') }}>
-                        <IconLeft></IconLeft>
-                        Prev
-                    </button>
-                    <div className="pages">
-                        {totalPages > 0
-                            && Array.from({ length: totalPages }, (_, i) => (
-                                <div key={i} className={currentPage === i + 1 ? 'page-container chosen-pag' : 'page-container'} onClick={() => setPages(i + 1)}>
-                                    {i + 1}
-                                </div>
-                            ))
-                        }
+                {!loading && currentTransactions.length > 0 &&
+                    <div className="pages-buttons">
+                        <button className="prev-button prev" onClick={() => { togglePages('-') }}>
+                            <IconLeft></IconLeft>
+                            Prev
+                        </button>
+                        <div className="pages">
+                            {totalPages > 0
+                                && Array.from({ length: totalPages }, (_, i) => (
+                                    <div key={i} className={currentPage === i + 1 ? 'page-container chosen-pag' : 'page-container'} onClick={() => setPages(i + 1)}>
+                                        {i + 1}
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        <button className="prev-button next" onClick={() => { togglePages('+') }}>
+                            Next
+                            <IconRight></IconRight>
+                        </button>
                     </div>
-                    <button className="prev-button next" onClick={() => { togglePages('+') }}>
-                        Next
-                        <IconRight></IconRight>
-                    </button>
-                </div>
+                }
             </div>
         </div>
     )

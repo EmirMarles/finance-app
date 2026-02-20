@@ -25,19 +25,33 @@ h1 {
 
 .input-search {
     border: 1px solid black;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-left: 1.5rem;
     position: relative;
-    width: 15rem;
+    width: 17rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     /* justify-content: center; */
+    height: 2rem;
 }
 
 .input-search input {
-    position: absolute;
-    opacity: 0;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color : black;
+    height: 90%;
+    width: 75%;
+    background-color: white;
+    /* position: absolute; */
+    /* opacity: 0; */
+}
+
+.search-icon{
+    margin-right: 0.5rem;
+    cursor: pointer;
 }
 
 .input-search p {

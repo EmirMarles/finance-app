@@ -56,7 +56,7 @@ export function RecurringList({ recurringBillsData }) {
         const result = searchForBills(searchQuery, recurringBillsData)
         if (result) {
             setBillsForDisplay(result)
-            console.log('resutl of the stuff', result)
+            console.log('result of the stuff', result)
         }
         setLoading(false)
     }, [searchQuery])
