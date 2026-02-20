@@ -7,11 +7,13 @@ import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
 import { useAuth } from '../customHooks/useAuth'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import axios from 'axios'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
-    const balance = moneyData.balance
+    const [balance, setBalance] = useState(moneyData.balance)
     const pots = moneyData.pots
     const transactions = moneyData.transactions
     const budgets = moneyData.budgets
@@ -23,12 +25,20 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     const { user } = useAuth()
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         navigate('/login')
-    //         console.log('no user', user)
-    //     }
-    // }, [user])
+    // getting balance
+    useEffect(() => {
+        const getBalance = async () => {
+            const response = await axios.get('http://localhost:5000/api/crud/balance')
+            if (response) {
+                console.log('response from back',response.data)
+            }
+        }
+        getBalance();
+    }, [])
+
+    useEffect(() => {
+        console.log(moneyData)
+    }, [moneyData])
 
     return (
         <div className="home-page-desktop">

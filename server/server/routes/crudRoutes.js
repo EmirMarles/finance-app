@@ -1,9 +1,14 @@
 const express = require('express');
 // const { AddBudget } = require('../../../pages/Budgets/AddBudget');
 const router = express.Router();
-const { createBudget, getBudgets, updateBudget, deleteBudget } = require('../controllers/budgetController')
+const { getBalance, createBudget, getBudgets, updateBudget, deleteBudget } = require('../controllers/budgetController')
 const { getPots, createPot, updatePot, deletePot } = require('../controllers/potsController')
 const { getTransactions } = require('../controllers/transactionsController')
+
+
+//balance
+
+router.get('/balance', getBalance)
 
 // budgets
 router.get('/budgets', getBudgets)

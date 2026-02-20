@@ -15,7 +15,7 @@ app.use(cors())
 const PORT = 5000
 
 app.use('/api/auth', authRoutes)
-app.use('/api/buget', crudRoutes)
+app.use('/api/crud', crudRoutes)
 
 connectDB();
 
