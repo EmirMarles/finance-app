@@ -17,8 +17,8 @@ export function Login() {
         errMessage: null
     })
 
-    const { login, logout, register } = useAuth();
-    const { user } = useAuth();
+    const { login, register } = useAuth();
+    // const { user } = useAuth();
 
     const toggleLogin = () => {
         setLogin(prev => !prev)

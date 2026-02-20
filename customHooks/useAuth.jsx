@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
         const user = localStorage.getItem("user")
         const userData = user ? JSON.parse(user) : null
 
-        return null
+        return userData
     })
 
     const login = async (userData) => {
@@ -48,6 +48,7 @@ export function AuthProvider({ children }) {
 
     const logout = () => {
         setUser(null)
+        localStorage.removeItem("user")
     }
 
     return (

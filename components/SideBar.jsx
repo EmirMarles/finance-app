@@ -13,6 +13,7 @@ import MinimizeIcon from '../public/assets/images/icon-minimize-menu.svg?react'
 import { useWindowWidth } from '../customHooks/useWindowWidth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../customHooks/useAuth'
 
 export function SideBar({ chosenTab, setChosenTab }) {
 
@@ -29,6 +30,11 @@ export function SideBar({ chosenTab, setChosenTab }) {
     }
 
     const width = useWindowWidth()
+
+    const { logout } = useAuth()
+    const handleLogout = () =>{
+        logout()
+    }
 
     if (!isMinimized) {
         return (
@@ -62,6 +68,12 @@ export function SideBar({ chosenTab, setChosenTab }) {
                 <div className="minimize nav-bar-element" onClick={toggleMinimize}>
                     <MinimizeIcon></MinimizeIcon>
                     <p>Minimize Menu</p>
+                </div>
+
+                <div className="log-out">
+                    <button className="logout-btn" onClick={handleLogout}>
+                        Log out
+                    </button>
                 </div>
             </div>
         )

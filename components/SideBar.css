@@ -85,3 +85,14 @@
 .chosen{
     color: var(--green); 
 }
+
+.log-out{
+    color: white;
+    /* border: 1px solid red; */
+    margin-top: 10rem;
+}
+
+.logout-btn{
+    font-size: 1rem;
+    color: white
+}
