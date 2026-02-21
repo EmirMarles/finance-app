@@ -2,6 +2,11 @@ import './AddMoney.css'
 import IconClose from '../../public/assets/images/icon-close-modal.svg?react'
 
 export function AddMoney({ showAddMoneyButton }) {
+
+    const handleCloseWindow = () => {
+        return
+    }
+
     return (
         <div className='add-money-pot'>
             <div className="money-header">
