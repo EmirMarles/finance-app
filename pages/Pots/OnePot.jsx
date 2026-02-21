@@ -3,8 +3,7 @@ import IconEllipsis from '../../public/assets/images/icon-ellipsis.svg?react';
 import { useState } from 'react';
 
 
-export function OnePot({ potsButton, setPotsButton, potData }) {
-
+export function OnePot({ potsButton, setPotsButton, potData, showAddMoneyButton, setShowAddMoneyButton }) {
 
     const [openPotOptions, setOpenPotOptions] = useState(false)
 
@@ -12,13 +11,21 @@ export function OnePot({ potsButton, setPotsButton, potData }) {
         setOpenPotOptions(!openPotOptions)
     }
 
-    const handleOpenDeleteOption = (action) =>{
+    const handleOpenDeleteOption = (action) => {
         console.log(action)
         setOpenPotOptions(false)
         setPotsButton({
             action: action,
             show: true
         })
+    }
+
+    const handleOpenAddMoneyButton = (action) => {
+        setShowAddMoneyButton({
+            show: true,
+            action: action
+        })
+        return
     }
 
     const percentage = Math.round((potData.total / potData.target) * 100)
@@ -36,8 +43,8 @@ export function OnePot({ potsButton, setPotsButton, potData }) {
                     <IconEllipsis onClick={toggleOpenPot} className="ellipsis"></IconEllipsis>
                     {openPotOptions &&
                         <div className="options-edit-delete">
-                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('edit')}>Edit Pot</p>
-                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('delete')}>Delete Pot</p>
+                            <p className='option-edit' onClick={() => handleOpenDeleteOption('edit')}>Edit Pot</p>
+                            <p className='option-edit' onClick={() => handleOpenDeleteOption('delete')}>Delete Pot</p>
                         </div>
                     }
                 </div>
@@ -54,8 +61,8 @@ export function OnePot({ potsButton, setPotsButton, potData }) {
                     <p>Target of ${potData.target}</p>
                 </div>
                 <div className="buttons">
-                    <button className='add-money'>Add Money</button>
-                    <button className="withdraw">Withdraw</button>
+                    <button className='add-money' onClick={()=>handleOpenAddMoneyButton('add')}>Add Money</button>
+                    <button className="withdraw" onClick={()=>handleOpenAddMoneyButton('withdraw')}>Withdraw</button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,95 @@
+.add-money-pot {
+    display: flex;
+    position: absolute;
+
+
+    left: 33%;
+    top: 50%;
+
+    /* border: 1px solid red; */
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    width: 30rem;
+    height: 22rem;
+}
+
+.money-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: space-between;
+    width: 90%;
+
+    margin-top: 1rem;
+}
+
+.sub-money {
+    color: grey;
+    font-size: 0.8rem;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.pot-info {
+    margin-top: 1rem;
+
+    width: 90%;
+}
+
+.pot-info-fr {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+progress{
+    width: 100%;
+}
+
+.sub-money-fr {
+    width: 100%;
+}
+
+.target-pot{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.amount-to-add{
+    margin-top: 1rem;
+
+    width: 90%;
+}
+
+.amount-to-add input{
+    width: 100%;
+    height: 1.5rem;
+    background-color: white;
+    color: grey;
+    border-radius: 5px;
+
+}
+
+.amount-to-add input{
+    width: 100%;
+}
+
+
+.confirm-button{
+    width: 90%;
+    margin-top: 1rem;
+}
+/* .pot-info{ */
+/*  */
+/* } */

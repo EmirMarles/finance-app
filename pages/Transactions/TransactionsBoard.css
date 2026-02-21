@@ -43,10 +43,15 @@ h1 {
     border-bottom-left-radius: 5px;
     color : black;
     height: 90%;
-    width: 75%;
+    width: 88%;
     background-color: white;
     /* position: absolute; */
     /* opacity: 0; */
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #0470E2; /* Sets a new, custom border color */
 }
 
 .search-icon{
