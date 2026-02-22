@@ -1,6 +1,6 @@
 :root {
     --margin-bw-elements: 1.2rem;
-    --theme-choosing-color : red;  
+    --theme-choosing-color: red;
 }
 
 .add-budget-container {
@@ -48,15 +48,19 @@
 
 .one-in {
     margin-top: 0.8rem;
+    cursor: pointer;
 }
 
 .one-in:first-child {
     margin: 0;
 }
 
+.budget-info input[type="number"] {
+    background-color: white;
+}
+
 .budget-info input[type="text"] {
     background-color: white;
-    /* Use a color name, hex code, or RGB value */
 }
 
 .budget-info input {
@@ -90,7 +94,7 @@
     gap: 0.2rem;
 }
 
-.button-delete button{
+.button-delete button {
     text-align: center;
     color: white;
     width: 90%;
@@ -100,19 +104,19 @@
     width: 100%;
 }
 
-.button-delete button:last-child{
+.button-delete button:last-child {
     color: grey;
 }
 
-.red-b{
+.red-b {
     background-color: rgb(201, 71, 54);
 }
 
-.delete{
+.delete {
     height: 12rem;
 }
 
-.theme-choose{
+.theme-choose {
     height: 2rem;
     width: 100%;
     border-radius: 5px;
@@ -125,7 +129,7 @@
     position: relative;
 }
 
-.inner-theme{
+.inner-theme {
     width: 95%;
     display: flex;
     flex-direction: row;
@@ -133,18 +137,18 @@
     justify-content: space-between;
 }
 
-.color-container{
+.color-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem
 }
 
-.icon-caret{
+.icon-caret {
     cursor: pointer;
 }
 
-.theme-options-theme{
+.theme-options-theme {
     width: 110%;
     position: absolute;
     background-color: white;
@@ -152,9 +156,11 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
+
+    z-index: 1000;
 }
 
-.one-theme{
+.one-theme {
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -165,23 +171,23 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.4);
 }
 
-.not-used{
+.not-used {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
 }
 
-.one-theme:last-child{
+.one-theme:last-child {
     border-bottom: none;
 }
 
-.one-theme:hover{
+.one-theme:hover {
     cursor: pointer;
     background-color: rgb(240, 235, 235);
 }
 
-.color-theme{
+.color-theme {
     width: 1rem;
     height: 1rem;
     background-color: var(--theme-choosing-color);
