@@ -5,7 +5,8 @@ import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { themes } from '../../consts/thems'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
-import { getAllCategories } from '../../utils/Helper'
+import { categories } from '../../consts/categories'
+import axios from 'axios'
 
 export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
 
@@ -59,22 +60,33 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         }))
     }
 
-    const handleAddBudget = () => {
-        return
-    }
-
-    const categories = [
-        "Entertainment",
-        "Bills",
-        "Groceries",
-        "Dining Out",
-        "Transportation",
-        "Personal Care",
-        "Education",
-    ]
-
     const handleOpenCategories = () => {
         setChooseCategories(!chooseCategories)
+    }
+
+    const handleAddBudget = () => {
+        for (let i = 0; i < budgetData.length; i++) {
+            if (budgetData[i].category === newBudgetData.category) {
+                // set error 
+                return
+            }
+        }
+        const createNewBudget = async () => {
+            const response = await axios.post('')
+            if (response.status === 500 || response.status === 400) {
+                console.error('Error creating a budget!')
+                return
+            }
+            // setSuccesMessage(true)
+            // const timeOutId = createTimeout(()=>{
+            //  setSuccessMessage(false) 
+            // }, 2000)
+            // return () => clearTimeOut(timeOutId)
+            
+            // refresh to show a new budget? 
+        }
+        // validation function
+        return
     }
 
     useEffect(() => {
