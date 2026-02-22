@@ -6,10 +6,14 @@ import { useState } from 'react'
 // import plusIcon 
 import { AddBudget } from './AddBudget'
 import { useEffect } from 'react'
+import { useAuth } from '../../customHooks/useAuth'
+
+import axios from 'axios'
+import { themes } from '../../consts/thems'
 
 export function Budgets({ moneyData, chosenTab, setChosenTab }) {
 
-    const budgetData = moneyData.budgets
+    const [budgetData, setBudgetData] = useState([])
     const transactions = moneyData.transactions
 
     const [budgetButton, setBudgetButton] = useState({
@@ -25,9 +29,20 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
         })
     }
 
-    useEffect(()=>{
-        console.log('money data:', moneyData.budgets)
-    }, [moneyData])
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (budgetData.length > 0) return
+        const getBudgets = async () => {
+            const response = await axios.get(`http://localhost:5000/api/crud/budgets/${user._id}`);
+            if (response) {
+                setBudgetData(response.data)
+                console.log('budgets:', response.data)
+            }
+        }
+        getBudgets();
+        // console.log('money data:', moneyData.budgets)
+    }, [user._id, budgetData.length])
 
     return (
         <div className='page-layout'>
@@ -49,7 +64,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
                 </div>
             </div>
             {budgetButton.show &&
-                <AddBudget budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
+                <AddBudget budgetData={budgetData} budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
             }
         </div>
     )

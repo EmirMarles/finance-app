@@ -55,7 +55,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                 }
             </div>
             {showAddMoneyButton.show &&
-                <AddMoney showAddMoneyButton={showAddMoneyButton}> </AddMoney>
+                <AddMoney setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
             }
             {potsButton.show &&
                 <AddPot potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>

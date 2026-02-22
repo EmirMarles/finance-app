@@ -6,35 +6,68 @@ import { BudgetHomePage } from './BudgetHomePage'
 import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
 import { useAuth } from '../customHooks/useAuth'
-import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import axios from 'axios'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
-    const [balance, setBalance] = useState(moneyData.balance)
-    const pots = moneyData.pots
-    const transactions = moneyData.transactions
-    const budgets = moneyData.budgets
-
-    // useEffect(() => {
-    //     console.log('pots', pots)
-    // }, [pots])
+    const [balance, setBalance] = useState([])
+    const [pots, setPots] = useState([])
+    const [transactions, setTransactions] = useState([])
+    const [budgets, setBudgets] = useState([])
 
     const { user } = useAuth()
-    const navigate = useNavigate()
 
-    // getting balance
     useEffect(() => {
+        if (balance.length > 0) return
         const getBalance = async () => {
-            const response = await axios.get('http://localhost:5000/api/crud/balance')
+            const response = await axios.get(`http://localhost:5000/api/crud/balance/${user._id}`)
             if (response) {
-                console.log('response from back',response.data)
+                setBalance(response.data);
+                // need to save it locally to avoid the api calls
             }
         }
         getBalance();
-    }, [])
+    }, [user._id, balance.length])
+
+    useEffect(() => {
+        if (transactions.length > 0) return
+        const getTransactions = async () => {
+            const response = await axios.get(`http://localhost:5000/api/crud/transactions/${user._id}`)
+            if (response) {
+                // console.log('transactions from back', response.data)
+                setTransactions(response.data)
+            }
+        }
+        getTransactions()
+    }, [transactions, user._id])
+
+    useEffect(() => {
+        if (budgets.length > 0) return
+        const getBudgetsFromApi = async () => {
+            const response = await axios.get(`http://localhost:5000/api/crud/budgets/${user._id}`)
+            if (response) {
+                console.log('budgets', response.data)
+                setBudgets(response.data)
+            }
+        }
+        getBudgetsFromApi();
+    }, [user._id, budgets])
+
+
+    useEffect(() => {
+        if (pots.length > 0) return
+        const getPotsFromApi = async () => {
+            const response = await axios.get(`http://localhost:5000/api/crud/pots/${user._id}`)
+            if (response) {
+                console.log('pots', response.data)
+                setPots(response.data)
+            }
+        }
+        getPotsFromApi();
+    }, [user._id, pots])
+
 
     useEffect(() => {
         console.log(moneyData)

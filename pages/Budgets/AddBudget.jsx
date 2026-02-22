@@ -1,13 +1,39 @@
 import './AddBudget.css'
 import CloseSign from '../../public/assets/images/icon-close-modal.svg?react'
+import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 
-export function AddBudget({ budgetButton, setBudgetButton, edit }) {
+import { themes } from '../../consts/thems'
+import { useEffect, useState } from 'react'
+import { useAuth } from '../../customHooks/useAuth'
+import { getAllCategories } from '../../utils/Helper'
+
+export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
+
+    const [themeOptions, setThemeOptions] = useState(false)
+
+    const { user } = useAuth();
+    const [newBudgetData, setNewBudgetData] = useState({
+        category: null,
+        maximum: null,
+        theme: null,
+        user: user._id
+    })
+    // const categories = getAllCategories()
 
     const handleClose = () => {
         setBudgetButton(prev => ({
             ...prev,
             show: false
         }))
+    }
+
+    let chosenThemes = []
+    for (let i = 0; i < budgetData.length; i++) {
+        for (let k = 0; k < themes.length; k++) {
+            if (themes[k].theme === budgetData[i].theme) {
+                chosenThemes.push(themes[k].theme)
+            }
+        }
     }
 
     if (budgetButton.action === 'add') {
@@ -30,7 +56,32 @@ export function AddBudget({ budgetButton, setBudgetButton, edit }) {
                         </div>
                         <div className="one-in">
                             <p>Theme</p>
-                            <input type="text" name="" id="" />
+                            <div className="theme-choose">
+                                <div className="inner-theme">
+                                    <div className="color-container">
+                                        <div className="color"></div>
+                                        <p>Green</p>
+                                    </div>
+                                    <IconCaretDown className='icon-caret' onClick={() => setThemeOptions(!themeOptions)}></IconCaretDown>
+                                </div>
+                                {
+                                    themeOptions &&
+                                    <div className='theme-options-theme'>
+                                        {themes.length > 0 &&
+                                            themes.map((theme, index) => {
+                                                return <div key={index} className='one-theme'>
+                                                    <div className="not-used">
+                                                        <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
+                                                        <p>{theme.color}</p>
+                                                    </div>
+                                                    {chosenThemes.includes(theme.theme) && <p>Aleady Used</p>}
+                                                </div>
+                                            })
+                                        }
+                                    </div>
+                                }
+
+                            </div>
                         </div>
                     </form>
                 </div>

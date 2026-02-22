@@ -86,9 +86,13 @@ progress{
 }
 
 
-.confirm-button{
+.confirm-button-pot{
     width: 90%;
     margin-top: 1rem;
+    background-color: var(--dark-grey);
+    border-radius: 5px;
+    padding: 0.8rem 1.2rem;
+    color: white;
 }
 /* .pot-info{ */
 /*  */
