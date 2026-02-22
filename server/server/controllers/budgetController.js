@@ -33,6 +33,13 @@ exports.getBudgets = async (req, res) => {
     try {
         const userId = req.params.id
 
+        if (!userId) {
+            return res.status(400).json({ message: "Not authorized" })
+        }
+        if (userId === undefined) {
+            return res.status(400).json({ message: "Not authorized" })
+        }
+
         const budgets = await Budget.find({ user: userId })
         if (!budgets) {
             return res.status(400).json({ message: "No budgets" })
@@ -44,23 +51,6 @@ exports.getBudgets = async (req, res) => {
         console.error(err)
         return res.status(500).json({ message: err })
     }
-    // db query 
-
-    const budgets = [{
-        category: "Entertainment",
-        maximum: 50,
-        theme: "#277C78"
-    }, {
-        category: "Entertainment",
-        maximum: 50,
-        theme: "#277C78"
-    }, {
-        category: "Entertainment",
-        maximum: 50,
-        theme: "#277C78"
-    }]
-
-    return budgets
 }
 
 exports.updateBudget = async (req, res) => {
