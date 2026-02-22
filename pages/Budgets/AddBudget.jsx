@@ -71,6 +71,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                 return
             }
         }
+        
         const createNewBudget = async () => {
             const response = await axios.post('')
             if (response.status === 500 || response.status === 400) {
