@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import { categories } from '../../consts/categories'
 import axios from 'axios'
+import { updateBudget } from '../../server/server/controllers/budgetController'
 
 export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
 
@@ -24,6 +25,21 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         theme: themes[3],
         user: user._id
     })
+
+    const oneBudgetData = budgetButton.OneBudgetData
+
+    const [udpateBudgetData, setUpdateBudgetData] = useState({
+        category: null,
+        maximum: null,
+        theme: null,
+        user: user._id
+    })
+
+    useEffect(() => {
+        const budgetData = budgetButton.oneBudgetData
+        if (budgetData === undefined || budgetData === null) return
+        setUpdateBudgetData(budgetData)
+    }, [oneBudgetData])
 
     const handleClose = () => {
         setBudgetButton(prev => ({
@@ -89,6 +105,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         })
     }
 
+
     const handleAddBudget = () => {
         for (let i = 0; i < budgetData.length; i++) {
             if (budgetData[i].category === newBudgetData.category) {
@@ -116,26 +133,75 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         console.log('final object for sending:', budgetObject)
 
         const createNewBudget = async () => {
-            const response = await axios.post('')
-            if (response.status === 500 || response.status === 400) {
-                console.error('Error creating a budget!')
-                return
+            try {
+                console.log('user id:', user._id)
+                const response = await axios.post(`http://localhost:5000/api/crud/add-bugdet/${user._id}`,
+                    budgetObject
+                )
+                if (response.status === 201) {
+                    setBudgetButton(prev => ({
+                        ...prev,
+                        show: false
+                    }))
+                    // set message - created succesfully
+                    // window.location.reload()
+                }
+                console.log('status:', response.status)
+                console.log('response data:', response.data)
+            } catch (err) {
+                console.log(err)
             }
-            // setSuccesMessage(true)
-            // const timeOutId = createTimeout(()=>{
-            //  setSuccessMessage(false) 
-            // }, 2000)
-            // return () => clearTimeOut(timeOutId)
-
-            // refresh to show a new budget? 
         }
-        // validation function
+        createNewBudget();
+    }
+
+    const handleDeleteBudget = () => {
+        try {
+            const budgetData = budgetButton.oneBudgetData
+            console.log(budgetData)
+            const deleteBudget = async () => {
+                const response = await axios.delete(`http://localhost:5000/api/crud/budget/${budgetData._id}`)
+
+                if (response.status === 201) {
+                    setBudgetButton(prev => ({
+                        ...prev,
+                        show: false
+                    }))
+                    // window.location.reload()
+                } else if (response.status === 400 || response.status === 500) {
+                    console.log(response.status)
+                    console.log(response.data)
+                }
+            }
+
+            deleteBudget();
+        }
+        catch (err) {
+            console.error(err)
+        }
         return
     }
 
-    useEffect(() => {
-        console.log(newBudgetData)
-    }, [newBudgetData])
+    const handleUpdateBudget = () => {
+        try {
+            const budgetData = budgetButton.oneBudgetData
+            const updateBudget = async () => {
+                const response = await axios.put('',
+                    {
+                        id: 21312
+                    }
+                )
+                if (response.status === 201) {
+                    console.log('succesfully updated the budget')
+                }
+            }
+            updateBudget();
+        }
+        catch (err) {
+            //set error
+            console.error('Error!:', err)
+        }
+    }
 
     if (budgetButton.action === 'add') {
         return (
@@ -233,16 +299,16 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         return (
             <div className='add-budget-container delete'>
                 <div className="add-header">
-                    <h2>Delete 'Entaitenment'?</h2>
+                    <h2>Delete '{oneBudgetData?.category}'?</h2>
                     <CloseSign className="close-bud" onClick={handleClose}></CloseSign>
                 </div>
                 <p className='sub-head-add'>Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever.</p>
 
                 <div className="button-delete">
-                    <button className="red-b">
+                    <button className="red-b" onClick={handleDeleteBudget}>
                         Yes, Confirm Deletion
                     </button>
-                    <button>
+                    <button onClick={() => setBudgetButton(prev => ({ ...prev, show: false }))}>
                         No, Go Back
                     </button>
                 </div>
@@ -254,28 +320,78 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         return (
             <div className='add-budget-container'>
                 <div className="add-header">
-                    <h2>Edit Budget</h2>
+                    <h2>Edit Budget "{udpateBudgetData.category}"</h2>
                     <CloseSign className="close-bud" onClick={handleClose}></CloseSign>
                 </div>
                 <p className='sub-head-add'>As your budgets change, feel free to update your spending limits.</p>
                 <div className="budget-info">
                     <form action="">
-                        <div className="one-in">
+                        <div className="one-in" onClick={handleOpenCategories}>
                             <p>Budget Category</p>
-                            <input type="text" name="" id="" />
+                            <div className="theme-choose">
+                                <div className="inner-theme">
+                                    <div className="color-container">
+                                        <p>{udpateBudgetData.category}</p>
+                                    </div>
+                                    <IconCaretDown className='icon-caret' ></IconCaretDown>
+                                </div>
+                                {
+                                    chooseCategories &&
+                                    <div className='theme-options-theme'>
+                                        {categories.length > 0 &&
+                                            categories.map((category, index) => {
+                                                return <div key={index} className='one-theme' onClick={() => handleChooseCategory(category)}>
+                                                    <div className="not-used">
+                                                        <p>{category}</p>
+                                                    </div>
+                                                </div>
+                                            })
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            {error.show && error.errorMsg === 'Budget with such category exists!' &&
+                                <div className='show-error'>
+                                    <p className='err-msg'>Error! {error.errorMsg}</p>
+                                </div>
+                            }
                         </div>
                         <div className="one-in">
                             <p>Maximum Spend</p>
-                            <input type="text" name="" id="" />
+                            <input type="text" name="" id="" placeholder={updateBudget.maximum} />
                         </div>
-                        <div className="one-in">
+                        <div className="one-in" onClick={() => setThemeOptions(!themeOptions)}>
                             <p>Theme</p>
-                            <input type="text" name="" id="" />
+                            <div className="theme-choose">
+                                <div className="inner-theme">
+                                    <div className="color-container">
+                                        <div className="color-theme" style={{ "--theme-choosing-color": udpateBudgetData.theme }}></div>
+                                        <p>{udpateBudgetData.theme}</p>
+                                    </div>
+                                    <IconCaretDown className='icon-caret' ></IconCaretDown>
+                                </div>
+                                {
+                                    themeOptions &&
+                                    <div className='theme-options-theme'>
+                                        {themes.length > 0 &&
+                                            themes.map((theme, index) => {
+                                                return <div key={index} className='one-theme' onClick={() => handleChooseColor(theme)}>
+                                                    <div className="not-used">
+                                                        <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
+                                                        <p>{theme.color}</p>
+                                                    </div>
+                                                    {chosenThemes.includes(theme.theme) && <p>Aleady Used</p>}
+                                                </div>
+                                            })
+                                        }
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </form>
                 </div>
                 <button className="add-b">
-                    Add Budget
+                    Update Budget
                 </button>
             </div>
         )

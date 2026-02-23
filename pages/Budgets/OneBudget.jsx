@@ -20,7 +20,8 @@ export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transa
     const handleOpenDeleteOption = (action) => {
         setBudgetButton({
             action: action,
-            show: true
+            show: true,
+            oneBudgetData: OneBudgetData
         })
     }
 

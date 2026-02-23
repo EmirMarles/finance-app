@@ -18,7 +18,8 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
 
     const [budgetButton, setBudgetButton] = useState({
         action: 'add',
-        show: false
+        show: false,
+        oneBudgetData: null
     })
     const [deleteBudget, setDeleteBudget] = useState(false)
 

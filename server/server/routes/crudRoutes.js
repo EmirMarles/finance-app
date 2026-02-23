@@ -12,9 +12,9 @@ router.get('/balance/:id', getBalance)
 
 // budgets
 router.get('/budgets/:id', getBudgets)
-router.post('/add-bugdet', createBudget)
+router.post('/add-bugdet/:id', createBudget)
 router.put('/update-budget', updateBudget)
-router.delete('/budget', deleteBudget)
+router.delete('/budget/:id', deleteBudget)
 
 //pots
 router.get('/pots/:id', getPots)
