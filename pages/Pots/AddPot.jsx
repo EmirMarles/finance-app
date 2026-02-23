@@ -1,8 +1,13 @@
 import './AddPot.css'
 import CloseSign from '../../public/assets/images/icon-close-modal.svg?react'
+import { useState } from 'react'
+import { themes } from '../../consts/thems'
+import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 
 export function AddPot({ potsButton, setPotsButton }) {
 
+    const [newPotData, setNewPotData] = useState([])
+    const [themeOptions, setThemeOptions] = useState(false)
 
     const handleClose = () => {
         setPotsButton(prev => ({
@@ -31,6 +36,26 @@ export function AddPot({ potsButton, setPotsButton }) {
                         </div>
                         <div className="one-in">
                             <p>Theme</p>
+                            <div className='theme-options-theme' onClick={() => setThemeOptions(!themeOptions)}>
+                                {/* <div className="inner-theme"> */}
+                                <div className="color-container">
+                                    <div className="color-theme" style={{ "--theme-choosing-color": themes[0].theme }}></div>
+                                    <p>{themes[0].color}</p>
+                                    {/* </div> */}
+                                    <IconCaretDown className='icon-caret' ></IconCaretDown>
+                                </div>
+                                {themeOptions &&
+                                    themes.length > 0 &&
+                                    themes.map((theme, index) => {
+                                        return <div key={index} className='one-theme'>
+                                            <div className="not-used">
+                                                <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
+                                                <p>{theme.color}</p>
+                                            </div>
+                                        </div>
+                                    })
+                                }
+                            </div>
                             <input type="text" name="" id="" />
                         </div>
                     </form>

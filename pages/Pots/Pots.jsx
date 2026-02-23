@@ -1,13 +1,16 @@
 import './Pots.css';
 import { SideBar } from '../../components/SideBar';
 import { OnePot } from './OnePot';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AddPot } from './AddPot';
 import { AddMoney } from './AddMoney';
+import { themes } from '../../consts/thems';
+import axios from 'axios';
+import { useAuth } from '../../customHooks/useAuth';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
-    const potsData = moneyData.pots
+    const [potsData, setPotsData] = useState([])
 
     const [showAddPotForm, setShowAddPotForm] = useState(false)
     const [potsButton, setPotsButton] = useState({
@@ -18,6 +21,20 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         show: false,
         action: 'add'
     })
+
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (potsData.length > 0) return
+        if (!user._id) return 
+        const getPots = async () => {
+            const response = await axios.get(`http://localhost:5000/api/crud/pots/${user._id}`)
+            if (response) {
+                setPotsData(response.data)
+            }
+        }
+        getPots();
+    }, [user?._id])
 
     const togglePotsButtonAdd = (action) => {
         setPotsButton({

@@ -9,7 +9,7 @@ import { categories } from '../../consts/categories'
 import axios from 'axios'
 // import { updateBudget } from '../../server/server/controllers/budgetController'
 
-export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetButton, edit }) {
+export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetButton }) {
 
     const [themeOptions, setThemeOptions] = useState(false)
     const [chooseCategories, setChooseCategories] = useState(false)
@@ -155,7 +155,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                     }))
                     getBudgets();
                     // set message - created succesfully
-                    // window.location.reload()
                 }
             } catch (err) {
                 console.error(err)

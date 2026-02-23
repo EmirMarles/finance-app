@@ -18,9 +18,9 @@ router.delete('/budget/:id', deleteBudget)
 
 //pots
 router.get('/pots/:id', getPots)
-router.post('/create-pot', createPot)
-router.put('/update-pot', updatePot)
-router.delete('/pot', deletePot)
+router.post('/create-pot/:id', createPot)
+router.put('/update-pot/:id', updatePot)
+router.delete('/pot/:id', deletePot)
 
 //transactions
 router.get('/transactions/:id', getTransactions)
