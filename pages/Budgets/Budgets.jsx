@@ -65,7 +65,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
                 </div>
             </div>
             {budgetButton.show &&
-                <AddBudget budgetData={budgetData} budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
+                <AddBudget setBudgetData={setBudgetData} budgetData={budgetData} budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
             }
         </div>
     )
