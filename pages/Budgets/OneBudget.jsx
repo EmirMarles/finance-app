@@ -18,6 +18,7 @@ export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transa
     }
 
     const handleOpenDeleteOption = (action) => {
+        setShowBudgetOptions(false)
         setBudgetButton({
             action: action,
             show: true,

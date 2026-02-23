@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import { categories } from '../../consts/categories'
 import axios from 'axios'
-import { updateBudget } from '../../server/server/controllers/budgetController'
+// import { updateBudget } from '../../server/server/controllers/budgetController'
 
 export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
 
@@ -105,6 +105,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         })
     }
 
+    // update functions 
 
     const handleAddBudget = () => {
         for (let i = 0; i < budgetData.length; i++) {
@@ -182,8 +183,34 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         return
     }
 
+    const handleSetUpdateCategory = (category) => {
+        setUpdateBudgetData(prev => ({
+            ...prev,
+            category: category
+        }))
+    }
+
+    const handleSetUpdateColor = (theme) => {
+        setUpdateBudgetData(prev => ({
+            ...prev,
+            theme: theme
+        }))
+    }
+    
+    const handleSetUpdateMaximum = (e) => {
+        const numericValue = e.target.value.replace(/\D/g, "")
+        setUpdateBudgetData(prev => ({
+            ...prev,
+            maximum: numericValue
+        }))
+    }
+
     const handleUpdateBudget = () => {
         try {
+            if (udpateBudgetData) {
+                console.log(udpateBudgetData)
+                return
+            }
             const budgetData = budgetButton.oneBudgetData
             const updateBudget = async () => {
                 const response = await axios.put('',
@@ -316,6 +343,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
             </div>
         )
     }
+
     else {
         return (
             <div className='add-budget-container'>
@@ -340,7 +368,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                                     <div className='theme-options-theme'>
                                         {categories.length > 0 &&
                                             categories.map((category, index) => {
-                                                return <div key={index} className='one-theme' onClick={() => handleChooseCategory(category)}>
+                                                return <div key={index} className='one-theme' onClick={() => handleSetUpdateCategory(category)}>
                                                     <div className="not-used">
                                                         <p>{category}</p>
                                                     </div>
@@ -358,7 +386,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                         </div>
                         <div className="one-in">
                             <p>Maximum Spend</p>
-                            <input type="text" name="" id="" placeholder={updateBudget.maximum} />
+                            <input type="text" name="" id="" placeholder={udpateBudgetData.maximum} onChange={handleSetUpdateMaximum} />
                         </div>
                         <div className="one-in" onClick={() => setThemeOptions(!themeOptions)}>
                             <p>Theme</p>
@@ -375,7 +403,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                                     <div className='theme-options-theme'>
                                         {themes.length > 0 &&
                                             themes.map((theme, index) => {
-                                                return <div key={index} className='one-theme' onClick={() => handleChooseColor(theme)}>
+                                                return <div key={index} className='one-theme' onClick={() => handleSetUpdateColor(theme.theme)}>
                                                     <div className="not-used">
                                                         <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
                                                         <p>{theme.color}</p>
@@ -390,7 +418,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                         </div>
                     </form>
                 </div>
-                <button className="add-b">
+                <button className="add-b" onClick={handleUpdateBudget}>
                     Update Budget
                 </button>
             </div>
