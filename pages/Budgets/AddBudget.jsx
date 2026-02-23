@@ -111,11 +111,10 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
             const response = await axios.get(`http://localhost:5000/api/crud/budgets/${user._id}`);
             if (response) {
                 setBudgetData(response.data)
-                console.log('budgets:', response.data)
             }
         }
         catch (err) {
-            console.log('error:', err)
+            console.error('error:', err)
         }
     }
 
@@ -143,11 +142,9 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
             maximum: Number(newBudgetData.maximum),
             theme: newBudgetData.theme.theme
         }
-        console.log('final object for sending:', budgetObject)
 
         const createNewBudget = async () => {
             try {
-                console.log('user id:', user._id)
                 const response = await axios.post(`http://localhost:5000/api/crud/add-bugdet/${user._id}`,
                     budgetObject
                 )
@@ -161,7 +158,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                     // window.location.reload()
                 }
             } catch (err) {
-                console.log(err)
+                console.error(err)
             }
         }
         createNewBudget();
@@ -170,7 +167,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
     const handleDeleteBudget = () => {
         try {
             const budgetData = budgetButton.oneBudgetData
-            console.log(budgetData)
             const deleteBudget = async () => {
                 const response = await axios.delete(`http://localhost:5000/api/crud/budget/${budgetData._id}`)
 
@@ -182,8 +178,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                     getBudgets();
                     // window.location.reload()
                 } else if (response.status === 400 || response.status === 500) {
-                    console.log(response.status)
-                    console.log(response.data)
+                    console.error(response.data)
                 }
             }
             deleteBudget();
@@ -218,7 +213,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
 
     const handleUpdateBudget = () => {
         try {
-            console.log('trying to update budget')
             const budgetData = udpateBudgetData
             const updateBudget = async () => {
                 const response = await axios.put(`http://localhost:5000/api/crud/update-budget/${budgetData._id}`,
@@ -230,7 +224,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                         show: false
                     }))
                     getBudgets();
-                    console.log('succesfully updated the budget')
                 }
             }
             updateBudget();
