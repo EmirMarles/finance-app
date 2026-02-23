@@ -12,15 +12,18 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
 
     const [themeOptions, setThemeOptions] = useState(false)
     const [chooseCategories, setChooseCategories] = useState(false)
+    const [error, setError] = useState({
+        errorMsg: "Budget with such category already exists!",
+        show: false
+    })
 
     const { user } = useAuth();
     const [newBudgetData, setNewBudgetData] = useState({
-        category: "Entartainment",
+        category: "Entertainment",
         maximum: null,
         theme: themes[3],
         user: user._id
     })
-    // const categories = getAllCategories()
 
     const handleClose = () => {
         setBudgetButton(prev => ({
@@ -29,7 +32,21 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         }))
     }
 
+    useEffect(() => {
+        if (error.show === false) return
+        const timeOutId = setTimeout(() => {
+            setError(prev => ({
+                ...prev,
+                show: false
+            }))
+        }, 1500)
+        // clearTimeout(timeOutId)
+        return () => clearTimeout(timeOutId)
+    }, [error])
+
     let chosenThemes = []
+
+    // use useMemo for this 
     for (let i = 0; i < budgetData.length; i++) {
         for (let k = 0; k < themes.length; k++) {
             if (themes[k].theme === budgetData[i].theme) {
@@ -47,9 +64,10 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
     }
 
     const handleMaximumChange = (e) => {
+        const numericValue = e.target.value.replace(/\D/g, "")
         setNewBudgetData(prev => ({
             ...prev,
-            maximum: e.target.value
+            maximum: numericValue
         }))
     }
 
@@ -64,14 +82,39 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
         setChooseCategories(!chooseCategories)
     }
 
+    const handleShowErr = (errMsg) => {
+        setError({
+            errorMsg: errMsg,
+            show: true
+        })
+    }
+
     const handleAddBudget = () => {
         for (let i = 0; i < budgetData.length; i++) {
             if (budgetData[i].category === newBudgetData.category) {
-                // set error 
+                setError({
+                    errorMsg: "Budget with such category exists!",
+                    show: true
+                })
                 return
             }
         }
-        
+        if (newBudgetData.maximum === null) {
+            setError({
+                errorMsg: "Please fill out the maximum!",
+                show: true
+            })
+            return
+        }
+
+        let budgetObject = {
+            user: newBudgetData.user,
+            category: newBudgetData.category,
+            maximum: Number(newBudgetData.maximum),
+            theme: newBudgetData.theme.theme
+        }
+        console.log('final object for sending:', budgetObject)
+
         const createNewBudget = async () => {
             const response = await axios.post('')
             if (response.status === 500 || response.status === 400) {
@@ -83,7 +126,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
             //  setSuccessMessage(false) 
             // }, 2000)
             // return () => clearTimeOut(timeOutId)
-            
+
             // refresh to show a new budget? 
         }
         // validation function
@@ -128,10 +171,26 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                                     </div>
                                 }
                             </div>
+                            {error.show && error.errorMsg === 'Budget with such category exists!' &&
+                                <div className='show-error'>
+                                    <p className='err-msg'>Error! {error.errorMsg}</p>
+                                </div>
+                            }
                         </div>
                         <div className="one-in">
                             <p>Maximum Spend</p>
-                            <input type="number" name="number" onChange={handleMaximumChange} required={true} />
+                            <input
+                                type="text"
+                                inputMode="numeric"
+                                pattern='[0-9]*'
+                                name="number"
+                                value={newBudgetData.maximum}
+                                onChange={handleMaximumChange} required={true} />
+                            {error.show && error.errorMsg === 'Please fill out the maximum!' &&
+                                <div className='show-error'>
+                                    <p className='err-msg'>Error! {error.errorMsg}</p>
+                                </div>
+                            }
                         </div>
                         <div className="one-in" onClick={() => setThemeOptions(!themeOptions)}>
                             <p>Theme</p>

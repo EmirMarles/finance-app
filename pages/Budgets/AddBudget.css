@@ -42,10 +42,6 @@
     width: 100%;
 }
 
-.budget-info p {
-    color: grey;
-}
-
 .one-in {
     margin-top: 0.8rem;
     cursor: pointer;
@@ -70,7 +66,6 @@
     height: 1.7rem;
     border: 1px solid grey;
 }
-
 
 .add-b {
     margin-top: var(--margin-bw-elements);
@@ -192,4 +187,17 @@
     height: 1rem;
     background-color: var(--theme-choosing-color);
     border-radius: 50vh;
+}
+
+.show-error {
+    position: absolute;
+}
+
+.err-msg{
+    /* position: absolute; */
+    margin: 0;
+    font-size: 0.8rem;
+
+
+    color:rgb(201, 71, 54);
 }
