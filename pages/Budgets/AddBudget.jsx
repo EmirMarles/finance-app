@@ -196,7 +196,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
             theme: theme
         }))
     }
-    
+
     const handleSetUpdateMaximum = (e) => {
         const numericValue = e.target.value.replace(/\D/g, "")
         setUpdateBudgetData(prev => ({
@@ -207,16 +207,14 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
 
     const handleUpdateBudget = () => {
         try {
-            if (udpateBudgetData) {
-                console.log(udpateBudgetData)
-                return
-            }
-            const budgetData = budgetButton.oneBudgetData
+            // if (udpateBudgetData) {
+            //     console.log(udpateBudgetData)
+            //     return
+            // }
+            const budgetData = udpateBudgetData
             const updateBudget = async () => {
-                const response = await axios.put('',
-                    {
-                        id: 21312
-                    }
+                const response = await axios.put(`http://localhost:5000/api/crud/update-budget/${budgetData._id}`,
+                    budgetData
                 )
                 if (response.status === 201) {
                     console.log('succesfully updated the budget')
@@ -386,7 +384,7 @@ export function AddBudget({ budgetData, budgetButton, setBudgetButton, edit }) {
                         </div>
                         <div className="one-in">
                             <p>Maximum Spend</p>
-                            <input type="text" name="" id="" placeholder={udpateBudgetData.maximum} onChange={handleSetUpdateMaximum} />
+                            <input type="text" name="" id="" placeholder={udpateBudgetData.maximum} onChange={handleSetUpdateMaximum} value={udpateBudgetData.maximum} />
                         </div>
                         <div className="one-in" onClick={() => setThemeOptions(!themeOptions)}>
                             <p>Theme</p>

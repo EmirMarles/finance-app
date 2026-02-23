@@ -84,7 +84,8 @@ exports.updateBudget = async (req, res) => {
         const theme = updatedBudget.theme
         const maximum = Number(updatedBudget.maximum)
 
-        const budget = Budget.findOne({ _id: budgetId })
+        const budget = await Budget.findOne({ _id: budgetId })
+        console.log(budget)
         if (!budget) {
             return res.status(404).json({ message: "Not Found!" })
         }
