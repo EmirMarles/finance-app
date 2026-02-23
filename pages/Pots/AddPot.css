@@ -110,3 +110,28 @@
 .delete{
     height: 12rem;
 }
+
+.theme-options-pot{}
+
+.sub-color-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.color-container-pot{
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.themes-chose{
+    background-color: white;
+}

@@ -3,10 +3,19 @@ import CloseSign from '../../public/assets/images/icon-close-modal.svg?react'
 import { useState } from 'react'
 import { themes } from '../../consts/thems'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
+import { useAuth } from '../../customHooks/useAuth'
 
 export function AddPot({ potsButton, setPotsButton }) {
+    const { user }= useAuth();
 
-    const [newPotData, setNewPotData] = useState([])
+    const [newPotData, setNewPotData] = useState({
+        user: user._id,
+        name: null,
+        target: null,
+        total: 0,
+        theme: null
+    })
+
     const [themeOptions, setThemeOptions] = useState(false)
 
     const handleClose = () => {
@@ -14,6 +23,36 @@ export function AddPot({ potsButton, setPotsButton }) {
             ...prev,
             show: false
         }))
+    }
+
+    const handleSaveNewPotData = (e, field, update) => {
+        switch (field) {
+            case 'name':
+                setNewPotData(prev => ({
+                    ...prev,
+                    name: e.target.value
+                }))
+                break;
+            case 'target':
+                setNewPotData(prev => ({
+                    ...prev,
+                    target: Number(e.target.value)
+                }))
+                break;
+            case 'theme':
+                setNewPotData(prev => ({
+                    ...prev,
+                    theme: update.theme
+                }))
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleCreateNewPot = () => {
+        console.log('New pot data:', newPotData)
+        return
     }
 
     if (potsButton.action === 'add') {
@@ -28,39 +67,42 @@ export function AddPot({ potsButton, setPotsButton }) {
                     <form action="">
                         <div className="one-in">
                             <p>Pot Name</p>
-                            <input type="text" name="" id="" />
+                            <input type="text" name="" id="" value={newPotData.name} onChange={(e) => { handleSaveNewPotData(e, 'name') }} />
                         </div>
                         <div className="one-in">
                             <p>Target</p>
-                            <input type="text" name="" id="" />
+                            <input type="text" name="" id="" onChange={(e)=> handleSaveNewPotData(e, 'target')} />
                         </div>
                         <div className="one-in">
                             <p>Theme</p>
-                            <div className='theme-options-theme' onClick={() => setThemeOptions(!themeOptions)}>
+                            <div className='theme-options-pot' onClick={() => setThemeOptions(!themeOptions)}>
                                 {/* <div className="inner-theme"> */}
-                                <div className="color-container">
-                                    <div className="color-theme" style={{ "--theme-choosing-color": themes[0].theme }}></div>
-                                    <p>{themes[0].color}</p>
+                                <div className="color-container-pot">
+                                    <div className='sub-color-container'>
+                                        <div className="color-theme" style={{ "--theme-choosing-color": newPotData.theme? newPotData.theme : themes[0].theme }}></div>
+                                        <p>{newPotData.theme ? newPotData.theme : themes[0].color}</p>
+                                    </div>
                                     {/* </div> */}
                                     <IconCaretDown className='icon-caret' ></IconCaretDown>
                                 </div>
                                 {themeOptions &&
-                                    themes.length > 0 &&
-                                    themes.map((theme, index) => {
-                                        return <div key={index} className='one-theme'>
-                                            <div className="not-used">
-                                                <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
-                                                <p>{theme.color}</p>
-                                            </div>
-                                        </div>
-                                    })
+                                    <div className="themes-chose">
+                                        {themes.length > 0 &&
+                                            themes.map((theme, index) => {
+                                                return <div key={index} className='one-theme' onClick={(e) => handleSaveNewPotData(e, 'theme', theme)}>
+                                                    <div className="not-used">
+                                                        <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
+                                                        <p>{theme.color}</p>
+                                                    </div>
+                                                </div>
+                                            })}
+                                    </div>
                                 }
                             </div>
-                            <input type="text" name="" id="" />
                         </div>
                     </form>
                 </div>
-                <button className="add-b">
+                <button className="add-b" onClick={handleCreateNewPot}>
                     Add Pots
                 </button>
             </div>
