@@ -4,7 +4,7 @@ const router = express.Router();
 const { getBalance, createBudget, getBudgets, updateBudget, deleteBudget } = require('../controllers/budgetController')
 const { getPots, createPot, updatePot, deletePot } = require('../controllers/potsController')
 const { getTransactions } = require('../controllers/transactionsController')
-
+const { authMiddleware } = require('../middleware/authMiddleware')
 
 //balance
 
@@ -20,7 +20,7 @@ router.delete('/budget/:id', deleteBudget)
 router.get('/pots/:id', getPots)
 router.post('/create-pot/:id', createPot)
 router.put('/update-pot/:id', updatePot)
-router.delete('/pot/:id', deletePot)
+router.delete('/pot/:id', authMiddleware, deletePot)
 
 //transactions
 router.get('/transactions/:id', getTransactions)

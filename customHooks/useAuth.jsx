@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
             })
             const { token, user } = response.data
             localStorage.setItem("user", JSON.stringify(user))
-            localStorage.setItem("token", JSON.stringify(token))
+            localStorage.setItem("token", token)
             setUser(user)
             return ({ success: true })
         } catch (err) {
@@ -48,6 +48,7 @@ export function AuthProvider({ children }) {
     const logout = () => {
         setUser(null)
         localStorage.removeItem("user")
+        localStorage.removeItem("token")
     }
 
     return (

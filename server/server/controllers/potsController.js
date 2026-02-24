@@ -21,8 +21,10 @@ exports.getPots = async (req, res) => {
 
 exports.createPot = async (req, res) => {
     try {
-        const userId = req.user.id; // from auth middleware
+        const userId = req.params.id
+        // const userId = req.user.id; // from auth middleware
         const { name, target, total, theme } = req.body;
+        console.log(name, target, total, theme)
 
         const newPot = new Pot({
             user: userId,
@@ -79,8 +81,10 @@ exports.updatePot = async (req, res) => {
 
 exports.deletePot = async (req, res) => {
     try {
-        const { potId } = req.params;
+        const potId  = req.params.id;
         const userId = req.user.id;
+
+        console.log('pot and user:', potId, userId)
 
         const pot = await Pot.findById(potId);
 

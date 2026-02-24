@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt");
 const User = require("../models/User")
 
-const SECRET_KEY = "supersecretkey";
 
 exports.register = async (req, res) => {
 
@@ -30,12 +29,13 @@ exports.register = async (req, res) => {
         });
 
     } catch (err) {
-        return res.statu(500).json({ message: "internal server error" })
+        return res.status(500).json({ message: "internal server error" })
     }
 }
 
 exports.login = async (req, res) => {
     try {
+        const SECRET_KEY = process.env.JWT_SECRET;
         const { email, password } = req.body
 
         const user = await User.findOne({ email })
@@ -50,7 +50,7 @@ exports.login = async (req, res) => {
         }
 
         const token = jwt.sign({
-            id: user.id,
+            id: user._id,
             role: user.role
         },
             SECRET_KEY,

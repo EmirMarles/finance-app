@@ -7,6 +7,7 @@ import { AddMoney } from './AddMoney';
 import { themes } from '../../consts/thems';
 import axios from 'axios';
 import { useAuth } from '../../customHooks/useAuth';
+import apiClient from '../../utils/apiClient';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
@@ -15,7 +16,8 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
     const [showAddPotForm, setShowAddPotForm] = useState(false)
     const [potsButton, setPotsButton] = useState({
         action: 'add',
-        show: false
+        show: false,
+        onePotData: null
     })
     const [showAddMoneyButton, setShowAddMoneyButton] = useState({
         show: false,
@@ -52,6 +54,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         <div className="pots-page">
             <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             <div className="main-pots">
+                <button onClick={()=> console.log(localStorage.getItem("token"))}>Log token</button>
                 <div className="pots-header">
                     <h4>Pots</h4>
                     <button onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
@@ -75,7 +78,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                 <AddMoney setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
             }
             {potsButton.show &&
-                <AddPot potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>
+                <AddPot setPotsData={setPotsData} potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>
             }
         </div >
     )

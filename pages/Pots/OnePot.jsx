@@ -16,7 +16,8 @@ export function OnePot({ potsButton, setPotsButton, potData, showAddMoneyButton,
         setOpenPotOptions(false)
         setPotsButton({
             action: action,
-            show: true
+            show: true,
+            onePotData: potData
         })
     }
 
