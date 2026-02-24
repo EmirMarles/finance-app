@@ -3,13 +3,35 @@ import { SideBar } from '../../components/SideBar'
 import { RecurringList } from './RecurringList'
 import { getRecurringTransactions } from '../../utils/moneyDataManilpulation'
 import RecurringIcon from '../../public/assets/images/icon-nav-recurring-bills.svg?react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import apiClient from '../../utils/apiClient'
+import { useAuth } from '../../customHooks/useAuth'
 
 export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
 
-    const recurringBillsData = getRecurringTransactions(moneyData.transactions)
-
+    // getRecurringTransactions(moneyData.transactions)
+    const [recurringBillsData, setRecurringBillsData] = useState([])
     // function to get total upcoming bills, total paid bills, total due soon bills, etc. from the recurringBillsData //
+
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (recurringBillsData.length > 0) return
+        const getRecurringBills = async () => {
+            try {
+                const response = await apiClient.get(`/api/crud/recurring-bills/${user._id}`)
+                if (response.status === 200) {
+                    setRecurringBillsData(response.data)
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        getRecurringBills()
+    }, [recurringBillsData])
+
     const getTotalUpcomingBills = () => {
         let total = 0
 
@@ -23,20 +45,6 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
         })
         return total
     }
-
-    useEffect(() => {
-        const date = new Date().toString()
-
-        const firstBillDate = recurringBillsData[0].date
-        const day = date.split(' ')[2]
-
-        const billDate = new Date(firstBillDate).toString()
-
-        console.log('current date', date)
-        console.log('first bill date', firstBillDate.toString())
-        console.log('bill date', billDate)
-        console.log('current day', day)
-    })
 
     const getTotalPaidBills = () => {
         let total = 0;

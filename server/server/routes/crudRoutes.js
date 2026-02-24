@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { getBalance, createBudget, getBudgets, updateBudget, deleteBudget } = require('../controllers/budgetController')
 const { getPots, createPot, updatePot, deletePot } = require('../controllers/potsController')
-const { getTransactions } = require('../controllers/transactionsController')
+const { getTransactions, getRecurringBills } = require('../controllers/transactionsController')
 const { authMiddleware } = require('../middleware/authMiddleware')
 
 //balance
@@ -24,5 +24,6 @@ router.delete('/pot/:id', authMiddleware, deletePot)
 
 //transactions
 router.get('/transactions/:id', getTransactions)
+router.get('/recurring-bills/:id', authMiddleware, getRecurringBills)
 
 module.exports = router
