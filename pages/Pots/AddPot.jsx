@@ -129,6 +129,23 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
         deletePot();
     }
 
+    const handleUpdatePot = () => {
+        console.log('data for updating the pot info::', newPotData)
+        // setPotsButton(prev => ({
+        //     ...prev,
+        //     show: false
+        // }))
+        const updatePot = async () => {
+            try {
+                const response = await apiClient.put('')
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
+
+    const pot = potsButton.onePotData
+
     if (potsButton.action === 'add') {
         return (
             <div className='add-budget-container'>
@@ -195,20 +212,43 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
                     <form action="">
                         <div className="one-in">
                             <p>Pot Name</p>
-                            <input type="text" name="" id="" />
+                            <input type="text" name="" id="" placeholder={pot.name} onChange={(e) => handleSaveNewPotData(e, 'name')} />
                         </div>
                         <div className="one-in">
                             <p>Target</p>
-                            <input type="text" name="" id="" />
+                            <input type="text" name="" id="" placeholder={pot.target} onChange={(e) => handleSaveNewPotData(e, 'target')} />
                         </div>
                         <div className="one-in">
                             <p>Theme</p>
-                            <input type="text" name="" id="" />
+                            <div className='theme-options-pot' onClick={() => setThemeOptions(!themeOptions)}>
+                                {/* <div className="inner-theme"> */}
+                                <div className="color-container-pot">
+                                    <div className='sub-color-container'>
+                                        <div className="color-theme" style={{ "--theme-choosing-color": newPotData.theme ? newPotData.theme : themes[0].theme }}></div>
+                                        <p>{newPotData.theme ? newPotData.theme : themes[0].color}</p>
+                                    </div>
+                                    {/* </div> */}
+                                    <IconCaretDown className='icon-caret' ></IconCaretDown>
+                                </div>
+                                {themeOptions &&
+                                    <div className="themes-chose">
+                                        {themes.length > 0 &&
+                                            themes.map((theme, index) => {
+                                                return <div key={index} className='one-theme' onClick={(e) => handleSaveNewPotData(e, 'theme', theme)}>
+                                                    <div className="not-used">
+                                                        <div className="color-theme" style={{ "--theme-choosing-color": theme.theme }}></div>
+                                                        <p>{theme.color}</p>
+                                                    </div>
+                                                </div>
+                                            })}
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </form>
                 </div>
-                <button className="add-b">
-                    Add Pots
+                <button className="add-b" onClick={handleUpdatePot}>
+                    Update Pot
                 </button>
             </div>
         )

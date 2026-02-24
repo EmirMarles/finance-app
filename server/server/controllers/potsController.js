@@ -81,7 +81,7 @@ exports.updatePot = async (req, res) => {
 
 exports.deletePot = async (req, res) => {
     try {
-        const potId  = req.params.id;
+        const potId = req.params.id;
         const userId = req.user.id;
 
         console.log('pot and user:', potId, userId)
