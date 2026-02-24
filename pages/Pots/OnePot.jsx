@@ -24,7 +24,8 @@ export function OnePot({ potsButton, setPotsButton, potData, showAddMoneyButton,
     const handleOpenAddMoneyButton = (action) => {
         setShowAddMoneyButton({
             show: true,
-            action: action
+            action: action,
+            onePotData: potData
         })
         return
     }
@@ -62,8 +63,8 @@ export function OnePot({ potsButton, setPotsButton, potData, showAddMoneyButton,
                     <p>Target of ${potData.target}</p>
                 </div>
                 <div className="buttons">
-                    <button className='add-money' onClick={()=>handleOpenAddMoneyButton('add')}>Add Money</button>
-                    <button className="withdraw" onClick={()=>handleOpenAddMoneyButton('withdraw')}>Withdraw</button>
+                    <button className='add-money' onClick={() => handleOpenAddMoneyButton('add')}>Add Money</button>
+                    <button className="withdraw" onClick={() => handleOpenAddMoneyButton('withdraw')}>Withdraw</button>
                 </div>
             </div>
         </div>

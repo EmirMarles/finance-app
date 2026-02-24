@@ -21,14 +21,15 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
     })
     const [showAddMoneyButton, setShowAddMoneyButton] = useState({
         show: false,
-        action: 'add'
+        action: 'add',
+        onePotData: null
     })
 
     const { user } = useAuth();
 
     useEffect(() => {
         if (potsData.length > 0) return
-        if (!user._id) return 
+        if (!user._id) return
         const getPots = async () => {
             const response = await axios.get(`http://localhost:5000/api/crud/pots/${user._id}`)
             if (response) {
@@ -54,7 +55,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         <div className="pots-page">
             <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             <div className="main-pots">
-                <button onClick={()=> console.log(localStorage.getItem("token"))}>Log token</button>
+                <button onClick={() => console.log(localStorage.getItem("token"))}>Log token</button>
                 <div className="pots-header">
                     <h4>Pots</h4>
                     <button onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>

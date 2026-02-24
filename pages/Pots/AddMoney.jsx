@@ -1,7 +1,11 @@
 import './AddMoney.css'
 import IconClose from '../../public/assets/images/icon-close-modal.svg?react'
+import apiClient from '../../utils/apiClient'
+import { useState } from 'react'
 
 export function AddMoney({ showAddMoneyButton, setShowAddMoneyButton }) {
+
+    const [amount, setAmount] = useState(null)
 
     const handleCloseWindow = () => {
         setShowAddMoneyButton(prev => ({
@@ -11,13 +15,55 @@ export function AddMoney({ showAddMoneyButton, setShowAddMoneyButton }) {
     }
 
     const action = showAddMoneyButton.action
+    const pot = showAddMoneyButton.onePotData;
 
-    const handleWithdraw = () => {
-        console.log('withdraw')
+    const percentage = pot.total / pot.target * 100
+
+    const handleAddAmount = (e) => {
+        const numeric = e.target.value.replace(/\D/g, "")
+        setAmount(Number(numeric))
     }
 
-    const handleAdd = () => {
-        console.log('add')
+
+    const handleWithdrawMoney = () => {
+        if (amount >= pot.total) {
+            console.log('not possible to withdraw')
+            return
+        }
+
+        const withdrawMoney = async () => {
+            try {
+                let newPotObj = { ...pot }
+                newPotObj.total = newPotObj.total - amount
+                const response = await apiClient.put('',
+                    newPotObj)
+                if (response.status === 200) {
+                    console.log('')
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
+
+    const handleAddMoney = () => {
+        let newPotObj = { ...pot }
+        newPotObj.total = newPotObj.total + amount
+        console.log('new obj:', newPotObj)
+
+        const addMoney = async () => {
+            try {
+                let newPotObj = { ...pot }
+                newPotObj.total = newPotObj.total + amount
+                const response = await apiClient.put('',
+                    newPotObj)
+                if (response.status === 200) {
+                    console.log('')
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }
 
     return (
@@ -41,16 +87,16 @@ export function AddMoney({ showAddMoneyButton, setShowAddMoneyButton }) {
                     <p className="sub-money">
                         New Amount
                     </p>
-                    <h2>345.00</h2>
+                    <h2>${pot.total}</h2>
                 </div>
                 {
                     action === 'add'
-                        ? <progress value={27.5} max={100}></progress>
-                        : <progress value={27.5} max={100}></progress>
+                        ? <progress value={percentage} max={100}></progress>
+                        : <progress value={percentage} max={100}></progress>
                 }
                 <div className="target-pot">
-                    <p>27.5%</p>
-                    <p>Target of $2.000</p>
+                    <p>{percentage}%</p>
+                    <p>Target of ${pot?.target}</p>
                 </div>
             </div>
 
@@ -61,12 +107,12 @@ export function AddMoney({ showAddMoneyButton, setShowAddMoneyButton }) {
                         : <p>Amount to withdraw</p>
                 }
 
-                <input type="text" placeholder='$400' />
+                <input type="text" placeholder='$400' value={amount} onChange={handleAddAmount} />
             </div>
             {
                 action === 'add'
-                    ? <button className='confirm-button-pot'>Confirm Addition</button>
-                    : <button className='confirm-button-pot'>Confirm Withdrawal</button>
+                    ? <button className='confirm-button-pot' onClick={handleAddMoney}>Confirm Addition</button>
+                    : <button className='confirm-button-pot' onClick={handleWithdrawMoney}>Confirm Withdrawal</button>
             }
         </div>
     )

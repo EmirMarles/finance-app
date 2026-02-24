@@ -60,7 +60,6 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
         return total
     }
 
-
     return (
         <div className="recurring-bills">
             <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
