@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.pots-header{
+.pots-header {
     margin-bottom: 4rem;
 }
 
@@ -50,7 +50,7 @@
     padding-left: 0.0rem;
 }
 
-.color-col{
+.color-col {
     height: 3rem;
     width: 0.3rem;
     background-color: var(--pot-home-color);
