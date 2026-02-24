@@ -103,7 +103,7 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
 }
 
 .pots-data{
@@ -133,8 +133,8 @@ h1{
 
 .o-pot{
     text-align: left;
-    border-left: 1px solid red;
-    padding-left: 1rem;
+    /* border-left: 1px solid red; */
+    /* padding-left: 1rem; */
 }
 
 button:hover{

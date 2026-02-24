@@ -8,14 +8,19 @@
     position: relative;
 }
 
-
-.pie-chart-inside p{
+.pie-chart-text{
     margin: 0;
-    font-size: 0.9rem;
-    color: grey;
+    font-size: 0.8rem;
+    width: 40%;
+    /* color: grey; */
 
     position: absolute;
     margin-top: 1rem;
+}
+
+.pie-chart-text span{
+    font-weight: 800;
+    font-size: 1.3rem;
 }
 
 

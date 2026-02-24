@@ -15,7 +15,7 @@ export function PotsHomePage({ pots }) {
         navigate('/pots')
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         // console.log('pots in pots home page', pots)
     })
 
@@ -37,8 +37,11 @@ export function PotsHomePage({ pots }) {
                     {Array.isArray(firstFourPots) && firstFourPots.length > 0 ? (
                         firstFourPots.map((pot, index) => (
                             <div key={index} className='o-pot' style={{ "--pot-home-color": pot.theme }}>
-                                <p>{pot.name}</p>
-                                <p>${pot.total}</p>
+                                <div className="color-col" style={{ "--pot-home-color": pot.theme }}></div>
+                                <div>
+                                    <p>{pot.name}</p>
+                                    <p>${pot.total}</p>
+                                </div>
                             </div>
                         ))
                     ) : (

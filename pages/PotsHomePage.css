@@ -2,27 +2,33 @@
     --pot-home-color: #82C9D7;
 }
 
-.pots{
+.pots {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.pots-data{
+.pots-header{
+    margin-bottom: 4rem;
+}
+
+.pots-data {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 90%;
+    gap: 1.5rem;
 }
 
-.pot-data{
+.pot-data {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 0.6rem;
+    height: fit-content;
 }
 
-.total-saved-info{
+.total-saved-info {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -34,13 +40,29 @@
     gap: 1rem;
 }
 
-.o-pot{
+.o-pot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
     text-align: left;
-    border-left: 3px solid var(--pot-home-color);
-    padding-left: 1rem;
+    gap: 0.5rem;
+    padding-left: 0.0rem;
 }
 
-button{
+.color-col{
+    height: 3rem;
+    width: 0.3rem;
+    background-color: var(--pot-home-color);
+    border-radius: 5px;
+}
+
+.o-pot p {
+    font-size: 0.7rem;
+    color: grey;
+}
+
+button {
     color: black;
     display: flex;
     flex-direction: row;
@@ -50,6 +72,14 @@ button{
     border: none;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
+}
+
+.data {
+    height: 80%;
+}
+
+.data h1 {
+    margin: 0.4rem 0rem;
 }

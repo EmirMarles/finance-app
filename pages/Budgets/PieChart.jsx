@@ -50,7 +50,7 @@ export function PieChart({ budgetData, transactions, limit, isSmall }) {
     else {
         return (
             <div className="pie-chart-inside">
-                <p> <span>${totalSpent}</span> of ${totalBudget} limit</p>
+                <p className='pie-chart-text'> <span>${totalSpent}</span> of ${totalBudget} limit</p>
                 <Doughnut data={data} options={options} className='pie-svg'></Doughnut>
             </div>
         )
