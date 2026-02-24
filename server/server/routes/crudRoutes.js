@@ -2,7 +2,7 @@ const express = require('express');
 // const { AddBudget } = require('../../../pages/Budgets/AddBudget');
 const router = express.Router();
 const { getBalance, createBudget, getBudgets, updateBudget, deleteBudget } = require('../controllers/budgetController')
-const { getPots, createPot, updatePot, deletePot } = require('../controllers/potsController')
+const { getPots, createPot, updatePot, deletePot, addMoneyToPot, withdrawMoneyFromPot } = require('../controllers/potsController')
 const { getTransactions, getRecurringBills, getRecurringBillsInfo } = require('../controllers/transactionsController')
 const { authMiddleware } = require('../middleware/authMiddleware')
 
@@ -21,6 +21,8 @@ router.get('/pots/:id', getPots)
 router.post('/create-pot/:id', createPot)
 router.put('/update-pot/:id', authMiddleware, updatePot)
 router.delete('/pot/:id', authMiddleware, deletePot)
+router.put('/pot/add/:id', authMiddleware, addMoneyToPot)
+router.put('/pot/withdraw/:id', authMiddleware, withdrawMoneyFromPot)
 
 //transactions
 router.get('/transactions/:id', getTransactions)

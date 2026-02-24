@@ -55,7 +55,6 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         <div className="pots-page">
             <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             <div className="main-pots">
-                <button onClick={() => console.log(localStorage.getItem("token"))}>Log token</button>
                 <div className="pots-header">
                     <h4>Pots</h4>
                     <button onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
@@ -76,7 +75,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                 }
             </div>
             {showAddMoneyButton.show &&
-                <AddMoney setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
+                <AddMoney setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
             }
             {potsButton.show &&
                 <AddPot setPotsData={setPotsData} potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>

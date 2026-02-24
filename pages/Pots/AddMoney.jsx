@@ -2,16 +2,26 @@ import './AddMoney.css'
 import IconClose from '../../public/assets/images/icon-close-modal.svg?react'
 import apiClient from '../../utils/apiClient'
 import { useState } from 'react'
+import { useAuth } from '../../customHooks/useAuth'
 
-export function AddMoney({ showAddMoneyButton, setShowAddMoneyButton }) {
+export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButton }) {
 
     const [amount, setAmount] = useState(null)
+
+    const { user } = useAuth()
 
     const handleCloseWindow = () => {
         setShowAddMoneyButton(prev => ({
             ...prev,
             show: false
         }))
+    }
+
+    const getPots = async () => {
+        const response = await apiClient.get(`/api/crud/pots/${user._id}`)
+        if (response) {
+            setPotsData(response.data)
+        }
     }
 
     const action = showAddMoneyButton.action
@@ -33,39 +43,45 @@ export function AddMoney({ showAddMoneyButton, setShowAddMoneyButton }) {
 
         const withdrawMoney = async () => {
             try {
-                let newPotObj = { ...pot }
-                newPotObj.total = newPotObj.total - amount
-                const response = await apiClient.put('',
-                    newPotObj)
+                const response = await apiClient.put(`/api/crud/pot/withdraw/${pot._id}`,
+                    {
+                        amount: amount
+                    })
                 if (response.status === 200) {
                     console.log('')
+                    setShowAddMoneyButton(prev => ({
+                        ...prev,
+                        show: false
+                    }))
+                    getPots();
                 }
             } catch (err) {
                 console.log(err)
             }
         }
+        withdrawMoney();
     }
 
     const handleAddMoney = () => {
-        let newPotObj = { ...pot }
-        newPotObj.total = newPotObj.total + amount
-        console.log('new obj:', newPotObj)
-
         const addMoney = async () => {
             try {
-                let newPotObj = { ...pot }
-                newPotObj.total = newPotObj.total + amount
-                const response = await apiClient.put('',
-                    newPotObj)
+                const response = await apiClient.put(`/api/crud/pot/add/${pot._id}`,
+                    {
+                        amount: amount
+                    })
                 if (response.status === 200) {
-                    console.log('')
+                    setShowAddMoneyButton(prev => ({
+                        ...prev,
+                        show: false
+                    }))
+                    getPots();
                 }
             } catch (err) {
                 console.log(err)
             }
         }
+        addMoney();
     }
-
     return (
         <div className='add-money-pot'>
             <div className="money-header">
