@@ -33,3 +33,47 @@ exports.getRecurringBills = async (req, res) => {
         return res.status(500).json({ message: "Internal Server Error!" })
     }
 }
+
+exports.getRecurringBillsInfo = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const now = new Date();
+        const sevenDaysLater = new Date();
+        sevenDaysLater.setDate(now.getDate() + 7);
+
+        const bills = await Transaction.find({
+            user: userId,
+            recurring: true
+        });
+
+        let upcomingBills = 0;
+        let paidBills = 0;
+        let dueSoonBills = 0;
+
+        bills.forEach((bill) => {
+            const billDate = new Date(bill.date);
+            const amount = Math.abs(bill.amount);
+
+            if (billDate < now) {
+                paidBills += amount;
+            }
+
+            if (billDate > now) {
+                upcomingBills += amount;
+            }
+
+            if (billDate > now && billDate <= sevenDaysLater) {
+                dueSoonBills += amount;
+            }
+        });
+
+        return res.status(200).json({
+            upcomingBills,
+            paidBills,
+            dueSoonBills
+        });
+
+    } catch (err) {
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+};

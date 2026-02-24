@@ -13,6 +13,11 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
     // getRecurringTransactions(moneyData.transactions)
     const [recurringBillsData, setRecurringBillsData] = useState([])
     // function to get total upcoming bills, total paid bills, total due soon bills, etc. from the recurringBillsData //
+    const [billsData, setBillsData] = useState({
+        upcomingBills: 0,
+        paidBills: 0,
+        dueSoonBills: 0
+    })
 
     const { user } = useAuth();
 
@@ -32,44 +37,19 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
         getRecurringBills()
     }, [recurringBillsData])
 
-    const getTotalUpcomingBills = () => {
-        let total = 0
-
-        // need to compare the current date with the bill date 
-
-        recurringBillsData.forEach(bill => {
-            const newDate = new Date();
-            if (bill.date > newDate.toISOString()) {
-                total += bill.amount * (-1)
+    useEffect(() => {
+        const getBillsDataInDepth = async () => {
+            try {
+                const response = await apiClient.get(`/api/crud/bills-info/${user._id}`)
+                if (response.status === 200) {
+                    setBillsData(response.data)
+                }
+            } catch (err) {
+                console.log(err)
             }
-        })
-        return total
-    }
-
-    const getTotalPaidBills = () => {
-        let total = 0;
-        recurringBillsData.forEach(bill => {
-            const newDate = new Date();
-            if (bill.status > newDate.toISOString()) {
-                total += bill.amount * (-1)
-            }
-        })
-        return total
-    }
-
-    const getTotalDueSoonBills = () => {
-        let total = 0;
-        recurringBillsData.forEach(bill => {
-            const newDate = new Date();
-            const billDate = new Date(bill.date)
-            const timeDiff = billDate.getTime() - newDate.getTime();
-            const daysDiff = timeDiff / (1000 * 3600 * 24);
-            if (daysDiff > 0 && daysDiff <= 7) {
-                total += bill.amount * (-1)
-            }
-        })
-        return total
-    }
+        }
+        getBillsDataInDepth();
+    }, [])
 
     const getTotalBills = () => {
         let total = 0
@@ -101,15 +81,15 @@ export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
                             <div className="summary-grid">
                                 <div className="paid">
                                     <p>Paid Bills</p>
-                                    <p>${getTotalPaidBills()}</p>
+                                    <p>${billsData.paidBills}</p>
                                 </div>
                                 <div className="paid">
                                     <p>Total Upcoming</p>
-                                    <p>${getTotalUpcomingBills()}</p>
+                                    <p>${billsData.upcomingBills}</p>
                                 </div>
                                 <div className="paid due-soon">
                                     <p>Due Soon</p>
-                                    <p>${getTotalDueSoonBills()}</p>
+                                    <p>${billsData.dueSoonBills}</p>
                                 </div>
                             </div>
                         </div>
