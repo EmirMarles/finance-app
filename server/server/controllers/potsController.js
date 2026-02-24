@@ -48,10 +48,10 @@ exports.createPot = async (req, res) => {
 
 exports.updatePot = async (req, res) => {
     try {
-        const { potId } = req.params;
+        const potId = req.params.id;
         const userId = req.user.id;
         const { name, target, total, theme } = req.body;
-
+        
         const pot = await Pot.findById(potId);
 
         if (!pot) {

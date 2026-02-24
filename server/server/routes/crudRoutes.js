@@ -19,7 +19,7 @@ router.delete('/budget/:id', deleteBudget)
 //pots
 router.get('/pots/:id', getPots)
 router.post('/create-pot/:id', createPot)
-router.put('/update-pot/:id', updatePot)
+router.put('/update-pot/:id', authMiddleware, updatePot)
 router.delete('/pot/:id', authMiddleware, deletePot)
 
 //transactions

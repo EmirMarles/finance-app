@@ -131,17 +131,26 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
 
     const handleUpdatePot = () => {
         console.log('data for updating the pot info::', newPotData)
-        // setPotsButton(prev => ({
-        //     ...prev,
-        //     show: false
-        // }))
+        setPotsButton(prev => ({
+            ...prev,
+            show: false
+        }))
         const updatePot = async () => {
             try {
-                const response = await apiClient.put('')
+                const response = await apiClient.put(`/api/crud/update-pot/${pot._id}`, {
+                    name: newPotData.name,
+                    target: newPotData.target,
+                    total: newPotData.total,
+                    theme: newPotData.theme
+                })
+                if (response.status === 200) {
+                    getPots();
+                }
             } catch (err) {
                 console.log(err)
             }
         }
+        updatePot();
     }
 
     const pot = potsButton.onePotData
