@@ -102,3 +102,43 @@
 .due-soon p{
     color: red;
 }
+
+@media (max-width: 1000px) {
+
+    .recurring-main{
+        width: 100%;
+    }
+
+    .recurring-grid{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .total{
+        display: flex;
+        flex-direction: row;
+        width: 100%;;
+    }
+
+    .total-bills{
+        height: 15rem;
+    }
+
+    .summary{
+        height: 15rem;
+        border-radius: 10px;
+    }
+    .recurring-bills-list{
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .total{
+        display: flex;
+        flex-direction: column;
+        width: 100%;;
+    }
+}

@@ -19,6 +19,10 @@
 
 @media (max-width: 1000px) {
 
+    .board{
+        height: fit-content;
+    }
+
     .transactions-page-layout{
         width: 100%;
     }

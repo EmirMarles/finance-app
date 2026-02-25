@@ -1,4 +1,4 @@
-.pots-page{
+.pots-page {
     display: flex;
     flex-direction: row;
     /* align-items: center; */
@@ -9,7 +9,7 @@
     margin-top: var(--margin-top-pages);
 }
 
-.main-pots{
+.main-pots {
     /* justify-self: self-start; */
     width: 75%;
     /* width: 100%; */
@@ -21,18 +21,18 @@
     /* justify-content: center; */
 }
 
-.pots-header{
+.pots-header {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
-    align-items: center; 
-    justify-content: space-between;  
+    align-items: center;
+    justify-content: space-between;
     width: 90%;
 }
 
-.pots-grid{
+.pots-grid {
     /* margin-top: 10rem; */
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -41,9 +41,26 @@
 }
 
 
-.add-pot-form-show{
+.add-pot-form-show {
     /* position: absolute; */
     /* top: 0%; */
     /* left: 0%; */
 }
 
+
+@media (max-width: 1000px) {
+    .main-pots {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-pots {
+        width: 100%;
+    }
+
+    .pots-grid {
+        display: flex;
+        flex-direction: column;
+    }
+}

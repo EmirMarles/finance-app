@@ -8,6 +8,9 @@ import { useEffect } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import apiClient from '../../utils/apiClient'
 
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
+import { TABLET_WIDTH } from '../../consts/windowWidth'
+
 export function Budgets({ moneyData, chosenTab, setChosenTab }) {
 
     const [budgetData, setBudgetData] = useState([])
@@ -20,6 +23,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
     const [deleteBudget, setDeleteBudget] = useState(false)
 
     const { user } = useAuth();
+    const width = useWindowWidth();
 
     useEffect(() => {
         if (budgetData.length > 0) return
@@ -43,7 +47,10 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
 
     return (
         <div className='page-layout'>
-            <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            {
+                width > TABLET_WIDTH
+                && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            }
             <div className="main-page-budgets">
                 <div className="budgets-header">
                     <h2>Budgets</h2>

@@ -6,6 +6,8 @@ import { AddPot } from './AddPot';
 import { AddMoney } from './AddMoney';
 import { useAuth } from '../../customHooks/useAuth';
 import apiClient from '../../utils/apiClient';
+import { useWindowWidth } from '../../customHooks/useWindowWidth';
+import { TABLET_WIDTH } from '../../consts/windowWidth';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
@@ -22,6 +24,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
     })
 
     const { user } = useAuth();
+    const width = useWindowWidth()
 
     useEffect(() => {
         if (potsData.length > 0) return
@@ -48,7 +51,10 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
     return (
         <div className="pots-page">
-            <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            {
+                width > TABLET_WIDTH
+                && <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            }
             <div className="main-pots">
                 <div className="pots-header">
                     <h4>Pots</h4>

@@ -7,7 +7,7 @@ export function SpendingSummary({ budgetData, transactions }) {
     const limit = calculateLimit(budgetData)
 
     return (
-        <div className="spending-summary">
+        <div className="spending-summary width-big">
             <div className="pie-chart">
                 <PieChart budgetData={budgetData} transactions={transactions} limit={limit} />
             </div>

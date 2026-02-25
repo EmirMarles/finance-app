@@ -5,6 +5,8 @@ import RecurringIcon from '../../public/assets/images/icon-nav-recurring-bills.s
 import { useEffect, useState } from 'react'
 import apiClient from '../../utils/apiClient'
 import { useAuth } from '../../customHooks/useAuth'
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
+import { TABLET_WIDTH } from '../../consts/windowWidth'
 
 export function RecurringBills({ chosenTab, setChosenTab }) {
 
@@ -16,6 +18,7 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
     })
 
     const { user } = useAuth();
+    const width = useWindowWidth()
 
     useEffect(() => {
         if (recurringBillsData.length > 0) return
@@ -58,7 +61,10 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
 
     return (
         <div className="recurring-bills">
-            <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            {
+                width > TABLET_WIDTH
+                && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            }
             <div className="recurring-main">
                 <div className="recurring-header">
                     <h2>Recurring Bills</h2>
