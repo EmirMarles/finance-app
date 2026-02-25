@@ -1,11 +1,11 @@
-.page-layout{
+.page-layout {
     margin-top: 2rem;
     display: flex;
     flex-direction: row;
     gap: 2rem;
 }
 
-.main-page-budgets{
+.main-page-budgets {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,18 +13,18 @@
     width: 80%;
 }
 
-.budgets-header{
+.budgets-header {
     width: inherit;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.budgets-header h2{
+.budgets-header h2 {
     margin: 0;
 }
 
-.budgets-header button{
+.budgets-header button {
     /* background-color: var(--color-themes); */
     /* color: white; */
     border: none;
@@ -33,7 +33,7 @@
     cursor: pointer;
 }
 
-.budget-dashboard{
+.budget-dashboard {
     border-radius: 10px;
     margin-top: 2rem;
     width: 100%;
@@ -45,28 +45,48 @@
 }
 
 
-.budgets-column{
+.budgets-column {
     display: flex;
     flex-direction: column;
 }
 
 @media (max-width: 1000px) {
-    .main-page-budgets{
-        width: 95%;
+    .main-page-budgets {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         align-self: center;
     }
 
-    .budget-dashboard{
+    .budget-dashboard {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
     }
 
-    .width-big{
+    .spending-summary {
         width: 100%;
     }
 
-    .budgets-card{
+    .budgets-column {
         width: 100%;
+    }
+
+    .budgets-card {
+        border: 2px solid red;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* gap: 2rem; */
+    .budget-dashboard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
     }
 }

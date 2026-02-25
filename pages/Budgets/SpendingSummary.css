@@ -1,8 +1,8 @@
-:root{
+:root {
     --theme-budget: red;
 }
 
-.spending-summary{
+.spending-summary {
     background-color: white;
     width: 40%;
     border-radius: 10px;
@@ -14,11 +14,11 @@
     align-items: center;
 }
 
-.summary{
+.summary {
     width: 80%;
 }
 
-.spendings{
+.spendings {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -26,7 +26,7 @@
     align-items: center;
 }
 
-.budget-category{
+.budget-category {
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -34,38 +34,56 @@
     gap: 1rem;
 }
 
-.budget-st p{
+.budget-st p {
     /* border-left: 3px solid var(--theme-budget); */
     padding-left: 0.1rem;
     /* width: 40%; */
 }
 
-.big{
+.big {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.4rem;
 }
 
-.color-bud{
+.color-bud {
     width: 0.25rem;
     height: 2.5rem;
     background-color: var(--theme-budget);
     border-radius: 50vh;
 }
 
-.spent-mon{
+.spent-mon {
     font-weight: 600;
 }
 
-.max{
+.max {
     color: grey;
     font-size: 0.7rem;
 }
 
-.pie-chart{
+.pie-chart {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
+}
+
+@media (max-width: 1000px) {
+    .spending-summary {
+        height: 20rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
+
+@media (max-width:600px) {
+    .spending-summary{
+        display: flex;
+        flex-direction: column;
+    }
 }

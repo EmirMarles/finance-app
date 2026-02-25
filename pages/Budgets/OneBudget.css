@@ -223,3 +223,9 @@
 .latest-data p {
     margin: 0;
 }
+
+@media (max-width: 1000px) {
+    .budget-card{
+        width: 100%;
+    }
+}
