@@ -27,7 +27,7 @@ export function BudgetHomePage({ budgets, moneyData }) {
                     {Array.isArray(budgetData) && budgetData.length > 0 &&
                         budgetData.map((budget, index) => {
                             return <div key={index} className="one-info" style={{ "--color-themes-bud": budget.theme }}>
-                                <div className="color-budget-left" style={{"--color-themes-bud": budget.theme}}></div>
+                                <div className="color-budget-left" style={{ "--color-themes-bud": budget.theme }}></div>
                                 <div className='info-pie'>
                                     <p>{budget.category}</p>
                                     <h4>${budget.maximum}</h4>

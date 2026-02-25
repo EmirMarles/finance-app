@@ -1,9 +1,9 @@
-:root{
+:root {
     --color-themes-bud: #007bff;
 }
 
 
-.budgets{
+.budgets {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,11 +11,11 @@
     padding-top: 1.7rem;
 }
 
-.dougnut{
+.dougnut {
     width: 90%;
 }
 
-.budgets-overview{
+.budgets-overview {
     width: 95%;
     display: flex;
     flex-direction: row;
@@ -24,7 +24,7 @@
     gap: 1rem;
 }
 
-.budget-info{
+.budget-info {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -33,7 +33,7 @@
     gap: 0.5rem;
 }
 
-.one-info{
+.one-info {
     width: 70%;
     /* border-left: 3px solid var(--color-themes-bud); */
     display: flex;
@@ -44,35 +44,35 @@
     padding-left: 0.5rem;
 }
 
-.one-info p{
+.one-info p {
     margin: 0;
 }
 
-.one-info h4{
+.one-info h4 {
     width: fit-content;
     margin: 0;
-}   
+}
 
-.color-budget-left{
-    width:5%;
+.color-budget-left {
+    width: 5%;
     height: 3rem;
     width: 0.3rem;
     border-radius: 5px;
     background-color: var(--color-themes-bud);
 }
 
-.info-pie{
+.info-pie {
     width: 70%;
 }
 
-.budgets-header-home{
-    width:90%;
+.budgets-header-home {
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.budgets-header-home h2{
+.budgets-header-home h2 {
     margin: 0;
-}   
+}

@@ -1,4 +1,4 @@
-.pie-chart-inside{
+.pie-chart-inside {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.pie-chart-text{
+.pie-chart-text {
     margin: 0;
     font-size: 0.8rem;
     width: 40%;
@@ -18,19 +18,17 @@
     margin-top: 1rem;
 }
 
-.pie-chart-text span{
+.pie-chart-text span {
     font-weight: 800;
     font-size: 1.3rem;
 }
 
-
-
-.pie-chart-inside h2{
+.pie-chart-inside h2 {
     margin: 0;
     color: black;
 }
 
-.pie-svg{
+.pie-svg {
     width: 90%;
     overflow: visible;
     margin-top: 1rem;
@@ -39,7 +37,7 @@
 }
 
 
-.small{
+.small {
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -48,4 +46,3 @@
     overflow: visible;
     position: relative;
 }
-
