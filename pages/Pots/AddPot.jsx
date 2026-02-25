@@ -6,6 +6,7 @@ import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { useAuth } from '../../customHooks/useAuth'
 import apiClient from '../../utils/apiClient'
 import { ErrMessage } from '../../components/ErrMessage'
+import { getColorNameByRgbString } from '../../utils/Helper'
 
 export function AddPot({ setPotsData, potsButton, setPotsButton }) {
     const { user } = useAuth();
@@ -173,13 +174,11 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
                         <div className="one-in">
                             <p>Theme</p>
                             <div className='theme-options-pot' onClick={() => setThemeOptions(!themeOptions)}>
-                                {/* <div className="inner-theme"> */}
                                 <div className="color-container-pot">
                                     <div className='sub-color-container'>
                                         <div className="color-theme" style={{ "--theme-choosing-color": newPotData.theme ? newPotData.theme : themes[0].theme }}></div>
-                                        <p>{newPotData.theme ? newPotData.theme : themes[0].color}</p>
+                                        <p>{newPotData.theme ? getColorNameByRgbString(newPotData.theme) : themes[0].color}</p>
                                     </div>
-                                    {/* </div> */}
                                     <IconCaretDown className='icon-caret' ></IconCaretDown>
                                 </div>
                                 {themeOptions &&
@@ -231,7 +230,9 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
                                 <div className="color-container-pot">
                                     <div className='sub-color-container'>
                                         <div className="color-theme" style={{ "--theme-choosing-color": newPotData.theme ? newPotData.theme : themes[0].theme }}></div>
-                                        <p>{newPotData.theme ? newPotData.theme : themes[0].color}</p>
+                                        <p>
+                                            {newPotData.theme ? getColorNameByRgbString(newPotData.theme) : themes[0].color}
+                                        </p>
                                     </div>
                                     {/* </div> */}
                                     <IconCaretDown className='icon-caret' ></IconCaretDown>
@@ -264,7 +265,7 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
         return (
             <div className='add-budget-container delete'>
                 <div className="add-header">
-                    <h2>Delete 'Savings'?</h2>
+                    <h2>Delete '{pot.name}' ?</h2>
                     <CloseSign className="close-bud" onClick={handleClose}></CloseSign>
                 </div>
                 <p className='sub-head-add'>
@@ -280,9 +281,5 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
             </div>
         )
 
-    } else if (errMessage.show === true) {
-        return (
-            <ErrMessage message={errMessage.message} />
-        )
     }
 }

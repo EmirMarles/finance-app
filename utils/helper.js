@@ -1,4 +1,5 @@
 // import data from '../data.json' with { type: 'json' };
+import { themes } from "../consts/thems";
 
 export function formatTime(isoString, short) {
 
@@ -166,12 +167,17 @@ export function searchForBills(searchString, recurringBillsData) {
 
     let j = 0;
     for (let i = 0; i < recurringBillsData.length; i++) {
-        if (recurringBillsData[i].name.toUpperCase() === searchString.toUpperCase()){
+        if (recurringBillsData[i].name.toUpperCase() === searchString.toUpperCase()) {
             searchResults[j] = recurringBillsData[i]
         }
     }
 
     return searchResults
+}
+
+export function getColorNameByRgbString(rgbString) {
+    const colorName = themes.filter(theme => theme.theme === rgbString)
+    return colorName ? colorName[0].color : null
 }
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',

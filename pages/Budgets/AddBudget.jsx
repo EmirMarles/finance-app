@@ -24,7 +24,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
         user: user._id
     })
 
-    const oneBudgetData = budgetButton.OneBudgetData
+    const oneBudgetData = budgetButton.oneBudgetData
 
     const [udpateBudgetData, setUpdateBudgetData] = useState({
         category: null,
@@ -59,7 +59,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
     }, [error])
 
     let chosenThemes = []
-
     // use useMemo for this 
     for (let i = 0; i < budgetData.length; i++) {
         for (let k = 0; k < themes.length; k++) {
