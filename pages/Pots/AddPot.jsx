@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { themes } from '../../consts/thems'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { useAuth } from '../../customHooks/useAuth'
-import axios from 'axios'
 import apiClient from '../../utils/apiClient'
 import { ErrMessage } from '../../components/ErrMessage'
 
@@ -43,7 +42,7 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
 
     const getPots = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/crud/pots/${user._id}`)
+            const response = await apiClient.get(`/api/crud/pots/${user._id}`)
             if (response) {
                 setPotsData(response.data)
             }
@@ -88,7 +87,7 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
                     ...prev,
                     show: false
                 }))
-                const response = await axios.post(`http://localhost:5000/api/crud/create-pot/${user._id}`,
+                const response = await apiClient.post(`/api/crud/create-pot/${user._id}`,
                     newPotData
                 )
                 if (response.status === 201) {

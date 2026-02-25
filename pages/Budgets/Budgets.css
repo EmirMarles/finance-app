@@ -5,6 +5,17 @@
     gap: 2rem;
 }
 
+.btn-create{
+    color: black;
+    /* background-color: var(--dark-grey); */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+}
+
 .main-page-budgets {
     display: flex;
     flex-direction: column;

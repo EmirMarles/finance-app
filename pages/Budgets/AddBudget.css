@@ -5,7 +5,7 @@
 
 .add-budget-container {
     background-color: white;
-    position: absolute;
+    position: sticky;
     top: 20%;
     left: 30%;
     border-radius: 10px;

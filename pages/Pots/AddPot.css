@@ -4,11 +4,11 @@
 
 .add-budget-container {
     background-color: white;
-    position: absolute;
-    top: 20%;
-    left: 30%;
+    position: fixed;
+    /* top: 10%; */
+    /* left: 10%; */
     border-radius: 10px;
-
+    z-index: 1000;
     width: 28rem;
     height: 23rem;
     display: flex;

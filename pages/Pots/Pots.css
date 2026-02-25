@@ -1,24 +1,17 @@
 .pots-page {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* flex-wrap: wrap; */
     gap: 2rem;
-
     margin-top: var(--margin-top-pages);
+
+    position: relative;
 }
 
 .main-pots {
-    /* justify-self: self-start; */
     width: 75%;
-    /* width: 100%; */
-    /* height: 200px; */
-    /* background-color: #f0f0f0; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 }
 
 .pots-header {
@@ -33,20 +26,11 @@
 }
 
 .pots-grid {
-    /* margin-top: 10rem; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     width: 100%;
 }
-
-
-.add-pot-form-show {
-    /* position: absolute; */
-    /* top: 0%; */
-    /* left: 0%; */
-}
-
 
 @media (max-width: 1000px) {
     .main-pots {

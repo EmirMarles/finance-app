@@ -20,7 +20,7 @@ export function PotsHomePage({ setChosenTab, pots }) {
         <div className="b pots" style={{ gridArea: 'box1' }}>
             <div className="pots-header">
                 <h4>Pots</h4>
-                <button onClick={handleNavigateToPots}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <button className='btn-nav' onClick={handleNavigateToPots}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <div className="pots-data">
                 <div className="total-saved-info">

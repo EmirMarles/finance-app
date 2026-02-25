@@ -54,7 +54,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
             <div className="main-page-budgets">
                 <div className="budgets-header">
                     <h2>Budgets</h2>
-                    <button onClick={() => toggleBudgetButtonAdd('add')}>Add New Budget</button>
+                    <button className='btn-create' onClick={() => toggleBudgetButtonAdd('add')}>Add New Budget</button>
                 </div>
                 <div className="budget-dashboard">
                     <SpendingSummary budgetData={budgetData} transactions={transactions} />

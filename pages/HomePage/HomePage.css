@@ -131,6 +131,10 @@ h1 {
     /* padding-left: 1rem; */
 }
 
+.btn-nav{
+    
+}
+
 button:hover {
     border-bottom: 1px solid rgba(128, 128, 128, 0.4);
 }
