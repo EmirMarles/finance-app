@@ -193,11 +193,12 @@
     justify-content: space-between;
     width: 90%;
     padding: 0.2rem;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 }
 
-.last-transaction:nth-child(4) {
-    border-bottom: none;
+.last-transaction:last-child {
+    /* border-bottom: none; */
+    border-bottom: 2px solid red;
 }
 
 .avatar-late {

@@ -40,8 +40,8 @@ export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transa
                     <Ellipsis className='ellipsis' onClick={handleOpenOptions}></Ellipsis>
                     {showBudgetOptions &&
                         <div className="options-edit-delete">
-                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('edit')}>Edit Budget</p>
-                            <p className='option-edit' onClick={()=>handleOpenDeleteOption('delete')}>Delete Budget</p>
+                            <p className='option-edit' onClick={() => handleOpenDeleteOption('edit')}>Edit Budget</p>
+                            <p className='option-edit' onClick={() => handleOpenDeleteOption('delete')}>Delete Budget</p>
                         </div>
                     }
                 </div>
@@ -69,7 +69,7 @@ export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transa
                 </div>
                 {Array.isArray(threeLatestTransactions) && threeLatestTransactions.length > 0
                     && threeLatestTransactions.map((transaction, index) => {
-                        return <div className='last-transaction'>
+                        return <div key={index} className='last-transaction'>
                             <div className="avatar-late">
                                 <img src={transaction.avatar} alt="" />
                                 {transaction.name}

@@ -77,7 +77,6 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
         <div className="home-page-desktop">
             <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             <div className="home-page">
-                <button onClick={() => (console.log(`Hello, ${user._id}`))}>greet user</button>
                 <h2 className='overview'>Overview</h2>
                 <div className="grid-cards">
                     <div className="card">
