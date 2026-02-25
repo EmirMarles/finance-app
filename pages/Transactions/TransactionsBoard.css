@@ -107,6 +107,15 @@ input[type="text"]:focus {
     border-top: 1px solid black;
 }
 
+.filter-window span:first-child{
+    border: none;
+}
+
+.filter-window span:hover{
+    background-color: rgba(128, 128, 128, 0.2);
+    cursor: pointer;
+}
+
 .category p {
     color: var(--grey);
 }

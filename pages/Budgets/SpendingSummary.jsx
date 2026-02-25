@@ -21,7 +21,7 @@ export function SpendingSummary({ budgetData, transactions }) {
                                 style={{ "--theme-budget": budget.theme }}
                             >
                                 <div className="budget-st">
-                                    <div className='b'>
+                                    <div className='big'>
                                         <div className="color-bud"></div>
                                         <p>{budget.category}</p>
                                     </div>
