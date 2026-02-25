@@ -3,7 +3,7 @@ import IconEllipsis from '../../public/assets/images/icon-ellipsis.svg?react';
 import { useState } from 'react';
 
 
-export function OnePot({ potsButton, setPotsButton, potData, showAddMoneyButton, setShowAddMoneyButton }) {
+export function OnePot({ setPotsButton, potData, setShowAddMoneyButton }) {
 
     const [openPotOptions, setOpenPotOptions] = useState(false)
 
@@ -27,7 +27,6 @@ export function OnePot({ potsButton, setPotsButton, potData, showAddMoneyButton,
             action: action,
             onePotData: potData
         })
-        return
     }
 
     const percentage = Math.round((potData.total / potData.target) * 100)

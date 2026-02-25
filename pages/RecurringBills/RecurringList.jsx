@@ -4,7 +4,6 @@ import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
 import { searchForBills } from '../../utils/Helper'
-
 import { useState, useEffect } from 'react'
 
 export function RecurringList({ recurringBillsData }) {
@@ -15,7 +14,6 @@ export function RecurringList({ recurringBillsData }) {
         filter: 'latest',
         show: false
     })
-
     const [loading, setLoading] = useState(false)
 
     const searchQuery = useDebouncedSearch(searchInput)
@@ -52,11 +50,9 @@ export function RecurringList({ recurringBillsData }) {
             setBillsForDisplay(recurringBillsData)
             return
         }
-        console.log('what we are sending for search function:', searchQuery, recurringBillsData)
         const result = searchForBills(searchQuery, recurringBillsData)
         if (result) {
             setBillsForDisplay(result)
-            console.log('result of the stuff', result)
         }
         setLoading(false)
     }, [searchQuery])
@@ -69,7 +65,6 @@ export function RecurringList({ recurringBillsData }) {
     return (
         <div className="recurring-list">
             <div className="list-header">
-                {/* <p>{searchInput}</p> */}
                 <div className="searc-list">
                     <input type="text" placeholder='Search bills' onChange={handleSearchInput} />
                     <IconSearch className='icon-search-input'></IconSearch>

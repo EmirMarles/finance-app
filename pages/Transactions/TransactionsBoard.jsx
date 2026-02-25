@@ -19,30 +19,22 @@ export function TransactionsBoard({ transactions }) {
     const [totalPages, setTotalPages] = useState(() => {
         return countTransactionsPages(transactions)
     })
-
     const [filter, setFilter] = useState({
         isOpen: false,
         filter: 'Latest'
     })
-
     const [category, setCategory] = useState({
         isOpen: false,
         category: 'Bills'
     })
-
+    const [loading, setLoading] = useState(false)
     const [transactionsForDisplay, setTransactionsForDisplay] = useState(transactions)
 
-    const [loading, setLoading] = useState(false)
-
-    // const [transactionsForDisplay, setTransactionForDisplay] = useState([])
-
-
-    // useEffect(() => {
-    //     setTransactionForDisplay(transactions)
-    // }, [transactions])
-
-
-    // effect for search
+    useEffect(() => {
+        if (transactionsForDisplay.length > 0) return
+        setTransactionsForDisplay(transactions)
+    }, [transactions, transactionsForDisplay])
+    
     const searchQuery = useDebouncedSearch(inputSearch)
 
     useEffect(() => {

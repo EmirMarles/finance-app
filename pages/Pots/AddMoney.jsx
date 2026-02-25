@@ -10,30 +10,21 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
 
     const { user } = useAuth()
 
-    const handleCloseWindow = () => {
-        setShowAddMoneyButton(prev => ({
-            ...prev,
-            show: false
-        }))
-    }
-
     const getPots = async () => {
-        const response = await apiClient.get(`/api/crud/pots/${user._id}`)
-        if (response) {
-            setPotsData(response.data)
+        try {
+            const response = await apiClient.get(`/api/crud/pots/${user._id}`)
+            if (response) {
+                setPotsData(response.data)
+            }
+        } catch (err) {
+            console.log(err.message)
         }
     }
-
-    const action = showAddMoneyButton.action
-    const pot = showAddMoneyButton.onePotData;
-
-    const percentage = pot.total / pot.target * 100
 
     const handleAddAmount = (e) => {
         const numeric = e.target.value.replace(/\D/g, "")
         setAmount(Number(numeric))
     }
-
 
     const handleWithdrawMoney = () => {
         if (amount >= pot.total) {
@@ -82,6 +73,18 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
         }
         addMoney();
     }
+
+    const handleCloseWindow = () => {
+        setShowAddMoneyButton(prev => ({
+            ...prev,
+            show: false
+        }))
+    }
+
+    const action = showAddMoneyButton.action
+    const pot = showAddMoneyButton.onePotData;
+    const percentage = pot.total / pot.target * 100
+
     return (
         <div className='add-money-pot'>
             <div className="money-header">

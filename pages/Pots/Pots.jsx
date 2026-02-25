@@ -4,16 +4,12 @@ import { OnePot } from './OnePot';
 import { useEffect, useState } from 'react';
 import { AddPot } from './AddPot';
 import { AddMoney } from './AddMoney';
-import { themes } from '../../consts/thems';
-import axios from 'axios';
 import { useAuth } from '../../customHooks/useAuth';
 import apiClient from '../../utils/apiClient';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
     const [potsData, setPotsData] = useState([])
-
-    const [showAddPotForm, setShowAddPotForm] = useState(false)
     const [potsButton, setPotsButton] = useState({
         action: 'add',
         show: false,
@@ -30,13 +26,17 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
     useEffect(() => {
         if (potsData.length > 0) return
         if (!user._id) return
-        const getPots = async () => {
-            const response = await axios.get(`http://localhost:5000/api/crud/pots/${user._id}`)
-            if (response) {
-                setPotsData(response.data)
+        try {
+            const getPots = async () => {
+                const response = await apiClient.get(`/api/crud/pots/${user._id}`)
+                if (response) {
+                    setPotsData(response.data)
+                }
             }
+            getPots();
+        } catch (err) {
+            console.log(err.message)
         }
-        getPots();
     }, [user?._id])
 
     const togglePotsButtonAdd = (action) => {
@@ -44,11 +44,6 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
             action: action,
             show: !potsButton.show
         })
-    }
-
-    const toggleAddPotForm = () => {
-        console.log('clicked')
-        setShowAddPotForm(!showAddPotForm)
     }
 
     return (
@@ -68,11 +63,6 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                         })
                     }
                 </div>
-                {showAddPotForm &&
-                    <div className="add-pot-form-show">
-                        <AddPot></AddPot>
-                    </div>
-                }
             </div>
             {showAddMoneyButton.show &&
                 <AddMoney setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>

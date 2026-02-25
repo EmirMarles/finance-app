@@ -25,7 +25,6 @@ export function SpendingSummary({ budgetData, transactions }) {
                                         <div className="color-bud"></div>
                                         <p>{budget.category}</p>
                                     </div>
-                                    {/* <p>{budget.category}</p> */}
                                 </div>
                                 <div className="budget-spent">
                                     <p><span className='spent-mon'>${calculateMoneySpentOnCategory(budget.category, transactions)}</span> <span className='max'>of ${budget.maximum}</span></p>

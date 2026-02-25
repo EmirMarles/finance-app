@@ -1,7 +1,5 @@
 import './Login.css';
-import LoginBanner from '../../public/assets/images/illustration-authentication.svg?react'
 import Logo from '../../public/assets/images/logo-large.svg?react'
-// import loginBanner from '../../public/assets/images/illustration-authentication.svg'
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../customHooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +16,6 @@ export function Login() {
     })
 
     const { login, register } = useAuth();
-    // const { user } = useAuth();
 
     const toggleLogin = () => {
         setLogin(prev => !prev)
@@ -59,7 +56,6 @@ export function Login() {
     const handleRegister = async (e) => {
         e.preventDefault();
         const result = await register({ email, password })
-        // const result = await
         if (result.success) {
             console.log('registration successful!')
             navigate('/login')
@@ -93,8 +89,6 @@ export function Login() {
             <div className="left-screen">
                 <div className="auth-banner">
                     <Logo className="logo-large" style={{ color: "black" }}> </Logo>
-                    {/* <LoginBanner className="login-banner"></LoginBanner> */}
-                    {/* <img className='login-banner' src={loginBanner} alt="Logo" /> */}
                     <div className="text-container">
                         <h2>Keep track of your money and save for your future</h2>
                         <p>Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.</p>

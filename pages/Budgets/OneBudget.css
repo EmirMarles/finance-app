@@ -197,8 +197,8 @@
 }
 
 .last-transaction:last-child {
-    /* border-bottom: none; */
-    border-bottom: 2px solid red;
+    border-bottom: none;
+    /* border-bottom: 2px solid red; */
 }
 
 .avatar-late {

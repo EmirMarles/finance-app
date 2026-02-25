@@ -1,6 +1,5 @@
 import './HomePage.css'
 import { SideBar } from "../../components/SideBar"
-// import IconPot from '../public/assets/images/icon-pot.svg?react'
 import { PotsHomePage } from './PotsHomePage'
 import { BudgetHomePage } from './BudgetHomePage'
 import { TransHomePage } from './TransHomePage'
@@ -8,8 +7,6 @@ import { RecurringHomePage } from './RecurringHomePage'
 import { useAuth } from '../../customHooks/useAuth'
 import { useEffect, useState } from 'react'
 import apiClient from '../../utils/apiClient'
-import { isTokenExpired } from '../../utils/checkJwtToken'
-
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
@@ -20,66 +17,67 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
     const { user } = useAuth();
 
-    // // check for jwt token 
-    // useEffect(()=>{
-    //     const token = localStorage.getItem("token")
-    //     if (isTokenExpired(token)){
-    //         localStorage.removeItem("token")
-    //     }
-    // },[])
-
     useEffect(() => {
-        if (balance.length > 0) return
-        const getBalance = async () => {
-            const response = await apiClient.get(`/api/crud/balance/${user._id}`)
-            if (response) {
-                setBalance(response.data);
+        try {
+            if (balance.length > 0) return
+            const getBalance = async () => {
+                const response = await apiClient.get(`/api/crud/balance/${user._id}`)
+                if (response) {
+                    setBalance(response.data);
+                }
             }
+            getBalance();
+        } catch (err) {
+            console.log(err.message)
         }
-        getBalance();
     }, [user._id, balance.length])
 
     useEffect(() => {
-        if (transactions.length > 0) return
-        const getTransactions = async () => {
-            const response = await apiClient.get(`/api/crud/transactions/${user._id}`)
-            if (response) {
-                // console.log('transactions from back', response.data)
-                setTransactions(response.data)
+        try {
+            if (transactions.length > 0) return
+            const getTransactions = async () => {
+                const response = await apiClient.get(`/api/crud/transactions/${user._id}`)
+                if (response) {
+                    setTransactions(response.data)
+                }
             }
+            getTransactions();
+        } catch (err) {
+            console.log(err.message)
         }
-        getTransactions()
     }, [transactions, user._id])
 
     useEffect(() => {
-        if (budgets.length > 0) return
-        const getBudgetsFromApi = async () => {
-            const response = await apiClient.get(`/api/crud/budgets/${user._id}`)
-            if (response) {
-                console.log('budgets', response.data)
-                setBudgets(response.data)
+        try {
+            if (budgets.length > 0) return
+            const getBudgetsFromApi = async () => {
+                const response = await apiClient.get(`/api/crud/budgets/${user._id}`)
+                if (response) {
+                    console.log('budgets', response.data)
+                    setBudgets(response.data)
+                }
             }
+            getBudgetsFromApi();
+        } catch (err) {
+            console.log(err.message)
         }
-        getBudgetsFromApi();
     }, [user._id, budgets])
 
-
     useEffect(() => {
-        if (pots.length > 0) return
-        const getPotsFromApi = async () => {
-            const response = await apiClient.get(`/api/crud/pots/${user._id}`)
-            if (response) {
-                console.log('pots', response.data)
-                setPots(response.data)
+        try {
+            if (pots.length > 0) return
+            const getPotsFromApi = async () => {
+                const response = await apiClient.get(`/api/crud/pots/${user._id}`)
+                if (response) {
+                    console.log('pots', response.data)
+                    setPots(response.data)
+                }
             }
+            getPotsFromApi();
+        } catch (err) {
+            console.log(err.message)
         }
-        getPotsFromApi();
     }, [user._id, pots])
-
-
-    useEffect(() => {
-        console.log(moneyData)
-    }, [moneyData])
 
     return (
         <div className="home-page-desktop">

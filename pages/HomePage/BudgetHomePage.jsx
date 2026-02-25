@@ -8,7 +8,7 @@ export function BudgetHomePage({ budgets, moneyData }) {
     const transactions = moneyData.transactions
     const budgetData = budgets
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleNavigateToBudgets = () => {
         navigate('/budgets')

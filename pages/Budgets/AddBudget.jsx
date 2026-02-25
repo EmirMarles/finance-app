@@ -1,13 +1,11 @@
 import './AddBudget.css'
 import CloseSign from '../../public/assets/images/icon-close-modal.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
-
 import { themes } from '../../consts/thems'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import { categories } from '../../consts/categories'
-import axios from 'axios'
-// import { updateBudget } from '../../server/server/controllers/budgetController'
+import apiClient from '../../utils/apiClient'
 
 export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetButton }) {
 
@@ -105,10 +103,9 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
         })
     }
 
-    // update functions 
     const getBudgets = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/crud/budgets/${user._id}`);
+            const response = await apiClient.get(`/api/crud/budgets/${user._id}`);
             if (response) {
                 setBudgetData(response.data)
             }
@@ -145,7 +142,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
 
         const createNewBudget = async () => {
             try {
-                const response = await axios.post(`http://localhost:5000/api/crud/add-bugdet/${user._id}`,
+                const response = await apiClient.post(`/api/crud/add-bugdet/${user._id}`,
                     budgetObject
                 )
                 if (response.status === 201) {
@@ -154,7 +151,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                         show: false
                     }))
                     getBudgets();
-                    // set message - created succesfully
                 }
             } catch (err) {
                 console.error(err)
@@ -167,17 +163,13 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
         try {
             const budgetData = budgetButton.oneBudgetData
             const deleteBudget = async () => {
-                const response = await axios.delete(`http://localhost:5000/api/crud/budget/${budgetData._id}`)
-
+                const response = await apiClient.delete(`/api/crud/budget/${budgetData._id}`)
                 if (response.status === 201) {
                     setBudgetButton(prev => ({
                         ...prev,
                         show: false
                     }))
                     getBudgets();
-                    // window.location.reload()
-                } else if (response.status === 400 || response.status === 500) {
-                    console.error(response.data)
                 }
             }
             deleteBudget();
@@ -214,7 +206,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
         try {
             const budgetData = udpateBudgetData
             const updateBudget = async () => {
-                const response = await axios.put(`http://localhost:5000/api/crud/update-budget/${budgetData._id}`,
+                const response = await apiClient.put(`/api/crud/update-budget/${budgetData._id}`,
                     budgetData
                 )
                 if (response.status === 200) {
@@ -228,7 +220,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
             updateBudget();
         }
         catch (err) {
-            //set error
             console.error('Error!:', err)
         }
     }

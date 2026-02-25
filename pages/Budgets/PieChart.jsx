@@ -2,22 +2,13 @@ import './PieChart.css';
 import { calculateMoneySpentOnCategory } from '../../utils/Helper';
 import { getAllCategories } from '../../utils/Helper';
 import { Doughnut } from 'react-chartjs-2';
-import { useEffect } from 'react';
-import plugin from 'eslint-plugin-react-hooks';
 
-
-export function PieChart({ budgetData, transactions, limit, isSmall }) {
+export function PieChart({ budgetData, transactions, isSmall }) {
 
     const categories = getAllCategories(transactions).slice(1, getAllCategories(transactions).length);
     const dataSetData = categories.map((category) => calculateMoneySpentOnCategory(category.category, transactions))
-    const categoryNames = categories.map((category) => category.category)
     const totalSpent = dataSetData.reduce((acc, value) => acc + value, 0)
     const totalBudget = budgetData.reduce((acc, value) => acc + value.maximum, 0)
-
-    useEffect(() => {
-        // console.log('categories', categories);
-        // console.log('dataSets', dataSetData);
-    }, [categories, dataSetData])
 
     const data = {
         datasets: [
@@ -38,6 +29,7 @@ export function PieChart({ budgetData, transactions, limit, isSmall }) {
             }
         }
     }
+    
     if (isSmall) {
         return (
             <div className="pie-chart-inside small">

@@ -4,11 +4,17 @@ const Transaction = require('../models/Transaction')
 exports.getTransactions = async (req, res) => {
     try {
         const userId = req.params.id;
-
+        console.log('userid:', userId)
         const transactions = await Transaction.find({ user: userId })
         if (!transactions) {
             return res.status(400).json({ message: "No transcations" })
         }
+        // console.log('transactions found:\n', transactions[0])
+        for (let i = 0; i < transactions.length; i++) {
+            console.log('\n')
+            console.log(transactions[i])
+        }
+        console.log('\n')
         return res.status(200).json(transactions)
     }
     catch (err) {

@@ -5,7 +5,7 @@ import { addDollarSign } from '../../utils/moneyDataManilpulation';
 import { formatTime } from '../../utils/Helper';
 import Ellipsis from '../../public/assets/images/icon-ellipsis.svg?react'
 
-export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transactions, deleteBudget, setDeleteBudget }) {
+export function OneBudget({ setBudgetButton, OneBudgetData, transactions }) {
 
     const [showBudgetOptions, setShowBudgetOptions] = useState(false)
 
@@ -81,7 +81,6 @@ export function OneBudget({ budgetButton, setBudgetButton, OneBudgetData, transa
                         </div>
                     })
                 }
-                <span></span>
             </div>
         </div>
     )

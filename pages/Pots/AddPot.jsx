@@ -12,13 +12,11 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
     const { user } = useAuth();
 
     const [newPotData, setNewPotData] = useState({
-        // user: user._id,
         name: null,
         target: null,
         total: 0,
         theme: null
     })
-
     const [themeOptions, setThemeOptions] = useState(false)
     const [errMessage, setErrMessage] = useState({
         show: false,

@@ -1,18 +1,14 @@
 import './RecurringBills.css'
 import { SideBar } from '../../components/SideBar'
 import { RecurringList } from './RecurringList'
-import { getRecurringTransactions } from '../../utils/moneyDataManilpulation'
 import RecurringIcon from '../../public/assets/images/icon-nav-recurring-bills.svg?react'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import apiClient from '../../utils/apiClient'
 import { useAuth } from '../../customHooks/useAuth'
 
-export function RecurringBills({ moneyData, chosenTab, setChosenTab }) {
+export function RecurringBills({ chosenTab, setChosenTab }) {
 
-    // getRecurringTransactions(moneyData.transactions)
     const [recurringBillsData, setRecurringBillsData] = useState([])
-    // function to get total upcoming bills, total paid bills, total due soon bills, etc. from the recurringBillsData //
     const [billsData, setBillsData] = useState({
         upcomingBills: 0,
         paidBills: 0,
