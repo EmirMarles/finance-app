@@ -7,8 +7,9 @@ import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
 import { useAuth } from '../customHooks/useAuth'
 import { useEffect, useState } from 'react'
+import apiClient from '../utils/apiClient'
+import { isTokenExpired } from '../utils/checkJwtToken'
 
-import axios from 'axios'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
@@ -17,15 +18,22 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     const [transactions, setTransactions] = useState([])
     const [budgets, setBudgets] = useState([])
 
-    const { user } = useAuth()
+    const { user } = useAuth();
+
+    // // check for jwt token 
+    // useEffect(()=>{
+    //     const token = localStorage.getItem("token")
+    //     if (isTokenExpired(token)){
+    //         localStorage.removeItem("token")
+    //     }
+    // },[])
 
     useEffect(() => {
         if (balance.length > 0) return
         const getBalance = async () => {
-            const response = await axios.get(`http://localhost:5000/api/crud/balance/${user._id}`)
+            const response = await apiClient.get(`/api/crud/balance/${user._id}`)
             if (response) {
                 setBalance(response.data);
-                // need to save it locally to avoid the api calls
             }
         }
         getBalance();
@@ -34,7 +42,7 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     useEffect(() => {
         if (transactions.length > 0) return
         const getTransactions = async () => {
-            const response = await axios.get(`http://localhost:5000/api/crud/transactions/${user._id}`)
+            const response = await apiClient.get(`/api/crud/transactions/${user._id}`)
             if (response) {
                 // console.log('transactions from back', response.data)
                 setTransactions(response.data)
@@ -46,7 +54,7 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     useEffect(() => {
         if (budgets.length > 0) return
         const getBudgetsFromApi = async () => {
-            const response = await axios.get(`http://localhost:5000/api/crud/budgets/${user._id}`)
+            const response = await apiClient.get(`/api/crud/budgets/${user._id}`)
             if (response) {
                 console.log('budgets', response.data)
                 setBudgets(response.data)
@@ -59,7 +67,7 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     useEffect(() => {
         if (pots.length > 0) return
         const getPotsFromApi = async () => {
-            const response = await axios.get(`http://localhost:5000/api/crud/pots/${user._id}`)
+            const response = await apiClient.get(`/api/crud/pots/${user._id}`)
             if (response) {
                 console.log('pots', response.data)
                 setPots(response.data)
