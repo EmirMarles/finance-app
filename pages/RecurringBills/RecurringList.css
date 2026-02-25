@@ -19,6 +19,14 @@
     align-items: center;
 }
 
+.mobile-list-header{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
 .sort-by {
     display: flex;
     flex-direction: row;

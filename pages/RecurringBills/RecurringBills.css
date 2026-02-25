@@ -1,11 +1,11 @@
-.recurring-bills{
+.recurring-bills {
     display: flex;
     flex-direction: row;
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.recurring-main{
+.recurring-main {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -13,7 +13,7 @@
     width: 80%;
 }
 
-.recurring-header{
+.recurring-header {
     width: 99%;
     display: flex;
     flex-direction: row;
@@ -22,7 +22,7 @@
     margin-bottom: 1rem;
 }
 
-.recurring-header button{
+.recurring-header button {
     /* background-color: var(--color-themes); */
     /* color: white; */
     border: none;
@@ -32,7 +32,7 @@
     /* height: 20%; */
 }
 
-.recurring-grid{
+.recurring-grid {
     display: flex;
     flex-direction: row;
     align-items: start;
@@ -41,14 +41,14 @@
     width: 99%;
 }
 
-.total{
+.total {
     width: 30%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.total-bills{
+.total-bills {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,16 +62,16 @@
     height: 11rem;
 }
 
-.recurring-icon{
+.recurring-icon {
     width: 3rem;
     color: white;
 }
 
-.recurring-bills-list{
+.recurring-bills-list {
     width: 72%;
 }
 
-.summary{
+.summary {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -82,7 +82,7 @@
     height: 12rem;
 }
 
-.summary-grid{
+.summary-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,7 +90,7 @@
     width: 90%;
 }
 
-.paid{
+.paid {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -99,46 +99,60 @@
     /* gap: 0.5rem; */
 }
 
-.due-soon p{
+.due-soon p {
     color: red;
 }
 
 @media (max-width: 1000px) {
 
-    .recurring-main{
+    .recurring-main {
         width: 100%;
     }
 
-    .recurring-grid{
+    .recurring-grid {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
-    .total{
+    .total {
         display: flex;
         flex-direction: row;
-        width: 100%;;
+        width: 100%;
+        ;
     }
 
-    .total-bills{
+    .total-bills {
         height: 15rem;
     }
 
-    .summary{
+    .summary {
         height: 15rem;
         border-radius: 10px;
     }
-    .recurring-bills-list{
+
+    .recurring-bills-list {
         width: 100%;
     }
 }
 
 @media (max-width: 600px) {
-    .total{
+    .total {
         display: flex;
         flex-direction: column;
-        width: 100%;;
+        width: 100%;
+    }
+
+    .bill-name{
+        width: 35%;
+    }
+
+    .bill-name-h5{
+        width: 40%;
+    }
+
+    .due-date {
+        display: none;
     }
 }

@@ -6,6 +6,10 @@ import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
 import { searchForBills } from '../../utils/Helper'
 import { useState, useEffect } from 'react'
 
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
+import { PHONE_WIDTH } from '../../consts/windowWidth'
+import IconSortMobile from '../../public/assets/images/icon-sort-mobile.svg?react'
+
 export function RecurringList({ recurringBillsData }) {
 
     const [searchInput, setSearchInput] = useState('')
@@ -17,6 +21,7 @@ export function RecurringList({ recurringBillsData }) {
     const [loading, setLoading] = useState(false)
 
     const searchQuery = useDebouncedSearch(searchInput)
+    const width = useWindowWidth();
 
     const handleSearchInput = (e) => {
         setLoading(true)
@@ -64,25 +69,36 @@ export function RecurringList({ recurringBillsData }) {
 
     return (
         <div className="recurring-list">
-            <div className="list-header">
-                <div className="searc-list">
-                    <input type="text" placeholder='Search bills' onChange={handleSearchInput} />
-                    <IconSearch className='icon-search-input'></IconSearch>
+
+            {width > PHONE_WIDTH
+                ? <div className="list-header">
+                    <div className="searc-list">
+                        <input type="text" placeholder='Search bills' onChange={handleSearchInput} />
+                        <IconSearch className='icon-search-input'></IconSearch>
+                    </div>
+                    <div className="sort-by">
+                        Sort by
+                        <button className='sort-button' onClick={toggleShowFilter}>
+                            {billsFilter.filter}
+                            <IconCaretDown></IconCaretDown>
+                            {billsFilter.show &&
+                                <div className='filters'>
+                                    <p onClick={() => toggleFilters('Latest')}>Latest</p>
+                                    <p onClick={() => toggleFilters('Newest')}>Newest</p>
+                                </div>
+                            }
+                        </button>
+                    </div>
                 </div>
-                <div className="sort-by">
-                    Sort by
-                    <button className='sort-button' onClick={toggleShowFilter}>
-                        {billsFilter.filter}
-                        <IconCaretDown></IconCaretDown>
-                        {billsFilter.show &&
-                            <div className='filters'>
-                                <p onClick={() => toggleFilters('Latest')}>Latest</p>
-                                <p onClick={() => toggleFilters('Newest')}>Newest</p>
-                            </div>
-                        }
-                    </button>
+                : <div className='mobile-list-header'>
+                    <div className="searc-list">
+                        <input type="text" placeholder='Search bills' onChange={handleSearchInput} />
+                        <IconSearch className='icon-search-input'></IconSearch>
+                    </div>
+                    <IconSortMobile></IconSortMobile>
                 </div>
-            </div>
+            }
+
             <div className="list-of-recurring">
                 {loading
                     ? <div className='loading'>Loading...</div>
