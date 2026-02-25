@@ -31,7 +31,7 @@
 .pie-svg {
     width: 90%;
     overflow: visible;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     /* position: absolute; */
     top: 0;
 }

@@ -9,7 +9,7 @@ export function SpendingSummary({ budgetData, transactions }) {
     return (
         <div className="spending-summary">
             <div className="pie-chart">
-                <PieChart budgetData={budgetData} transactions={transactions} limit={limit}/>
+                <PieChart budgetData={budgetData} transactions={transactions} limit={limit} />
             </div>
 
             <div className="summary">
@@ -21,7 +21,11 @@ export function SpendingSummary({ budgetData, transactions }) {
                                 style={{ "--theme-budget": budget.theme }}
                             >
                                 <div className="budget-st">
-                                    <p>{budget.category}</p>
+                                    <div className='b'>
+                                        <div className="color-bud"></div>
+                                        <p>{budget.category}</p>
+                                    </div>
+                                    {/* <p>{budget.category}</p> */}
                                 </div>
                                 <div className="budget-spent">
                                     <p><span className='spent-mon'>${calculateMoneySpentOnCategory(budget.category, transactions)}</span> <span className='max'>of ${budget.maximum}</span></p>
