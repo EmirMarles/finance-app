@@ -3,7 +3,7 @@ import { MiniBoard } from '../Transactions/MiniBoard'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 
-export function TransHomePage({ transactions}) {
+export function TransHomePage({ transactions }) {
     const firstFiveTrans = transactions.slice(0, 5)
     const navigate = useNavigate()
     const handleNavigateToTransactions = () => {
