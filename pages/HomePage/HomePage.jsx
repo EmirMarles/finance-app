@@ -1,14 +1,14 @@
 import './HomePage.css'
-import { SideBar } from "../components/SideBar"
-import IconPot from '../public/assets/images/icon-pot.svg?react'
+import { SideBar } from "../../components/SideBar"
+// import IconPot from '../public/assets/images/icon-pot.svg?react'
 import { PotsHomePage } from './PotsHomePage'
 import { BudgetHomePage } from './BudgetHomePage'
 import { TransHomePage } from './TransHomePage'
 import { RecurringHomePage } from './RecurringHomePage'
-import { useAuth } from '../customHooks/useAuth'
+import { useAuth } from '../../customHooks/useAuth'
 import { useEffect, useState } from 'react'
-import apiClient from '../utils/apiClient'
-import { isTokenExpired } from '../utils/checkJwtToken'
+import apiClient from '../../utils/apiClient'
+import { isTokenExpired } from '../../utils/checkJwtToken'
 
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {

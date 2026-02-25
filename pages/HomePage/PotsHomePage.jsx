@@ -1,6 +1,6 @@
 import './PotsHomePage.css'
-import IconPot from '../public/assets/images/icon-pot.svg?react'
-import IconCaretRight from '../public/assets/images/icon-caret-right.svg?react'
+import IconPot from '../../public/assets/images/icon-pot.svg?react'
+import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 

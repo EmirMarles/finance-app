@@ -1,6 +1,6 @@
 import './BudgetHomePage.css'
-import { PieChart } from './Budgets/PieChart'
-import IconCaretRight from '../public/assets/images/icon-caret-right.svg?react'
+import { PieChart } from '../Budgets/PieChart'
+import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 
 export function BudgetHomePage({ budgets, moneyData }) {

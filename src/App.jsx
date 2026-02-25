@@ -1,5 +1,5 @@
 import './App.css'
-import { HomePage } from '../pages/HomePage'
+import { HomePage } from '../pages/HomePage/HomePage'
 import { Transactions } from '../pages/Transactions/Transactions'
 import { Budgets } from '../pages/Budgets/Budgets'
 import { Pots } from '../pages/Pots/Pots'
