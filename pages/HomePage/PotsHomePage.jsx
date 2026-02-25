@@ -3,7 +3,7 @@ import IconPot from '../../public/assets/images/icon-pot.svg?react'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 
-export function PotsHomePage({ pots }) {
+export function PotsHomePage({ setChosenTab, pots }) {
 
     const firstFourPots = pots.slice(0, 4)
     const totalSaved = pots.reduce((sum, pot) => sum + pot.total, 0)
@@ -12,6 +12,9 @@ export function PotsHomePage({ pots }) {
 
     const handleNavigateToPots = () => {
         navigate('/pots')
+        setChosenTab('/pots')
+        window.scrollTo({ top: 0 })
+        localStorage.setItem('tab', JSON.stringify('/pots'))
     }
     return (
         <div className="b pots" style={{ gridArea: 'box1' }}>

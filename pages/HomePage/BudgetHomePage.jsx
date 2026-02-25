@@ -3,7 +3,7 @@ import { PieChart } from '../Budgets/PieChart'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 
-export function BudgetHomePage({ budgets, moneyData }) {
+export function BudgetHomePage({ setChosenTab, budgets, moneyData }) {
 
     const transactions = moneyData.transactions
     const budgetData = budgets
@@ -12,6 +12,9 @@ export function BudgetHomePage({ budgets, moneyData }) {
 
     const handleNavigateToBudgets = () => {
         navigate('/budgets')
+        setChosenTab('/budgets')
+        window.scrollTo({ top: 0 })
+        localStorage.setItem('tab', JSON.stringify('/budgets'))
     }
 
     return (

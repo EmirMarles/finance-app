@@ -2,7 +2,7 @@ import './RecurringHomePage.css'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 
-export function RecurringHomePage({ transactions, moneyData }) {
+export function RecurringHomePage({ setChosenTab, transactions, moneyData }) {
 
     const recurringTransactions = transactions.filter(transaction => transaction.recurring === true)
     const firstThreeRecurring = recurringTransactions.slice(0, 3)
@@ -10,10 +10,13 @@ export function RecurringHomePage({ transactions, moneyData }) {
 
     const handleNavigateToRecurring = () => {
         navigate('/recurring-bills')
+        setChosenTab('/recurring-bills')
+        window.scrollTo({ top: 0 })
+        localStorage.setItem('tab', JSON.stringify('/recurring-bills'))
     }
 
-    const budgetData = moneyData.budgets   
-    
+    const budgetData = moneyData.budgets
+
     const getThemeForRecurring = (transaction) => {
         const matchingBudget = budgetData.find(budget => budget.category === transaction.category);
         return matchingBudget ? matchingBudget.theme : '#82C9D7';
@@ -28,7 +31,7 @@ export function RecurringHomePage({ transactions, moneyData }) {
             <div className="bills-grid-home">
                 {Array.isArray(firstThreeRecurring) && firstThreeRecurring.length > 0 ? (
                     firstThreeRecurring.map((transaction, index) => (
-                        <div key={index} className='first' style={{ "--recurring-home-color": getThemeForRecurring(transaction)}}>
+                        <div key={index} className='first' style={{ "--recurring-home-color": getThemeForRecurring(transaction) }}>
                             <p>{transaction.name}</p>
                             <h3>${transaction.amount}</h3>
                         </div>

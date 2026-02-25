@@ -1,15 +1,21 @@
 import './TransactionsBoard.css'
 import { OneTransaction } from './OneTransaction'
+
 import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import ArrowDown from '../../public/assets/images/icon-caret-down.svg?react'
 import IconRight from '../../public/assets/images/icon-caret-right.svg?react'
 import IconLeft from '../../public/assets/images/icon-caret-left.svg?react'
+import IconFilterMobile from '../../public/assets/images/icon-filter-mobile.svg?react'
+import IconSortMobile from '../../public/assets/images/icon-sort-mobile.svg?react'
 
 import { useState, useEffect } from 'react'
 import { countTransactionsPages } from '../../utils/Helper'
 import { getAllCategories, filterTransactions } from '../../utils/Helper'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
 import { searchForBills } from '../../utils/Helper'
+
+import { PHONE_WIDTH } from '../../consts/windowWidth'
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
 
 export function TransactionsBoard({ transactions }) {
 
@@ -35,10 +41,10 @@ export function TransactionsBoard({ transactions }) {
         setTransactionsForDisplay(transactions)
     }, [transactions, transactionsForDisplay])
 
-    useEffect(()=>{
+    useEffect(() => {
         setTotalPages(countTransactionsPages(transactions))
-    } ,[totalPages, transactions])
-    
+    }, [totalPages, transactions])
+
     const searchQuery = useDebouncedSearch(inputSearch)
 
     useEffect(() => {
@@ -66,6 +72,7 @@ export function TransactionsBoard({ transactions }) {
         console.log('result of search', result)
     }, [searchQuery])
 
+    const width = useWindowWidth();
 
     const handleInputSearch = (event) => {
         setLoading(true)
@@ -135,44 +142,54 @@ export function TransactionsBoard({ transactions }) {
 
     return (
         <div className='board'>
-            <div className="board-header">
-                <div className="input-search">
-                    <input type="text" onChange={handleInputSearch} />
-                    <IconSearch className='search-icon'></IconSearch>
-                </div>
-                <div className='sort-cat'>
-                    <div className="category">
-                        <p>Sort by</p>
-                        <button className='category-btn' onClick={toggleFilterOpen}>
-                            {filter.filter}
-                            <ArrowDown></ArrowDown>
-                            {filter.isOpen &&
-                                <div className="filter-window">
-                                    <span onClick={() => toggleFilters('late')}>Latest</span>
-                                    <span onClick={() => toggleFilters('new')}>Newest</span>
-                                </div>
-                            }
-                        </button>
+            {width < PHONE_WIDTH
+                ? <div className='phone-board-header'>
+                    <div className="input-search">
+                        <input type="text" onChange={handleInputSearch} placeholder='Search transactions' />
+                        <IconSearch className='search-icon'></IconSearch>
                     </div>
-                    <div className="category">
-                        <p>Category</p>
-                        <button className='category-btn' onClick={toggleCategoryOpen}>
-                            {category.category}
-                            <ArrowDown></ArrowDown>
-                            {category.isOpen
-                                &&
-                                <div className="filter-window">
-                                    {Array.isArray(categories) && categories.length > 0 &&
-                                        categories.map((category) => {
-                                            return <span onClick={() => toggleCategories(category.categoryId)} key={category.categoryId}>{category.category}</span>
-                                        })
-                                    }
-                                </div>
-                            }
-                        </button>
+                    <IconSortMobile className='icon-filter'></IconSortMobile>
+                    <IconFilterMobile className='icon-filter'></IconFilterMobile>
+                </div>
+                : <div className="board-header">
+                    <div className="input-search">
+                        <input type="text" onChange={handleInputSearch} />
+                        <IconSearch className='search-icon'></IconSearch>
+                    </div>
+                    <div className='sort-cat'>
+                        <div className="category">
+                            <p>Sort by</p>
+                            <button className='category-btn' onClick={toggleFilterOpen}>
+                                {filter.filter}
+                                <ArrowDown></ArrowDown>
+                                {filter.isOpen &&
+                                    <div className="filter-window">
+                                        <span onClick={() => toggleFilters('late')}>Latest</span>
+                                        <span onClick={() => toggleFilters('new')}>Newest</span>
+                                    </div>
+                                }
+                            </button>
+                        </div>
+                        <div className="category">
+                            <p>Category</p>
+                            <button className='category-btn' onClick={toggleCategoryOpen}>
+                                {category.category}
+                                <ArrowDown></ArrowDown>
+                                {category.isOpen
+                                    &&
+                                    <div className="filter-window">
+                                        {Array.isArray(categories) && categories.length > 0 &&
+                                            categories.map((category) => {
+                                                return <span onClick={() => toggleCategories(category.categoryId)} key={category.categoryId}>{category.category}</span>
+                                            })
+                                        }
+                                    </div>
+                                }
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             <div className="transactions-table">
                 <div className="transactions-table-h">
                     <p className='rec-sender'>Recipient/Sender</p>

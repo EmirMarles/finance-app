@@ -7,6 +7,9 @@ import { RecurringHomePage } from './RecurringHomePage'
 import { useAuth } from '../../customHooks/useAuth'
 import { useEffect, useState } from 'react'
 import apiClient from '../../utils/apiClient'
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
+import { TABLET_WIDTH } from '../../consts/windowWidth'
+import { PHONE_WIDTH } from '../../consts/windowWidth'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
@@ -16,6 +19,12 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     const [budgets, setBudgets] = useState([])
 
     const { user } = useAuth();
+
+    const width = useWindowWidth();
+
+    useEffect(() => {
+        console.log('width: ', width)
+    }, [width])
 
     useEffect(() => {
         try {
@@ -79,9 +88,12 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
         }
     }, [user._id, pots])
 
+
     return (
         <div className="home-page-desktop">
-            <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            {width > TABLET_WIDTH
+                && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            }
             <div className="home-page">
                 <h2 className='overview'>Overview</h2>
                 <div className="grid-cards">
@@ -99,10 +111,10 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                     </div>
                 </div>
                 <div className="bento-grid">
-                    <PotsHomePage className="bento-element" pots={pots}></PotsHomePage>
-                    <BudgetHomePage className="bento-element" budgets={budgets} moneyData={moneyData}></BudgetHomePage>
-                    <TransHomePage className="bento-element" transactions={transactions} moneyData={moneyData} ></TransHomePage>
-                    <RecurringHomePage className="bento-element" transactions={transactions} moneyData={moneyData}></RecurringHomePage>
+                    <PotsHomePage className="bento-element" setChosenTab={setChosenTab} pots={pots}></PotsHomePage>
+                    <BudgetHomePage className="bento-element" setChosenTab={setChosenTab} budgets={budgets} moneyData={moneyData}></BudgetHomePage>
+                    <TransHomePage className="bento-element" setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData} ></TransHomePage>
+                    <RecurringHomePage className="bento-element" setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData}></RecurringHomePage>
                 </div>
             </div>
         </div>

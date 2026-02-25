@@ -1,30 +1,27 @@
-.home-page-desktop{
+.home-page-desktop {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    /* align-items: center; */
-    /* justify-content: space-between; */
     margin-top: var(--margin-top-pages);
 }
 
-h1{
-    margin:0;
+h1 {
+    margin: 0;
 }
 
-.home-page{
+.home-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     width: 80%;
 }
 
-.overview{
+.overview {
     width: 100%;
     text-align: left;
 }
 
-.grid-cards{
+.grid-cards {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +30,7 @@ h1{
     gap: 1rem;
 }
 
-.card{
+.card {
     background-color: var(--dark-grey);
     color: white;
     border-radius: 10px;
@@ -41,34 +38,31 @@ h1{
     padding: 0.9rem;
 }
 
-.card:hover{
+.card:hover {
     transform: scale(1.02);
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
-.card p{
+.card p {
     text-align: left;
 }
 
-.white-card{
+.white-card {
     background-color: white;
     color: black;
     border-radius: 10px;
     width: 33%;
 }
 
-/* bento grid */
-
-
-.bento-grid{
+.bento-grid {
     margin-top: 1rem;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 
     grid-template-rows: repeat(5, 100px);
-    grid-template-areas: 
+    grid-template-areas:
         "box1 box1 box1 box2 box2"
         "box1 box1 box1 box2 box2"
         "box3 box3 box3 box2 box2"
@@ -78,48 +72,48 @@ h1{
 }
 
 
-.b:hover{
+.b:hover {
     transform: scale(1.01);
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
-.bento-grid .b{
+.bento-grid .b {
     background-color: white;
     border-radius: 10px;
 }
 
-.box1{
+.box1 {
     height: 3rem;
 }
 
-.data{
+.data {
     display: flex;
     flex-direction: column;
     /* gap: 1rem; */
 }
 
-.pots{
+.pots {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
 
-.pots-data{
+.pots-data {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 90%;
 }
 
-.pot-data{
+.pot-data {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 
-.total-saved-info{
+.total-saved-info {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -131,12 +125,50 @@ h1{
     gap: 1rem;
 }
 
-.o-pot{
+.o-pot {
     text-align: left;
     /* border-left: 1px solid red; */
     /* padding-left: 1rem; */
 }
 
-button:hover{
+button:hover {
     border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+@media (max-width: 1000px) {
+
+    .home-page-desktop {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home-page {
+        align-self: center;
+        width: 95%;
+    }
+
+    .bento-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .b{
+        height: 18rem;
+    }
+
+    .budgets{
+        height: 20rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .grid-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .card{
+        width: 95%;
+    }
 }

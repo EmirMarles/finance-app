@@ -4,11 +4,14 @@ import { TransactionsBoard } from './TransactionsBoard'
 import { useEffect, useState } from 'react'
 import apiClient from '../../utils/apiClient'
 import { useAuth } from '../../customHooks/useAuth'
+import { TABLET_WIDTH } from '../../consts/windowWidth'
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
 
 export function Transactions({ moneyData, chosenTab, setChosenTab }) {
 
     const [transactions, setTransactions] = useState([])
     const { user } = useAuth();
+    const width = useWindowWidth()
 
     useEffect(() => {
         console.log('transactions in state:', transactions)
@@ -29,7 +32,9 @@ export function Transactions({ moneyData, chosenTab, setChosenTab }) {
 
     return (
         <div className='transactions'>
-            <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            {width > TABLET_WIDTH
+                && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+            }
             <div className="transactions-page-layout">
                 <h1>Transactions</h1>
                 <TransactionsBoard transactions={transactions}></TransactionsBoard>

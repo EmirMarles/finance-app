@@ -25,14 +25,16 @@ export function SideBar({ chosenTab, setChosenTab }) {
 
     const setTab = (tab) => {
         setChosenTab(tab)
+        window.scrollTo({ top: 0 })
+        localStorage.setItem("tab", JSON.stringify(tab))
         navigate(tab)
     }
 
     const width = useWindowWidth();
 
     const { logout } = useAuth()
-    const handleLogout = () =>{
-        logout()
+    const handleLogout = () => {
+        logout();
     }
 
     if (!isMinimized) {

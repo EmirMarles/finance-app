@@ -16,3 +16,32 @@
     align-items: center;
 }
 
+
+@media (max-width: 1000px) {
+
+    .transactions-page-layout{
+        width: 100%;
+    }
+    .board{
+        width: 95%;
+    }
+}
+
+@media (max-width:600px) {
+    .reduntant{
+        display: none;
+    }
+
+    .one-board-transaction{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .transactions-table-h{
+        display: none;
+    }
+
+
+}

@@ -9,8 +9,8 @@ export function OneTransaction({ transaction }) {
                 <img src={transaction.avatar} alt="avatar picture" />
                 <p>{transaction.name}</p>
             </div>
-            <p className='trans-data one'>{transaction.category}</p>
-            <p className='trans-data'>{formatTime(transaction.date)}</p>
+            <p className='trans-data one reduntant'>{transaction.category}</p>
+            <p className='trans-data reduntant'>{formatTime(transaction.date)}</p>
             {transaction.amount > 400
                 ? <p className='trans-data lots-money'>{addDollarSign(transaction.amount)}</p>
                 : <p className='trans-data money'>{addDollarSign(transaction.amount)}</p>

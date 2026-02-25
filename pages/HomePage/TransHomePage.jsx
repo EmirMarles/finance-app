@@ -3,11 +3,14 @@ import { MiniBoard } from '../Transactions/MiniBoard'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 
-export function TransHomePage({ transactions }) {
+export function TransHomePage({ setChosenTab, transactions }) {
     const firstFiveTrans = transactions.slice(0, 5)
     const navigate = useNavigate()
     const handleNavigateToTransactions = () => {
         navigate('/transactions')
+        setChosenTab('/transactions')
+        window.scrollTo({ top: 0 })
+        localStorage.setItem('tab', JSON.stringify('/transactions'))
     }
 
     return (

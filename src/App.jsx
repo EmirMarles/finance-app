@@ -16,7 +16,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function App() {
 
-  const [chosenTab, setChosenTab] = useState('home')
+  const [chosenTab, setChosenTab] = useState(() => {
+    const chosenTab = localStorage.getItem("tab")
+    return chosenTab ? JSON.parse(chosenTab) : '/'
+  })
 
   return (
     <BrowserRouter>
