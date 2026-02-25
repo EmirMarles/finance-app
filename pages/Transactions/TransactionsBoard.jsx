@@ -34,6 +34,10 @@ export function TransactionsBoard({ transactions }) {
         if (transactionsForDisplay.length > 0) return
         setTransactionsForDisplay(transactions)
     }, [transactions, transactionsForDisplay])
+
+    useEffect(()=>{
+        setTotalPages(countTransactionsPages(transactions))
+    } ,[totalPages, transactions])
     
     const searchQuery = useDebouncedSearch(inputSearch)
 
