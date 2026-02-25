@@ -29,7 +29,7 @@ export function OnePot({ setPotsButton, potData, setShowAddMoneyButton }) {
         })
     }
 
-    const percentage = Math.round((potData.total / potData.target) * 100)
+    const percentage = Math.floor((potData.total / potData.target) * 100)
 
     return (
         <div className="one-pot"

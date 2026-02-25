@@ -83,7 +83,7 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
 
     const action = showAddMoneyButton.action
     const pot = showAddMoneyButton.onePotData;
-    const percentage = pot.total / pot.target * 100
+    const percentage = Math.floor(pot.total / pot.target * 100)
 
     return (
         <div className='add-money-pot'>
