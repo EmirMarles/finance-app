@@ -38,11 +38,22 @@
 
 
 .small {
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: visible;
     position: relative;
+}
+
+.pie-chart-text-small{
+    text-align: center;
+    position: absolute;
+    font-size: 0.6rem;
+    width: 20%;
+}
+
+.pie-chart-text-small span{
+    font-weight: 800;
 }

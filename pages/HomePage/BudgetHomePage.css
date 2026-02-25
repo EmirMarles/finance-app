@@ -2,14 +2,11 @@
     --color-themes-bud: #007bff;
 }
 
-
 .budgets {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     padding-top: 1.7rem;
-    /* height: 30rem; */
 }
 
 .dougnut {
@@ -64,6 +61,11 @@
 
 .info-pie {
     width: 70%;
+}
+
+.info-pie p{
+    text-align: left;
+    font-size: 0.8rem;
 }
 
 .budgets-header-home {
