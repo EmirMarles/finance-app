@@ -35,7 +35,6 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
             }
         }
         getBudgets();
-        // console.log('money data:', moneyData.budgets)
     }, [user._id, budgetData.length])
 
     const toggleBudgetButtonAdd = (action) => {

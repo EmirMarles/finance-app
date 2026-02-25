@@ -116,6 +116,9 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                     <TransHomePage className="bento-element" setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData} ></TransHomePage>
                     <RecurringHomePage className="bento-element" setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData}></RecurringHomePage>
                 </div>
+                {width < TABLET_WIDTH
+                    && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+                }
             </div>
         </div>
     )

@@ -13,6 +13,7 @@ import { useWindowWidth } from '../customHooks/useWindowWidth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../customHooks/useAuth'
+import { TABLET_WIDTH } from '../consts/windowWidth'
 
 export function SideBar({ chosenTab, setChosenTab }) {
 
@@ -37,7 +38,9 @@ export function SideBar({ chosenTab, setChosenTab }) {
         logout();
     }
 
-    if (!isMinimized) {
+    // BIG SCREENS //
+
+    if (width > TABLET_WIDTH) {
         return (
             <div className="sidebar-desktop">
                 <div className="logo">
@@ -66,11 +69,6 @@ export function SideBar({ chosenTab, setChosenTab }) {
                     </div>
                 </div>
 
-                <div className="minimize nav-bar-element" onClick={toggleMinimize}>
-                    <MinimizeIcon></MinimizeIcon>
-                    <p>Minimize Menu</p>
-                </div>
-
                 <div className="log-out">
                     <button className="logout-btn" onClick={handleLogout}>
                         Log out
@@ -80,32 +78,30 @@ export function SideBar({ chosenTab, setChosenTab }) {
         )
     }
 
-    if (isMinimized) {
+    if (width < TABLET_WIDTH) {
         return (
-            <div className="sidebar-desktop-minimized">
-                <div className="logo">
-                    <LogoMini></LogoMini>
-                </div>
-                <div className="nav-bar">
-                    <div className={`nav-bar-element ${chosenTab === '/home' ? 'chosen-element' : ''}`} onClick={() => setTab('/home')}>
-                        <HomeIcon className={chosenTab === '/home' ? 'chosen' : ''}></HomeIcon>
+            <div className="minimized-sidebar">
+                <div className="nav-bar-minimized">
+                    <div className={`nav-bar-mini ${chosenTab === '/' ? 'chosen-mini' : ''}`} onClick={() => setTab('')}>
+                        <HomeIcon className={chosenTab === '/' ? 'chosen-m' : ''}></HomeIcon>
+                        <p className="overview">Overview</p>
                     </div>
-                    <div className={`nav-bar-element ${chosenTab === '/transactions' ? 'chosen-element' : ''}`} onClick={() => setTab('/transactions')}>
-                        <TransactionsIcon className={chosenTab === '/transactions' ? 'chosen' : ''}></TransactionsIcon>
+                    <div className={`nav-bar-mini ${chosenTab === '/transactions' ? 'chosen-mini' : ''}`} onClick={() => setTab('/transactions')}>
+                        <TransactionsIcon className={chosenTab === '/transactions' ? 'chosen-m' : ''}></TransactionsIcon>
+                        <p className="overview">Transactions</p>
                     </div>
-                    <div className={`nav-bar-element ${chosenTab === '/budget' ? 'chosen-element' : ''}`} onClick={() => setTab('/budget')}>
-                        <BudjetIcon className={chosenTab === '/budget' ? 'chosen' : ''}></BudjetIcon>
+                    <div className={`nav-bar-mini ${chosenTab === '/budget' ? 'chosen-mini' : ''}`} onClick={() => setTab('/budget')}>
+                        <BudjetIcon className={chosenTab === '/budget' ? 'chosen-m' : ''}></BudjetIcon>
+                        <p className="overview">Budgets</p>
                     </div>
-                    <div className={`nav-bar-element ${chosenTab === '/pots' ? 'chosen-element' : ''}`} onClick={() => setTab('/pots')}>
-                        <PotsIcon className={chosenTab === '/pots' ? 'chosen' : ''}></PotsIcon>
+                    <div className={`nav-bar-mini ${chosenTab === '/pots' ? 'chosen-mini' : ''}`} onClick={() => setTab('/pots')}>
+                        <PotsIcon className={chosenTab === '/pots' ? 'chosen-m' : ''}></PotsIcon>
+                        <p className="overview">Pots</p>
                     </div>
-                    <div className={`nav-bar-element ${chosenTab === '/recurring' ? 'chosen-element' : ''}`} onClick={() => setTab('/recurring')}>
-                        <RecurringIcon className={chosenTab === '/recurring' ? 'chosen' : ''}></RecurringIcon>
+                    <div className={`nav-bar-mini ${chosenTab === '/recurring' ? 'chosen-mini' : ''}`} onClick={() => setTab('/recurring')}>
+                        <RecurringIcon className={chosenTab === '/recurring' ? 'chosen-m' : ''}></RecurringIcon>
+                        <p className="overview">Recurring bills</p>
                     </div>
-                </div>
-
-                <div className="minimize nav-bar-element" onClick={toggleMinimize}>
-                    <MinimizeIcon></MinimizeIcon>
                 </div>
             </div>
         )

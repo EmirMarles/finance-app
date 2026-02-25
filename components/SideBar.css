@@ -25,6 +25,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    gap: 0.5rem;
+}
+
+.chosen {
+    color: var(--green)
 }
 
 .nav-bar-element {
@@ -38,7 +43,7 @@
     user-select: none;
 }
 
-.nav-bar-element:hover{
+.nav-bar-element:hover {
     cursor: pointer;
 }
 
@@ -65,34 +70,43 @@
 
 /* minimized side bar */
 
-.sidebar-desktop-minimized {
+.minimized-sidebar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
     background-color: rgb(32, 31, 36);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
+    /* width: 15rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-bar-minimized {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav-bar-mini {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-
-    width: 5rem;
-    height: 100vw;
-    margin: 0;
+    justify-content: center;
 }
 
-.nav-bar {
-    gap: 1.2rem;
+
+.chosen-mini {
+    color: var(--green)
 }
 
-.chosen{
-    color: var(--green); 
-}
-
-.log-out{
+.overview {
     color: white;
-    /* border: 1px solid red; */
-    margin-top: 10rem;
 }
 
-.logout-btn{
-    font-size: 1rem;
-    color: white
-}
+*/
