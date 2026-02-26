@@ -177,7 +177,7 @@ export function searchForBills(searchString, recurringBillsData) {
 
 export function getColorNameByRgbString(rgbString) {
     const colorName = themes.filter(theme => theme.theme === rgbString)
-    return colorName ? colorName[0].color : null
+    return colorName.length > 0 ? colorName[0].color : null
 }
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',

@@ -1,4 +1,3 @@
-import { OneTransaction } from "./OneTransaction"
 import './TransactionsBoard.css'
 import './MiniBoard.css'
 import { formatTime } from '../../utils/Helper'

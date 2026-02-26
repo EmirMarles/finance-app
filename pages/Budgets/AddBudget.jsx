@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import { categories } from '../../consts/categories'
 import apiClient from '../../utils/apiClient'
+import { getColorNameByRgbString } from '../../utils/Helper'
 
 export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetButton }) {
 
@@ -93,13 +94,6 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
 
     const handleOpenCategories = () => {
         setChooseCategories(!chooseCategories)
-    }
-
-    const handleShowErr = (errMsg) => {
-        setError({
-            errorMsg: errMsg,
-            show: true
-        })
     }
 
     const getBudgets = async () => {
@@ -354,7 +348,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                                     <div className="color-container">
                                         <p>{udpateBudgetData.category}</p>
                                     </div>
-                                    <IconCaretDown className='icon-caret' ></IconCaretDown>
+                                    <IconCaretDown className='icon-caret'></IconCaretDown>
                                 </div>
                                 {
                                     chooseCategories &&
@@ -387,7 +381,7 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
                                 <div className="inner-theme">
                                     <div className="color-container">
                                         <div className="color-theme" style={{ "--theme-choosing-color": udpateBudgetData.theme }}></div>
-                                        <p>{udpateBudgetData.theme}</p>
+                                        <p>{udpateBudgetData ? getColorNameByRgbString(udpateBudgetData.theme) : udpateBudgetData.theme}</p>
                                     </div>
                                     <IconCaretDown className='icon-caret' ></IconCaretDown>
                                 </div>
