@@ -15,7 +15,7 @@ export function RecurringList({ recurringBillsData }) {
     const [searchInput, setSearchInput] = useState('')
     const [billsForDisplay, setBillsForDisplay] = useState([])
     const [billsFilter, setBillsFilter] = useState({
-        filter: 'latest',
+        filter: 'Latest',
         show: false
     })
     const [loading, setLoading] = useState(false)
@@ -40,8 +40,6 @@ export function RecurringList({ recurringBillsData }) {
             ...prev,
             filter: filter
         }))
-
-        //
     }
 
     useEffect(() => {
@@ -67,16 +65,15 @@ export function RecurringList({ recurringBillsData }) {
     useEffect(() => {
         if (billsForDisplay.length > 0) return
         setBillsForDisplay(recurringBillsData)
-        console.log('recurring bills data', recurringBillsData)
-    }, [recurringBillsData, billsForDisplay])
+        console.log('first mount', recurringBillsData)
+    }, [recurringBillsData])
 
     // filters
     useEffect(() => {
-        if (billsForDisplay.length <= 0 ) return
         const sortedList = sortRecurringBills(billsForDisplay, billsFilter.filter);
         console.log('sorted list:', sortedList)
         setBillsForDisplay(sortedList)
-    }, [billsForDisplay, billsFilter])
+    }, [billsFilter.filter])
 
     return (
         <div className="recurring-list">

@@ -7,6 +7,7 @@ import apiClient from '../../utils/apiClient'
 import { useAuth } from '../../customHooks/useAuth'
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { TABLET_WIDTH } from '../../consts/windowWidth'
+import { getRidOfDuplicateRecurringBills } from '../../utils/Helper'
 
 export function RecurringBills({ chosenTab, setChosenTab }) {
 
@@ -26,7 +27,8 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
             try {
                 const response = await apiClient.get(`/api/crud/recurring-bills/${user._id}`)
                 if (response.status === 200) {
-                    setRecurringBillsData(response.data)
+                    const uniqueBills = getRidOfDuplicateRecurringBills(response.data)
+                    setRecurringBillsData(uniqueBills)
                 }
             }
             catch (err) {

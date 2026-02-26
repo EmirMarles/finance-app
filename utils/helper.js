@@ -183,16 +183,30 @@ export function getColorNameByRgbString(rgbString) {
 export function sortRecurringBills(recurringBills, method) {
     let recurringSort = [...recurringBills];
     if (method === 'Latest') {
-        recurringSort.sort((a, b) => {
-            return new Date(a.date) - new Date(b.date);
-        })
+        recurringSort.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
     else {
         recurringSort.sort((a, b) => {
             return new Date(a.date) - new Date(b.date);
         })
     }
-    return recurringBills
+    return recurringSort
+}
+
+export function getRidOfDuplicateRecurringBills(recurringBills) {
+    if (!Array.isArray(recurringBills)) return [];
+
+    const uniqueBillsMap = new Map();
+
+    for (const bill of recurringBills) {
+        const uniqueKey = `${bill.name}`;
+
+        if (!uniqueBillsMap.has(uniqueKey)) {
+            uniqueBillsMap.set(uniqueKey, bill);
+        }
+    }
+
+    return Array.from(uniqueBillsMap.values());
 }
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',
