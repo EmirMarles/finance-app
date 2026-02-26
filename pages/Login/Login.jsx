@@ -3,6 +3,8 @@ import Logo from '../../public/assets/images/logo-large.svg?react'
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../customHooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useWindowWidth } from '../../customHooks/useWindowWidth';
+import { TABLET_WIDTH } from '../../consts/windowWidth';
 
 export function Login() {
 
@@ -16,6 +18,7 @@ export function Login() {
     })
 
     const { login, register } = useAuth();
+    const width = useWindowWidth();
 
     const toggleLogin = () => {
         setLogin(prev => !prev)
@@ -86,15 +89,18 @@ export function Login() {
 
     return (
         <div className='login-page'>
-            <div className="left-screen">
-                <div className="auth-banner">
-                    <Logo className="logo-large" style={{ color: "black" }}> </Logo>
-                    <div className="text-container">
-                        <h2 className='messsage-login'>Keep track of your money and save for your future</h2>
-                        <p>Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.</p>
+            {width > TABLET_WIDTH &&
+                <div className="left-screen">
+
+                    <div className="auth-banner">
+                        <Logo className="logo-large" style={{ color: "black" }}> </Logo>
+                        <div className="text-container">
+                            <h2 className='messsage-login'>Keep track of your money and save for your future</h2>
+                            <p>Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             <div className="right-side">
                 {loginContainer ?
                     <div className="auth-container">
@@ -133,7 +139,7 @@ export function Login() {
                             <button className="login-button" type="submit" onClick={handleRegister}>Register</button>
                         </form>
                         <div className="account-create">
-                            <p>Already Registered? <span className="sign-up" onClick={toggleLogin}>Create an account</span></p>
+                            <p>Already Registered? <span className="sign-up" onClick={toggleLogin}>Sign in</span></p>
                         </div>
                         {err.showErr &&
                             <div className="error-message">
