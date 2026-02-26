@@ -90,7 +90,7 @@ export function Login() {
                 <div className="auth-banner">
                     <Logo className="logo-large" style={{ color: "black" }}> </Logo>
                     <div className="text-container">
-                        <h2>Keep track of your money and save for your future</h2>
+                        <h2 className='messsage-login'>Keep track of your money and save for your future</h2>
                         <p>Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.</p>
                     </div>
                 </div>

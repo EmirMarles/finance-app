@@ -22,7 +22,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
 }
 
 .pots-grid {
