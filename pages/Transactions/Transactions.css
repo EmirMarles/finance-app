@@ -4,7 +4,6 @@
     gap : 2rem;
     height: 100vh;
     margin-top: var(--margin-top-pages);
-    /* height: fit-content; */
 }
 
 .transactions-page-layout{

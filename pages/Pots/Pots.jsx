@@ -57,7 +57,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
             }
             <div className="main-pots">
                 <div className="pots-header">
-                    <h4>Pots</h4>
+                    <h4 className='page-header'>Pots</h4>
                     <button onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
                 </div>
                 <div className="pots-grid">
@@ -69,6 +69,9 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                         })
                     }
                 </div>
+                {width < TABLET_WIDTH
+                    && <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+                }
             </div>
             {showAddMoneyButton.show &&
                 <AddMoney setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>

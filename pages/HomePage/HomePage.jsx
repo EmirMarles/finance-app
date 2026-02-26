@@ -95,7 +95,7 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                 && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             }
             <div className="home-page">
-                <h2 className='overview'>Overview</h2>
+                <h2 className='page-header'>Overview</h2>
                 <div className="grid-cards">
                     <div className="card">
                         <p>Current Balance</p>

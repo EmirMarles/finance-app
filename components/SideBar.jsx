@@ -78,11 +78,12 @@ export function SideBar({ chosenTab, setChosenTab }) {
         )
     }
 
+    // SMALL SCREENS //
     if (width < TABLET_WIDTH) {
         return (
             <div className="minimized-sidebar">
                 <div className="nav-bar-minimized">
-                    <div className={`nav-bar-mini ${chosenTab === '/' ? 'chosen-mini' : ''}`} onClick={() => setTab('')}>
+                    <div className={`nav-bar-mini ${chosenTab === '/' ? 'chosen-mini' : ''}`} onClick={() => setTab('/')}>
                         <HomeIcon className={chosenTab === '/' ? 'chosen-m' : ''}></HomeIcon>
                         <p className="overview">Overview</p>
                     </div>
@@ -90,16 +91,16 @@ export function SideBar({ chosenTab, setChosenTab }) {
                         <TransactionsIcon className={chosenTab === '/transactions' ? 'chosen-m' : ''}></TransactionsIcon>
                         <p className="overview">Transactions</p>
                     </div>
-                    <div className={`nav-bar-mini ${chosenTab === '/budget' ? 'chosen-mini' : ''}`} onClick={() => setTab('/budget')}>
-                        <BudjetIcon className={chosenTab === '/budget' ? 'chosen-m' : ''}></BudjetIcon>
+                    <div className={`nav-bar-mini ${chosenTab === '/budgets' ? 'chosen-mini' : ''}`} onClick={() => setTab('/budgets')}>
+                        <BudjetIcon className={chosenTab === '/budgets' ? 'chosen-m' : ''}></BudjetIcon>
                         <p className="overview">Budgets</p>
                     </div>
                     <div className={`nav-bar-mini ${chosenTab === '/pots' ? 'chosen-mini' : ''}`} onClick={() => setTab('/pots')}>
                         <PotsIcon className={chosenTab === '/pots' ? 'chosen-m' : ''}></PotsIcon>
                         <p className="overview">Pots</p>
                     </div>
-                    <div className={`nav-bar-mini ${chosenTab === '/recurring' ? 'chosen-mini' : ''}`} onClick={() => setTab('/recurring')}>
-                        <RecurringIcon className={chosenTab === '/recurring' ? 'chosen-m' : ''}></RecurringIcon>
+                    <div className={`nav-bar-mini ${chosenTab === '/recurring-bills' ? 'chosen-mini' : ''}`} onClick={() => setTab('/recurring-bills')}>
+                        <RecurringIcon className={chosenTab === '/recurring-bills' ? 'chosen-m' : ''}></RecurringIcon>
                         <p className="overview">Recurring bills</p>
                     </div>
                 </div>

@@ -67,7 +67,7 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
             }
             <div className="recurring-main">
                 <div className="recurring-header">
-                    <h2>Recurring Bills</h2>
+                    <h2 className='page-header'>Recurring Bills</h2>
                 </div>
 
                 <div className="recurring-grid">
@@ -98,6 +98,9 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
                     <div className="recurring-bills-list">
                         <RecurringList recurringBillsData={recurringBillsData}></RecurringList>
                     </div>
+                    {width < TABLET_WIDTH
+                        && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+                    }
                 </div>
             </div>
         </div>

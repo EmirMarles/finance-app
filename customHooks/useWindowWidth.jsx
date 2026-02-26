@@ -9,6 +9,5 @@ export function useWindowWidth() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     });
-
     return width
 }

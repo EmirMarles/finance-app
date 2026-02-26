@@ -36,8 +36,11 @@ export function Transactions({ moneyData, chosenTab, setChosenTab }) {
                 && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
             }
             <div className="transactions-page-layout">
-                <h1>Transactions</h1>
+                <h1 className='page-header'>Transactions</h1>
                 <TransactionsBoard transactions={transactions}></TransactionsBoard>
+                {width < TABLET_WIDTH
+                    && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
+                }
             </div>
         </div>
     )
