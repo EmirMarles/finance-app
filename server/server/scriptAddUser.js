@@ -5,9 +5,9 @@ const Budget = require("./models/Budget");
 const Pot = require("./models/Pot");
 
 // 🔹 Put your Mongo URI here
-const MONGO_URI = "mongodb://127.0.0.1:27017/Finance-App";
+// const MONGO_URI = "";
 
-const userId = "699846e1a018aa9d6b71bbf8";
+const userId = "69a01b40de01671394a47a9b";
 
 const data = {
     balance: {
