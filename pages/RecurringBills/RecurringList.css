@@ -45,9 +45,6 @@
     position: relative;
 }
 
-.sort-button:hover {
-}
-
 .filter-applied {
     width: 80%;
 }
@@ -94,6 +91,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* display: grid; */
+    /* grid-template-columns: 2fr 2fr 1fr; */
 }
 
 .bill-name {
@@ -111,13 +110,23 @@
 }
 
 .due-date {
-    width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 10rem;
 }
 
 .due-date p {
+    font-size: 0.8rem;
     margin: 0;
     text-align: left;
 }
+
+.bill-paid{
+    color: var(--green);
+}
+
 
 .one-recurring-bill:last-child {
     border-bottom: none;
@@ -157,4 +166,12 @@
 
 .loading {
     margin-bottom: 1rem;
+}
+
+.bill-unpaid h5{
+    color: var(--red)
+}
+
+.bill-amount{
+    width: 10%;
 }

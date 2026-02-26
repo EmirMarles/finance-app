@@ -183,11 +183,13 @@ export function getColorNameByRgbString(rgbString) {
 export function sortRecurringBills(recurringBills, method) {
     let recurringSort = [...recurringBills];
     if (method === 'Latest') {
-        recurringSort.sort((a, b) => new Date(b.date) - new Date(a.date));
+        recurringSort.sort((a, b) => {
+            return new Date(b.date).getDate() - new Date(a.date).getDate();
+        })
     }
     else {
         recurringSort.sort((a, b) => {
-            return new Date(a.date) - new Date(b.date);
+            return new Date(a.date).getDate() - new Date(b.date).getDate();
         })
     }
     return recurringSort
@@ -207,6 +209,12 @@ export function getRidOfDuplicateRecurringBills(recurringBills) {
     }
 
     return Array.from(uniqueBillsMap.values());
+}
+
+export function isItPastTheDate(date) {
+    const now = new Date().now();
+    if (date < now) return false
+    return true
 }
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',

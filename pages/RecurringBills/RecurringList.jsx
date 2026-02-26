@@ -1,14 +1,18 @@
 import './RecurringList.css'
 import { formatTimeForRecurring, sortRecurringBills } from '../../utils/Helper'
+
 import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
+import IconSortMobile from '../../public/assets/images/icon-sort-mobile.svg?react'
+import IconBillPaid from '../../public/assets/images/icon-bill-paid.svg?react'
+import IconBillUnpaid from '../../public/assets/images/icon-bill-due.svg?react'
+
+import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
 import { searchForBills } from '../../utils/Helper'
 import { useState, useEffect } from 'react'
 
-import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { PHONE_WIDTH } from '../../consts/windowWidth'
-import IconSortMobile from '../../public/assets/images/icon-sort-mobile.svg?react'
 
 export function RecurringList({ recurringBillsData }) {
 
@@ -64,7 +68,8 @@ export function RecurringList({ recurringBillsData }) {
 
     useEffect(() => {
         if (billsForDisplay.length > 0) return
-        setBillsForDisplay(recurringBillsData)
+        const sorted = sortRecurringBills(recurringBillsData, 'Latest')
+        setBillsForDisplay(sorted)
         console.log('first mount', recurringBillsData)
     }, [recurringBillsData])
 
@@ -116,10 +121,11 @@ export function RecurringList({ recurringBillsData }) {
                                     <img src={bill.avatar} alt="avatar" className="avatar" />
                                     <h5>{bill.name}</h5>
                                 </div>
-                                <div className="due-date">
+                                <div className="due-date bill-paid">
                                     <p>Monthly {formatTimeForRecurring(bill.date)}</p>
+                                    <IconBillPaid></IconBillPaid>
                                 </div>
-                                <div className="bill-amount">
+                                <div className="bill-amount bill-unpaid">
                                     <h5>${bill.amount * -1}</h5>
                                 </div>
                             </div>
