@@ -6,7 +6,7 @@ import { useAuth } from '../../customHooks/useAuth'
 
 export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButton }) {
 
-    const [amount, setAmount] = useState(null)
+    const [amount, setAmount] = useState(0)
 
     const { user } = useAuth()
 
