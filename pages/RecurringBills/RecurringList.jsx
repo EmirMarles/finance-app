@@ -1,5 +1,5 @@
 import './RecurringList.css'
-import { formatTimeForRecurring } from '../../utils/Helper'
+import { formatTimeForRecurring, sortRecurringBills } from '../../utils/Helper'
 import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
@@ -40,6 +40,8 @@ export function RecurringList({ recurringBillsData }) {
             ...prev,
             filter: filter
         }))
+
+        //
     }
 
     useEffect(() => {
@@ -63,13 +65,21 @@ export function RecurringList({ recurringBillsData }) {
     }, [searchQuery])
 
     useEffect(() => {
+        if (billsForDisplay.length > 0) return
         setBillsForDisplay(recurringBillsData)
         console.log('recurring bills data', recurringBillsData)
-    }, [recurringBillsData])
+    }, [recurringBillsData, billsForDisplay])
+
+    // filters
+    useEffect(() => {
+        if (billsForDisplay.length <= 0 ) return
+        const sortedList = sortRecurringBills(billsForDisplay, billsFilter.filter);
+        console.log('sorted list:', sortedList)
+        setBillsForDisplay(sortedList)
+    }, [billsForDisplay, billsFilter])
 
     return (
         <div className="recurring-list">
-
             {width > PHONE_WIDTH
                 ? <div className="list-header">
                     <div className="searc-list">
@@ -79,7 +89,7 @@ export function RecurringList({ recurringBillsData }) {
                     <div className="sort-by">
                         Sort by
                         <button className='sort-button' onClick={toggleShowFilter}>
-                            {billsFilter.filter}
+                            <p className='filter-applied'>{billsFilter.filter}</p>
                             <IconCaretDown></IconCaretDown>
                             {billsFilter.show &&
                                 <div className='filters'>
@@ -113,7 +123,7 @@ export function RecurringList({ recurringBillsData }) {
                                     <p>Monthly {formatTimeForRecurring(bill.date)}</p>
                                 </div>
                                 <div className="bill-amount">
-                                    <h5>${bill.amount}</h5>
+                                    <h5>${bill.amount * -1}</h5>
                                 </div>
                             </div>
                         })

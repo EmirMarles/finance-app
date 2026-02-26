@@ -179,6 +179,21 @@ export function getColorNameByRgbString(rgbString) {
     const colorName = themes.filter(theme => theme.theme === rgbString)
     return colorName.length > 0 ? colorName[0].color : null
 }
+
+export function sortRecurringBills(recurringBills, method) {
+    let recurringSort = [...recurringBills];
+    if (method === 'Latest') {
+        recurringSort.sort((a, b) => {
+            return new Date(a.date) - new Date(b.date);
+        })
+    }
+    else {
+        recurringSort.sort((a, b) => {
+            return new Date(a.date) - new Date(b.date);
+        })
+    }
+    return recurringBills
+}
 // // const category = {
 // //     avatar: './assets/images/avatars/swift-ride-share.jpg',
 // //     name: 'Swift Ride Share',
