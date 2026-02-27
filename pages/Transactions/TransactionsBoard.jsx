@@ -9,7 +9,7 @@ import IconFilterMobile from '../../public/assets/images/icon-filter-mobile.svg?
 import IconSortMobile from '../../public/assets/images/icon-sort-mobile.svg?react'
 
 import { useState, useEffect } from 'react'
-import { countTransactionsPages } from '../../utils/Helper'
+import { countTransactionsPages, ascendingDescendingTransactions } from '../../utils/Helper'
 import { getAllCategories, filterTransactions } from '../../utils/Helper'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
 import { searchForBills } from '../../utils/Helper'
@@ -42,8 +42,8 @@ export function TransactionsBoard({ transactions }) {
     }, [transactions, transactionsForDisplay])
 
     useEffect(() => {
-        setTotalPages(countTransactionsPages(transactions))
-    }, [totalPages, transactions])
+        setTotalPages(countTransactionsPages(transactionsForDisplay))
+    }, [totalPages, transactionsForDisplay])
 
     const searchQuery = useDebouncedSearch(inputSearch)
 
@@ -59,7 +59,6 @@ export function TransactionsBoard({ transactions }) {
             setTransactionsForDisplay(transactions)
             return
         }
-        // searching done in here and then setting it up
         const result = searchForBills(searchQuery, transactions)
         if (result.length > 0) {
             setLoading(false)
@@ -71,6 +70,16 @@ export function TransactionsBoard({ transactions }) {
         }
         console.log('result of search', result)
     }, [searchQuery])
+
+    useEffect(() => {
+        if (filter.filter === 'Latest') {
+            const latest = ascendingDescendingTransactions(transactions, 'desc')
+            setTransactionsForDisplay(latest)
+        } else {
+            const newest = ascendingDescendingTransactions(transactions, 'asc')
+            setTransactionsForDisplay(newest)
+        }
+    }, [filter.filter, transactions])
 
     const width = useWindowWidth();
 

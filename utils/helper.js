@@ -94,6 +94,24 @@ export function getAllCategories(transactions) {
     return uniqueCategories
 }
 
+export function ascendingDescendingTransactions(transactions, method) {
+
+    let sorted = [...transactions]
+
+    if (method === 'asc') {
+        sorted.sort((a, b) => {
+            return new Date(a.date) - new Date(b.date)
+        })
+        sorted.forEach((tr) => console.log(tr.date))
+    } else {
+        sorted.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
+        })
+        sorted.forEach((tr) => console.log(tr.date))
+    }
+    return sorted
+}
+
 export function filterTransactions(sort, category, transactions) {
 
     let firstSort = []
@@ -163,16 +181,13 @@ export function calculateLimit(budgetData) {
 }
 
 export function searchForBills(searchString, recurringBillsData) {
-    let searchResults = []
+    if (!searchString?.trim()) return recurringBillsData;
 
-    let j = 0;
-    for (let i = 0; i < recurringBillsData.length; i++) {
-        if (recurringBillsData[i].name.toUpperCase() === searchString.toUpperCase()) {
-            searchResults[j] = recurringBillsData[i]
-        }
-    }
+    const normalizedSearch = searchString.trim().toLowerCase();
 
-    return searchResults
+    return recurringBillsData.filter(bill =>
+        bill.name?.toLowerCase().includes(normalizedSearch)
+    );
 }
 
 export function getColorNameByRgbString(rgbString) {
@@ -231,7 +246,7 @@ export function isDueDate(date) {
 
     const difference = targetDay - todayDay
     console.log('difference:', difference)
-    return difference === 2; 
+    return difference === 2;
 }
 
 // // const category = {

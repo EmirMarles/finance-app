@@ -14,7 +14,6 @@ export function Transactions({ moneyData, chosenTab, setChosenTab }) {
     const width = useWindowWidth()
 
     useEffect(() => {
-        console.log('transactions in state:', transactions)
         if (transactions.length > 0) return
         const getTransactions = async () => {
             try {
