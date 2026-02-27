@@ -27,13 +27,42 @@
     gap: 1rem;
 }
 
+.mobile-sort {
+    width: 1rem;
+    position: relative;
+}
+
+.filters-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    right: 5% ;
+    /* left: -100%; */
+    border: 1px solid grey;
+    width: 6rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: white;
+}
+
+.filters-mobile p{
+    width: 100%;
+    border-top: 1px solid grey;
+}
+
+.filters-mobile p:first-child{
+    border-top: none;
+}
+
 .sort-by {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
 }
-
 
 .sort-button {
     background-color: white;
@@ -129,7 +158,7 @@
     text-align: left;
 }
 
-.bill-paid{
+.bill-paid {
     color: var(--green);
 }
 
@@ -174,10 +203,10 @@
     margin-bottom: 1rem;
 }
 
-.bill-unpaid h5{
+.bill-unpaid h5 {
     color: var(--red)
 }
 
-.bill-amount{
+.bill-amount {
     width: 10%;
 }

@@ -107,7 +107,16 @@ export function RecurringList({ recurringBillsData }) {
                         <input type="text" placeholder='Search bills' onChange={handleSearchInput} />
                         <IconSearch className='icon-search-input'></IconSearch>
                     </div>
-                    <IconSortMobile></IconSortMobile>
+
+                    <div className="mobile-sort">
+                        <IconSortMobile onClick={toggleShowFilter}></IconSortMobile>
+                        {billsFilter.show &&
+                            <div className='filters-mobile'>
+                                <p onClick={() => toggleFilters('Latest')}>Latest</p>
+                                <p onClick={() => toggleFilters('Newest')}>Newest</p>
+                            </div>
+                        }
+                    </div>
                 </div>
             }
 
