@@ -7,7 +7,6 @@ const crudRoutes = require('./routes/crudRoutes')
 // const db = require('./db')
 const connectDB = require('./db')
 
-const cors = require('cors')
 
 const app = express();
 
@@ -19,7 +18,6 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(cors())
 
 const PORT = 5000
 
