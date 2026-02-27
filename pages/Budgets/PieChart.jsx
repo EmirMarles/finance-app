@@ -1,6 +1,6 @@
 import './PieChart.css';
-import { calculateMoneySpentOnCategory } from '../../utils/Helper';
-import { getAllCategories } from '../../utils/Helper';
+import { calculateMoneySpentOnCategory } from '../../utils/helper';
+import { getAllCategories } from '../../utils/helper';
 import { Doughnut } from 'react-chartjs-2';
 
 export function PieChart({ budgetData, transactions, isSmall }) {

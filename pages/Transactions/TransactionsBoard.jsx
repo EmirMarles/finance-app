@@ -9,10 +9,10 @@ import IconFilterMobile from '../../public/assets/images/icon-filter-mobile.svg?
 import IconSortMobile from '../../public/assets/images/icon-sort-mobile.svg?react'
 
 import { useState, useEffect } from 'react'
-import { countTransactionsPages, ascendingDescendingTransactions } from '../../utils/Helper'
-import { getAllCategories, filterTransactions } from '../../utils/Helper'
+import { countTransactionsPages, ascendingDescendingTransactions } from '../../utils/helper'
+import { getAllCategories, filterTransactions } from '../../utils/helper'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
-import { searchForBills } from '../../utils/Helper'
+import { searchForBills } from '../../utils/helper'
 
 import { PHONE_WIDTH } from '../../consts/windowWidth'
 import { useWindowWidth } from '../../customHooks/useWindowWidth'

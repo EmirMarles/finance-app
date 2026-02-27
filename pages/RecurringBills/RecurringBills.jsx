@@ -7,7 +7,7 @@ import apiClient from '../../utils/apiClient'
 import { useAuth } from '../../customHooks/useAuth'
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { TABLET_WIDTH } from '../../consts/windowWidth'
-import { getRidOfDuplicateRecurringBills } from '../../utils/Helper'
+import { getRidOfDuplicateRecurringBills } from '../../utils/helper'
 
 export function RecurringBills({ chosenTab, setChosenTab }) {
 

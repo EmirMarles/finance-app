@@ -1,6 +1,6 @@
 import './TransactionsBoard.css'
 import './MiniBoard.css'
-import { formatTime } from '../../utils/Helper'
+import { formatTime } from '../../utils/helper'
 import { addDollarSign } from '../../utils/moneyDataManilpulation'
 
 export function MiniBoard({ transactions }) {

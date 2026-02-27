@@ -1,5 +1,5 @@
 import './RecurringList.css'
-import { formatTimeForRecurring, sortRecurringBills, isDueDate, isBillPaid } from '../../utils/Helper'
+import { formatTimeForRecurring, sortRecurringBills, isDueDate, isBillPaid } from '../../utils/helper'
 
 import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
@@ -9,7 +9,7 @@ import IconBillUnpaid from '../../public/assets/images/icon-bill-due.svg?react'
 
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { useDebouncedSearch } from '../../customHooks/useDebouncedSearch'
-import { searchForBills } from '../../utils/Helper'
+import { searchForBills } from '../../utils/helper'
 import { useState, useEffect } from 'react'
 
 import { PHONE_WIDTH } from '../../consts/windowWidth'

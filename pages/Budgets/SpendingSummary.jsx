@@ -1,5 +1,5 @@
 import './SpendingSummary.css'
-import { calculateMoneySpentOnCategory, calculateLimit } from '../../utils/Helper'
+import { calculateMoneySpentOnCategory, calculateLimit } from '../../utils/helper'
 import { PieChart } from './PieChart'
 
 export function SpendingSummary({ budgetData, transactions }) {

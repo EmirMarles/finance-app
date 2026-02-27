@@ -1,5 +1,5 @@
 import './OneTransaction.css'
-import { formatTime } from '../../utils/Helper'
+import { formatTime } from '../../utils/helper'
 import { addDollarSign } from '../../utils/moneyDataManilpulation'
 
 export function OneTransaction({ transaction }) {

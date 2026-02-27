@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import { categories } from '../../consts/categories'
 import apiClient from '../../utils/apiClient'
-import { getColorNameByRgbString } from '../../utils/Helper'
+import { getColorNameByRgbString } from '../../utils/helper'
 
 export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetButton }) {
 

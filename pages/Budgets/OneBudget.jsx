@@ -1,5 +1,5 @@
 import './OneBudget.css'
-import { calculateMoneySpentOnCategory, calculatePercentageBudgetSpent, getLatestTransactionsByCategory } from '../../utils/Helper'
+import { calculateMoneySpentOnCategory, calculatePercentageBudgetSpent, getLatestTransactionsByCategory } from '../../utils/helper'
 import { useState } from 'react';
 import { addDollarSign } from '../../utils/moneyDataManilpulation';
 import { formatTime } from '../../utils/Helper';
