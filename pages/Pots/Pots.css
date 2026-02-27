@@ -3,7 +3,6 @@
     flex-direction: row;
     gap: 2rem;
     margin-top: var(--margin-top-pages);
-
     position: relative;
 }
 

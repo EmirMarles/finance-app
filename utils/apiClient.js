@@ -1,10 +1,5 @@
 import axios from "axios";
 
-
-// http://localhost:5000/api/crud/pot/potId`,{
-//                     headers:{
-//                         'Authorization' : `Bearer Jwt Tken`
-//                     }
 const apiClient = axios.create({
     baseURL: 'http://localhost:5000',
     timeout: 1000,
