@@ -2,7 +2,7 @@ import './OneBudget.css'
 import { calculateMoneySpentOnCategory, calculatePercentageBudgetSpent, getLatestTransactionsByCategory } from '../../utils/helper'
 import { useState } from 'react';
 import { addDollarSign } from '../../utils/moneyDataManilpulation';
-import { formatTime } from '../../utils/Helper';
+import { formatTime } from '../../utils/helper';
 import Ellipsis from '../../public/assets/images/icon-ellipsis.svg?react'
 
 export function OneBudget({ setBudgetButton, OneBudgetData, transactions }) {
