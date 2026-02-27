@@ -4,7 +4,7 @@ const backend_url = import.meta.env.VITE_BACKEND_URL
 
 const apiClient = axios.create({
     baseURL: backend_url,
-    timeout: 1000,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     }
