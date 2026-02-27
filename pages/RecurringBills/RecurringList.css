@@ -36,6 +36,8 @@
 
 
 .sort-button {
+    background-color: white;
+    color: black;
     width: 8rem;
     display: flex;
     border: 1px solid grey;

@@ -58,7 +58,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
             <div className="main-pots">
                 <div className="pots-header">
                     <h4 className='page-header'>Pots</h4>
-                    <button onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
+                    <button className='btn-create-budget' onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
                 </div>
                 <div className="pots-grid">
                     {Array.isArray(potsData) && potsData.length > 0 &&

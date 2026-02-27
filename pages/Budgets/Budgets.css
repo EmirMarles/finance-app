@@ -5,15 +5,18 @@
     gap: 2rem;
 }
 
-.btn-create{
-    color: black;
-    /* background-color: var(--dark-grey); */
+.btn-create-budget {
+    color: white;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    background-color: transparent;
-    border: none;
+    background-color: var(--dark-grey);
+    border-radius: 5px;
+    width: 10rem;
+    height: 3rem;
+    text-align: center;
 }
 
 .main-page-budgets {
@@ -36,14 +39,12 @@
     margin: 0;
 }
 
-.budgets-header button {
-    /* background-color: var(--color-themes); */
-    /* color: white; */
+/* .budgets-header button {
     border: none;
     padding: 1rem 1.2rem;
     border-radius: 5px;
     cursor: pointer;
-}
+} */
 
 .budget-dashboard {
     border-radius: 10px;

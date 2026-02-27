@@ -157,12 +157,32 @@ export function TransactionsBoard({ transactions }) {
                         <input type="text" onChange={handleInputSearch} placeholder='Search transactions' />
                         <IconSearch className='search-icon'></IconSearch>
                     </div>
-                    <IconSortMobile className='icon-filter'></IconSortMobile>
-                    <IconFilterMobile className='icon-filter'></IconFilterMobile>
+                    <div className='icons-filter-sort'>
+                        <IconSortMobile className='icon-filter' onClick={toggleCategoryOpen} ></IconSortMobile>
+                        {category.isOpen
+                            &&
+                            <div className="filter-window-mobile">
+                                {Array.isArray(categories) && categories.length > 0 &&
+                                    categories.map((category) => {
+                                        return <span onClick={() => toggleCategories(category.categoryId)} key={category.categoryId}>{category.category}</span>
+                                    })
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div className='icons-filter-sort'>
+                        <IconFilterMobile onClick={toggleFilterOpen} className='icon-filter'></IconFilterMobile>
+                        {filter.isOpen &&
+                            <div className="filter-window-mobile">
+                                <span onClick={() => toggleFilters('late')}>Latest</span>
+                                <span onClick={() => toggleFilters('new')}>Newest</span>
+                            </div>
+                        }
+                    </div>
                 </div>
                 : <div className="board-header">
                     <div className="input-search">
-                        <input type="text" onChange={handleInputSearch} />
+                        <input type="text" onChange={handleInputSearch} placeholder='Search transactions' />
                         <IconSearch className='search-icon'></IconSearch>
                     </div>
                     <div className='sort-cat'>

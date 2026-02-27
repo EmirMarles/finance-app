@@ -16,8 +16,8 @@ export function TransHomePage({ setChosenTab, transactions }) {
     return (
         <div className="b transactions-board-mini" style={{ gridArea: 'box3' }}>
             <div className='b-header'>
-                <h3>Transactions</h3>
-                <button onClick={handleNavigateToTransactions}>See All<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <h3 className='pot-hh'>Transactions</h3>
+                <button className='btn-nav' onClick={handleNavigateToTransactions}>See All<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <MiniBoard transactions={firstFiveTrans}></MiniBoard>
         </div>

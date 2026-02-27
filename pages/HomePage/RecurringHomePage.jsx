@@ -25,8 +25,8 @@ export function RecurringHomePage({ setChosenTab, transactions, moneyData }) {
     return (
         <div className="b recurring-bills-home" style={{ gridArea: 'box4' }}>
             <div className="bills-header">
-                <h3>Recurring bills</h3>
-                <button onClick={handleNavigateToRecurring}>See more<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <h3 className='pot-hh'>Recurring bills</h3>
+                <button className='btn-nav' onClick={handleNavigateToRecurring}>See more<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <div className="bills-grid-home">
                 {Array.isArray(firstThreeRecurring) && firstThreeRecurring.length > 0 ? (

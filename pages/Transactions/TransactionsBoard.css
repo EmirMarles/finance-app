@@ -23,7 +23,7 @@ h1 {
     justify-content: space-between;
 }
 
-.phone-board-header{
+.phone-board-header {
     margin-top: 1rem;
     width: 90%;
     display: flex;
@@ -32,11 +32,11 @@ h1 {
     justify-content: space-evenly;
 }
 
-.phone-board-header .input-search{
+.phone-board-header .input-search {
     width: 60%;
 }
 
-.icon-filter:hover{
+.icon-filter:hover {
     width: 2rem;
     cursor: pointer;
 }
@@ -59,7 +59,7 @@ h1 {
     border: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    color : black;
+    color: black;
     height: 90%;
     width: 88%;
     background-color: white;
@@ -68,11 +68,12 @@ h1 {
 }
 
 input[type="text"]:focus {
-  outline: none;
-  border-color: #0470E2; /* Sets a new, custom border color */
+    outline: none;
+    border-color: #0470E2;
+    /* Sets a new, custom border color */
 }
 
-.search-icon{
+.search-icon {
     margin-right: 0.5rem;
     cursor: pointer;
 }
@@ -117,19 +118,43 @@ input[type="text"]:focus {
     background-color: white;
 }
 
-.filter-window span {
-    padding: 0.5rem;
+
+.icons-filter-sort{
+    width: 2rem;
 }
 
-.filter-window span {
+.filter-window-mobile {
+    position: absolute;
+    right: 10%;
+    border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 8rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.filter-window-mobile span:first-child {
+    border-top: none;
+}
+
+.filter-window-mobile span {
+    /* padding: 0.1rem 2rem; */
     border-top: 1px solid black;
 }
 
-.filter-window span:first-child{
+.filter-window span {
+    padding: 0.5rem;
+    border-top: 1px solid black;
+}
+
+.filter-window span:first-child {
     border: none;
 }
 
-.filter-window span:hover{
+.filter-window span:hover {
     background-color: rgba(128, 128, 128, 0.2);
     cursor: pointer;
 }
@@ -168,23 +193,23 @@ input[type="text"]:focus {
     grid-template-columns: 3fr 2fr 2fr 1fr;
 }
 
-.transactions-table-h p{
+.transactions-table-h p {
     color: var(--grey);
     font-size: 0.9rem;
     font-weight: 400;
 }
 
-.cat-h{
+.cat-h {
     text-align: right;
     width: 12%;
 }
 
-.trans-h{
+.trans-h {
     text-align: right;
     width: 20%;
 }
 
-.amount-h{
+.amount-h {
     text-align: left;
     width: 10%;
 }

@@ -21,8 +21,8 @@ export function BudgetHomePage({ setChosenTab, budgets, moneyData }) {
         <div className="b budgets" style={{ gridArea: 'box2' }}>
             {/* <div className="doughnut"> */}
             <div className="budgets-header-home">
-                <h2>Budgets</h2>
-                <button onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <h2 className='pot-hh'>Budgets</h2>
+                <button  className='btn-nav' onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             <div className="budgets-overview">
                 <PieChart budgetData={budgetData} transactions={transactions} className="doughnut" isSmall={true} />
