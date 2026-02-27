@@ -212,23 +212,26 @@ export function getRidOfDuplicateRecurringBills(recurringBills) {
 }
 
 export function isBillPaid(date) {
-    const now = new Date().now();
-    if (date < now) return false
-    return true
+    const today = new Date();
+    const targetDate = new Date(date)
+
+    const todayDay = today.getDate()
+    const targetDay = targetDate.getDate()
+
+    return todayDay >= targetDay
 }
 
 export function isDueDate(date) {
     const today = new Date();
     const targetDate = new Date(date);
 
-    // Use UTC to normalize both dates to midnight UTC
-    const todayUTC = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
-    const targetUTC = Date.UTC(targetDate.getUTCFullYear(), targetDate.getUTCMonth(), targetDate.getUTCDate());
+    const todayDay = today.getDate();
+    const targetDay = targetDate.getDate();
 
-    const diffDays = (targetUTC - todayUTC) / (1000 * 60 * 60 * 24);
 
-    console.log('diffDays', diffDays);
-    return diffDays === 3; // or 2 if you want two days away
+    const difference = targetDay - todayDay
+    console.log('difference:', difference)
+    return difference === 2; 
 }
 
 // // const category = {

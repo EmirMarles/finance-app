@@ -1,5 +1,5 @@
 import './RecurringList.css'
-import { formatTimeForRecurring, sortRecurringBills, isDueDate } from '../../utils/Helper'
+import { formatTimeForRecurring, sortRecurringBills, isDueDate, isBillPaid } from '../../utils/Helper'
 
 import IconSearch from '../../public/assets/images/icon-search.svg?react'
 import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
@@ -121,10 +121,12 @@ export function RecurringList({ recurringBillsData }) {
                                     <img src={bill.avatar} alt="avatar" className="avatar" />
                                     <h5>{bill.name}</h5>
                                 </div>
-                                <div className="due-date bill-paid">
+                                <div className={`due-date ${isBillPaid(bill.date) ? 'bill-paid' : ''}`}>
                                     <p>Monthly {formatTimeForRecurring(bill.date)}</p>
-                                    <IconBillPaid></IconBillPaid>
-                                    {/* {isDueDate(bill.date) && } */}
+                                    {isBillPaid(bill.date)
+                                        ? <IconBillPaid></IconBillPaid>
+                                        : isDueDate(bill.date) && <IconBillUnpaid />
+                                    }
                                 </div>
                                 <div className={`bill-amount ${isDueDate(bill.date) ? 'bill-unpaid' : ''}`}>
                                     <h5>${bill.amount * -1}</h5>

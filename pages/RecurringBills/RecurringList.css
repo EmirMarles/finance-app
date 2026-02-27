@@ -110,14 +110,18 @@
 }
 
 .due-date {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* align-items: center; */
+    /* justify-content: space-evenly; */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     width: 10rem;
 }
 
 .due-date p {
+    justify-self: left;
+    /* width: 60%; */
     font-size: 0.8rem;
     margin: 0;
     text-align: left;
