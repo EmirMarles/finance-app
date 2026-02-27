@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from "react";
 import axios from "axios";
+import apiClient from "../utils/apiClient";
 
 const AuthContext = createContext();
 
@@ -12,7 +13,7 @@ export function AuthProvider({ children }) {
 
     const login = async (userData) => {
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/login", {
+            const response = await apiClient.post("/api/auth/login", {
                 email: userData.email,
                 password: userData.password
             })
@@ -32,7 +33,7 @@ export function AuthProvider({ children }) {
     const register = async (userData) => {
         try {
             // first comparison of both passwords
-            const response = await axios.post("http://localhost:5000/api/auth/register", {
+            const response = await apiClient.post("/api/auth/register", {
                 email: userData.email,
                 password: userData.password
             })
