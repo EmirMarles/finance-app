@@ -13,7 +13,6 @@ import { ProtectedRoutes } from '../customHooks/ProtectedRoutes'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
 function App() {
 
   const [chosenTab, setChosenTab] = useState(() => {

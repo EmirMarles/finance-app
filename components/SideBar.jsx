@@ -34,7 +34,10 @@ export function SideBar({ chosenTab, setChosenTab }) {
     const width = useWindowWidth();
 
     const { logout } = useAuth()
+
     const handleLogout = () => {
+        setTab('/')
+        localStorage.removeItem("tab")
         logout();
     }
 
