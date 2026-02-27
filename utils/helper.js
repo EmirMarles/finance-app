@@ -102,37 +102,12 @@ export function ascendingDescendingTransactions(transactions, method) {
         sorted.sort((a, b) => {
             return new Date(a.date) - new Date(b.date)
         })
-        sorted.forEach((tr) => console.log(tr.date))
     } else {
         sorted.sort((a, b) => {
             return new Date(b.date) - new Date(a.date)
         })
-        sorted.forEach((tr) => console.log(tr.date))
     }
     return sorted
-}
-
-export function filterTransactions(sort, category, transactions) {
-
-    let firstSort = []
-
-    if (category.category === 'All') {
-        firstSort = transactions
-    }
-    let j = 0
-    for (let i = 0; i < transactions.length; i++) {
-        if (transactions[i].category === category.category) {
-            firstSort[j] = transactions[i];
-            j++
-        }
-    }
-    // newest / latest sort
-    if (sort === 'new') {
-        console.log('')
-    } else if (sort === 'late') {
-        console.log('')
-    }
-    return firstSort
 }
 
 export function calculateMoneySpentOnCategory(category, transactions) {
@@ -245,19 +220,5 @@ export function isDueDate(date) {
 
 
     const difference = targetDay - todayDay
-    console.log('difference:', difference)
     return difference === 2;
 }
-
-// // const category = {
-// //     avatar: './assets/images/avatars/swift-ride-share.jpg',
-// //     name: 'Swift Ride Share',
-// //     category: 'Transportation',
-// //     date: '2024-07-02T19:50:05Z',
-// //     amount: -16.5,
-// //     recurring: false
-// // }
-
-// // console.log('transactions:', transactions);
-// const categories = getAllCategories(transactions)
-// console.log('categories:', categories);
