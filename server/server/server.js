@@ -3,11 +3,20 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
 const authRoutes = require('./routes/authRoutes')
-const crudRoutes = require('./routes/crudRoutes') 
+const crudRoutes = require('./routes/crudRoutes')
 // const db = require('./db')
 const connectDB = require('./db')
 
+const cors = require('cors')
+
 const app = express();
+
+
+app.use(cors({
+    origin: "https://finance-app-website.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(cors())
@@ -19,6 +28,8 @@ app.use('/api/crud', crudRoutes)
 
 connectDB();
 
-app.listen(PORT, ()=>{
+// https://finance-app-website.onrender.com
+
+app.listen(PORT, () => {
     console.log('server is running on PORT 5000')
 })
