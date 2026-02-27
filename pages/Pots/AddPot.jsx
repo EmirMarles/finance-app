@@ -6,7 +6,7 @@ import IconCaretDown from '../../public/assets/images/icon-caret-down.svg?react'
 import { useAuth } from '../../customHooks/useAuth'
 import apiClient from '../../utils/apiClient'
 import { ErrMessage } from '../../components/ErrMessage'
-import { getColorNameByRgbString } from '../../utils/Helper'
+import { getColorNameByRgbString } from '../../utils/helper'
 
 export function AddPot({ setPotsData, potsButton, setPotsButton }) {
     const { user } = useAuth();
