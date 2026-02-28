@@ -8,7 +8,7 @@ import apiClient from '../../utils/apiClient'
 import { ErrMessage } from '../../components/ErrMessage'
 import { getColorNameByRgbString } from '../../utils/helper'
 
-export function AddPot({ setPotsData, potsButton, setPotsButton }) {
+export function AddPot({ setAddLoading, setPotsData, potsButton, setPotsButton }) {
     const { user } = useAuth();
 
     const [newPotData, setNewPotData] = useState({
@@ -46,6 +46,7 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
             const response = await apiClient.get(`/api/crud/pots/${user._id}`)
             if (response) {
                 setPotsData(response.data)
+                setAddLoading(false)
             }
         } catch (err) {
             console.error(err)
@@ -82,17 +83,17 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
     }
 
     const handleCreateNewPot = () => {
+        setPotsButton(prev => ({
+            ...prev,
+            show: false
+        }))
+        setAddLoading(true)
         const createPot = async () => {
             try {
-                setPotsButton(prev => ({
-                    ...prev,
-                    show: false
-                }))
                 const response = await apiClient.post(`/api/crud/create-pot/${user._id}`,
                     newPotData
                 )
                 if (response.status === 201) {
-
                     getPots();
                 }
             }
@@ -108,6 +109,7 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
             ...prev,
             show: false
         }))
+        setAddLoading(true)
         const potId = potsButton.onePotData._id
         const deletePot = async () => {
             try {
@@ -128,11 +130,11 @@ export function AddPot({ setPotsData, potsButton, setPotsButton }) {
     }
 
     const handleUpdatePot = () => {
-        console.log('data for updating the pot info::', newPotData)
         setPotsButton(prev => ({
             ...prev,
             show: false
         }))
+        setAddLoading(true)
         const updatePot = async () => {
             try {
                 const response = await apiClient.put(`/api/crud/update-pot/${pot._id}`, {

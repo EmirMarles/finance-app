@@ -4,7 +4,7 @@ import apiClient from '../../utils/apiClient'
 import { useState } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 
-export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButton }) {
+export function AddMoney({ setAddLoading, setPotsData, showAddMoneyButton, setShowAddMoneyButton }) {
 
     const [amount, setAmount] = useState(0)
 
@@ -15,6 +15,7 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
             const response = await apiClient.get(`/api/crud/pots/${user._id}`)
             if (response) {
                 setPotsData(response.data)
+                setAddLoading(false)
             }
         } catch (err) {
             console.log(err.message)
@@ -31,6 +32,11 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
             console.log('not possible to withdraw')
             return
         }
+        setShowAddMoneyButton(prev => ({
+            ...prev,
+            show: false
+        }))
+        setAddLoading(true)
 
         const withdrawMoney = async () => {
             try {
@@ -39,11 +45,6 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
                         amount: amount
                     })
                 if (response.status === 200) {
-                    console.log('')
-                    setShowAddMoneyButton(prev => ({
-                        ...prev,
-                        show: false
-                    }))
                     getPots();
                 }
             } catch (err) {
@@ -54,6 +55,11 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
     }
 
     const handleAddMoney = () => {
+        setShowAddMoneyButton(prev => ({
+            ...prev,
+            show: false
+        }))
+        setAddLoading(true)
         const addMoney = async () => {
             try {
                 const response = await apiClient.put(`/api/crud/pot/add/${pot._id}`,
@@ -61,10 +67,6 @@ export function AddMoney({ setPotsData, showAddMoneyButton, setShowAddMoneyButto
                         amount: amount
                     })
                 if (response.status === 200) {
-                    setShowAddMoneyButton(prev => ({
-                        ...prev,
-                        show: false
-                    }))
                     getPots();
                 }
             } catch (err) {

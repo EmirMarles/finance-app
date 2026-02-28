@@ -88,10 +88,10 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
             </div>
             {addLoading && <AddLoading></AddLoading> }
             {showAddMoneyButton.show &&
-                <AddMoney setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
+                <AddMoney setAddLoading={setAddLoading} setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
             }
             {potsButton.show &&
-                <AddPot setPotsData={setPotsData} potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>
+                <AddPot setAddLoading={setAddLoading} setPotsData={setPotsData} potsButton={potsButton} setPotsButton={setPotsButton}></AddPot>
             }
         </div >
     )
