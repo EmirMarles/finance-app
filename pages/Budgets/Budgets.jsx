@@ -7,6 +7,7 @@ import { AddBudget } from './AddBudget'
 import { useEffect } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import apiClient from '../../utils/apiClient'
+import { LoadingContainer } from '../../components/LoadingContainer'
 
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { TABLET_WIDTH } from '../../consts/windowWidth'
@@ -21,6 +22,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
         oneBudgetData: null
     })
     const [deleteBudget, setDeleteBudget] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const { user } = useAuth();
     const width = useWindowWidth();
@@ -28,10 +30,11 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
     useEffect(() => {
         if (budgetData.length > 0) return
         const getBudgets = async () => {
+            setLoading(true)
             const response = await apiClient.get(`/api/crud/budgets/${user._id}`);
             if (response) {
                 setBudgetData(response.data)
-                console.log('budgets:', response.data)
+                setLoading(false)
             }
         }
         getBudgets();
@@ -58,11 +61,18 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
                 <div className="budget-dashboard">
                     <SpendingSummary budgetData={budgetData} transactions={transactions} />
                     <div className="budgets-column">
-                        {Array.isArray(budgetData) && budgetData.length > 0
-                            && budgetData.map((budget, index) => {
-                                return <OneBudget key={index} budgetButton={budgetButton} setBudgetButton={setBudgetButton} OneBudgetData={budget} transactions={transactions} deleteBudget={deleteBudget} setDeleteBudget={setDeleteBudget} />
-                            })
-                        }
+                        {loading
+                            ? <LoadingContainer></LoadingContainer>
+                            : <>{Array.isArray(budgetData) && budgetData.length > 0
+                                ? budgetData.map((budget, index) => {
+                                    return <OneBudget key={index} budgetButton={budgetButton} setBudgetButton={setBudgetButton} OneBudgetData={budget} transactions={transactions} deleteBudget={deleteBudget} setDeleteBudget={setDeleteBudget} />
+                                })
+                                :
+                                <div className='no-budget-data'>
+                                    <h1>No Budgets!</h1>
+                                    <p>Try adding by clicking 'Add new Budget'</p>
+                                </div>
+                            }</>}
                     </div>
                 </div>
                 {width < TABLET_WIDTH

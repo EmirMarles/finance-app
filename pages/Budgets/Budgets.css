@@ -57,10 +57,21 @@
     justify-content: space-between;
 }
 
-
 .budgets-column {
+    width: 55%;
     display: flex;
     flex-direction: column;
+}
+
+.no-budget-data{
+    width: 100%;
+    justify-self: center;
+    /* border: 1px solid red; */
+}
+
+.no-budget-data h1{
+    width: 100%;
+    text-align: center;
 }
 
 @media (max-width: 1000px) {

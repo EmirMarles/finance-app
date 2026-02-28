@@ -8,6 +8,7 @@ import { useAuth } from '../../customHooks/useAuth';
 import apiClient from '../../utils/apiClient';
 import { useWindowWidth } from '../../customHooks/useWindowWidth';
 import { TABLET_WIDTH } from '../../consts/windowWidth';
+import { LoadingContainer } from '../../components/LoadingContainer';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
@@ -22,6 +23,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         action: 'add',
         onePotData: null
     })
+    const [loading, setLoading] = useState(true)
 
     const { user } = useAuth();
     const width = useWindowWidth()
@@ -34,6 +36,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                 const response = await apiClient.get(`/api/crud/pots/${user._id}`)
                 if (response) {
                     setPotsData(response.data)
+                    setLoading(false)
                 }
             }
             getPots();
@@ -60,15 +63,22 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                     <h4 className='page-header'>Pots</h4>
                     <button className='btn-create-budget' onClick={() => togglePotsButtonAdd('add')}>Add New Pot</button>
                 </div>
-                <div className="pots-grid">
-                    {Array.isArray(potsData) && potsData.length > 0 &&
-                        potsData.map((pot, index) => {
-                            return <OnePot potsButton={potsButton} setPotsButton={setPotsButton} key={index} potData={pot}
-                                showAddMoneyButton={showAddMoneyButton} setShowAddMoneyButton={setShowAddMoneyButton}
-                            ></OnePot>
-                        })
-                    }
-                </div>
+                {loading
+                    ? <LoadingContainer></LoadingContainer>
+                    : <div className="pots-grid">
+                        {Array.isArray(potsData) && potsData.length > 0
+                            ? potsData.map((pot, index) => {
+                                return <OnePot potsButton={potsButton} setPotsButton={setPotsButton} key={index} potData={pot}
+                                    showAddMoneyButton={showAddMoneyButton} setShowAddMoneyButton={setShowAddMoneyButton}
+                                ></OnePot>
+                            })
+                            : <div>
+                                <h3>No pots</h3>
+                                <p>Try adding by clicking 'Add New Pot'</p>
+                            </div>
+                        }
+                    </div>
+                }
                 {width < TABLET_WIDTH
                     && <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
                 }

@@ -1,0 +1,20 @@
+.dot-f1 {
+    animation: firstdot 0.6s 0.1s infinite;
+}
+
+.dot-f2 {
+    animation: firstdot 0.6s 0.3s infinite;
+}
+
+.dot-f3 {
+    animation: firstdot 0.6s 0.4s infinite;
+}
+
+@keyframes firstdot {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

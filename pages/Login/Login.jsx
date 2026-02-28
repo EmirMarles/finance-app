@@ -60,9 +60,10 @@ export function Login() {
     }
 
     const handleRegister = async (e) => {
+        // what does it do? event preventDefault()
         e.preventDefault();
-        const result = await register({ email, password })
         setLoading(true)
+        const result = await register({ email, password })
         if (result.success) {
             navigate('/login')
             setErr({
@@ -96,7 +97,6 @@ export function Login() {
         <div className='login-page'>
             {width > TABLET_WIDTH &&
                 <div className="left-screen">
-
                     <div className="auth-banner">
                         <Logo className="logo-large" style={{ color: "black" }}> </Logo>
                         <div className="text-container">

@@ -8,6 +8,7 @@ import { useAuth } from '../../customHooks/useAuth'
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { TABLET_WIDTH } from '../../consts/windowWidth'
 import { getRidOfDuplicateRecurringBills } from '../../utils/helper'
+import { LoadingContainer } from '../../components/LoadingContainer'
 
 export function RecurringBills({ chosenTab, setChosenTab }) {
 
@@ -17,6 +18,7 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
         paidBills: 0,
         dueSoonBills: 0
     })
+    const [loading, setLoading] = useState(true)
 
     const { user } = useAuth();
     const width = useWindowWidth()
@@ -29,6 +31,7 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
                 if (response.status === 200) {
                     const uniqueBills = getRidOfDuplicateRecurringBills(response.data)
                     setRecurringBillsData(uniqueBills)
+                    setLoading(false)
                 }
             }
             catch (err) {
@@ -77,7 +80,11 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
                         <div className="total-bills">
                             <RecurringIcon className='recurring-icon'></RecurringIcon>
                             <h5>Total Bills</h5>
-                            <h5>${getTotalBills()}</h5>
+                            <h5> {loading
+                                ? <span>Loading...</span>
+                                : <span>${getTotalBills()} </span>
+                            }
+                            </h5>
                         </div>
                         <div className="summary">
                             <h3>Summary</h3>
@@ -98,7 +105,10 @@ export function RecurringBills({ chosenTab, setChosenTab }) {
                         </div>
                     </div>
                     <div className="recurring-bills-list">
-                        <RecurringList recurringBillsData={recurringBillsData}></RecurringList>
+                        {loading
+                            ? <LoadingContainer></LoadingContainer>
+                            : <RecurringList recurringBillsData={recurringBillsData}></RecurringList>
+                        }
                     </div>
                     {width < TABLET_WIDTH
                         && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
