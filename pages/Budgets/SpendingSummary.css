@@ -6,19 +6,29 @@
     background-color: white;
     width: 40%;
     border-radius: 10px;
-    min-height: 25rem;
-    height: auto;
+    min-height: 20rem;
+    height: fit-content;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 2rem;
     align-items: center;
 }
 
-.summary {
+.pie-chart {
     margin-top: 1rem;
-    height: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 80%;
+    height: 15rem;
+}
+
+.summary-text {
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .spendings {
@@ -66,13 +76,6 @@
     font-size: 0.7rem;
 }
 
-.pie-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    height: 15rem;
-}
 
 @media (max-width: 1000px) {
     .spending-summary {
@@ -86,7 +89,7 @@
 }
 
 @media (max-width:600px) {
-    .spending-summary{
+    .spending-summary {
         display: flex;
         flex-direction: column;
     }

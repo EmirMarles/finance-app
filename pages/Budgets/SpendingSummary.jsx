@@ -12,7 +12,7 @@ export function SpendingSummary({ budgetData, transactions }) {
                 <PieChart budgetData={budgetData} transactions={transactions} limit={limit} />
             </div>
 
-            <div className="summary">
+            <div className="summary-text">
                 <h4>Spending Summary</h4>
                 <div className="spendings">
                     {Array.isArray(budgetData) && budgetData.length > 0 &&
