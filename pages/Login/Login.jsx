@@ -16,6 +16,7 @@ export function Login() {
         showErr: false,
         errMessage: null
     })
+    const [loading, setLoading] = useState(false)
 
     const { login, register } = useAuth();
     const width = useWindowWidth();
@@ -43,9 +44,10 @@ export function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoading(true)
         const resulst = await login({ email, password });
-
         if (resulst.success) {
+            setLoading(false)
             navigate('/')
         }
         else {
@@ -53,19 +55,21 @@ export function Login() {
                 showErr: true,
                 errMessage: resulst.message
             })
+            setLoading(false)
         }
     }
 
     const handleRegister = async (e) => {
         e.preventDefault();
         const result = await register({ email, password })
+        setLoading(true)
         if (result.success) {
-            console.log('registration successful!')
             navigate('/login')
             setErr({
                 showErr: true,
                 errMessage: 'Registration successful!'
             })
+            setLoading(false)
             setTimeout(() => {
                 window.location.reload()
             }, 500)
@@ -76,6 +80,7 @@ export function Login() {
                     errMessage: result.message
                 }
             )
+            setLoading(false)
         }
     }
 
@@ -112,7 +117,9 @@ export function Login() {
                                 <p className='email-p'>Password</p>
                                 <input type="password" id="password" name="password" placeholder="Enter your password" required hidden={false} value={password} onChange={handlePasswordInput} />
                             </div>
-                            <button className="login-button" type="submit" onClick={handleLogin}>Login</button>
+                            <button className="login-button" type="submit" onClick={handleLogin}>
+                                {loading ? <p>Loading...</p> : <p>Login</p>}
+                            </button>
                         </form>
                         <div className="account-create">
                             <p>Need to create an account? <span className="sign-up" onClick={toggleLogin}>Sign Up</span></p>
@@ -136,7 +143,9 @@ export function Login() {
                                 <p className='email-p'>Repeat Password</p>
                                 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
-                            <button className="login-button" type="submit" onClick={handleRegister}>Register</button>
+                            <button className="login-button" type="submit" onClick={handleRegister}>
+                                {loading ? <p>Loading...</p> : <p>Register</p>}
+                            </button>
                         </form>
                         <div className="account-create">
                             <p>Already Registered? <span className="sign-up" onClick={toggleLogin}>Sign in</span></p>

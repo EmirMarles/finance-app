@@ -222,3 +222,7 @@ export function isDueDate(date) {
     const difference = targetDay - todayDay
     return difference === 2;
 }
+
+export function filterTransactions(){
+    return 
+}
