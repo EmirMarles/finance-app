@@ -4,6 +4,8 @@ import { Transactions } from '../pages/Transactions/Transactions'
 import { Budgets } from '../pages/Budgets/Budgets'
 import { Pots } from '../pages/Pots/Pots'
 import { RecurringBills } from '../pages/RecurringBills/RecurringBills'
+import { NotFound } from '../pages/NotFound/NotFound'
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import moneyData from '../data.json'
@@ -34,6 +36,7 @@ function App() {
         <Route path='/recurring-bills' element={
           <ProtectedRoutes><RecurringBills moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></RecurringBills></ProtectedRoutes>}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='*' element={<NotFound />} ></Route>
       </Routes>
     </BrowserRouter>
   )
