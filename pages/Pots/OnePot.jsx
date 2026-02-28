@@ -40,8 +40,8 @@ export function OnePot({ setPotsButton, potData, setShowAddMoneyButton }) {
                     <div className="color"></div>
                     <h3>{potData.name}</h3>
                 </div>
-                <div className="ellipsis-container">
-                    <IconEllipsis onClick={toggleOpenPot} className="ellipsis"></IconEllipsis>
+                <div className="ellipsis-container" onClick={toggleOpenPot}>
+                    <IconEllipsis  className="ellipsis"></IconEllipsis>
                     {openPotOptions &&
                         <div className="options-edit-delete">
                             <p className='option-edit' onClick={() => handleOpenDeleteOption('edit')}>Edit Pot</p>

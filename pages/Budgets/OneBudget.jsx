@@ -36,8 +36,8 @@ export function OneBudget({ setBudgetButton, OneBudgetData, transactions }) {
                     <h4>{OneBudgetData.category}</h4>
                 </div>
 
-                <div className="ellipsis-container">
-                    <Ellipsis className='ellipsis' onClick={handleOpenOptions}></Ellipsis>
+                <div className="ellipsis-container" onClick={handleOpenOptions}>
+                    <Ellipsis className='ellipsis'></Ellipsis>
                     {showBudgetOptions &&
                         <div className="options-edit-delete">
                             <p className='option-edit' onClick={() => handleOpenDeleteOption('edit')}>Edit Budget</p>

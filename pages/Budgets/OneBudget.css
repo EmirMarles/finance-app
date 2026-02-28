@@ -11,9 +11,7 @@
 .budget-card {
     background-color: white;
     border-radius: 10px;
-    /* width: 20%; */
     width: 32rem;
-    /* height: 45rem; */
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -44,6 +42,7 @@
 }
 
 .ellipsis-container{
+    cursor: pointer;
     width: 4rem;
     position: relative;;
 }

@@ -6,6 +6,14 @@ h4{
     margin: 0;
 }
 
+.option-edit{
+    width: 100%;
+}
+
+.option-edit:hover{
+    background-color: rgba(128, 128, 128, 0.2);
+    cursor: pointer;
+}
 
 h5{
     font-weight: normal;
