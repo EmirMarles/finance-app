@@ -8,7 +8,7 @@ import { categories } from '../../consts/categories'
 import apiClient from '../../utils/apiClient'
 import { getColorNameByRgbString } from '../../utils/helper'
 
-export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetButton }) {
+export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButton, setBudgetButton }) {
 
     const [themeOptions, setThemeOptions] = useState(false)
     const [chooseCategories, setChooseCategories] = useState(false)
@@ -134,16 +134,18 @@ export function AddBudget({ setBudgetData, budgetData, budgetButton, setBudgetBu
         }
 
         const createNewBudget = async () => {
+            setBudgetButton(prev => ({
+                ...prev,
+                swow: false
+            }))
+            setLoadingAdd(true)
             try {
                 const response = await apiClient.post(`/api/crud/add-bugdet/${user._id}`,
                     budgetObject
                 )
                 if (response.status === 201) {
-                    setBudgetButton(prev => ({
-                        ...prev,
-                        show: false
-                    }))
                     getBudgets();
+                    setLoadingAdd(false)
                 }
             } catch (err) {
                 console.error(err)

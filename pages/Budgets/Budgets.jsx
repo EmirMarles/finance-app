@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useAuth } from '../../customHooks/useAuth'
 import apiClient from '../../utils/apiClient'
 import { LoadingContainer } from '../../components/LoadingContainer'
+import { AddLoading } from '../../components/AddLoading'
 
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { TABLET_WIDTH } from '../../consts/windowWidth'
@@ -23,6 +24,8 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
     })
     const [deleteBudget, setDeleteBudget] = useState(false)
     const [loading, setLoading] = useState(true)
+
+    const [loadingAdd, setLoadingAdd] = useState(false)
 
     const { user } = useAuth();
     const width = useWindowWidth();
@@ -80,8 +83,9 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
                 }
             </div>
             {budgetButton.show &&
-                <AddBudget setBudgetData={setBudgetData} budgetData={budgetData} budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
+                <AddBudget setLoadingAdd={setLoadingAdd} setBudgetData={setBudgetData} budgetData={budgetData} budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
             }
+            {loadingAdd && <AddLoading></AddLoading> }
         </div>
     )
 }

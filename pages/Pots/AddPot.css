@@ -9,7 +9,7 @@
     /* left: 10%; */
     border-radius: 10px;
     width: 28rem;
-    height: 23rem;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
