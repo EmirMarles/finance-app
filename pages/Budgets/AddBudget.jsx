@@ -101,6 +101,7 @@ export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButt
             const response = await apiClient.get(`/api/crud/budgets/${user._id}`);
             if (response) {
                 setBudgetData(response.data)
+                setLoadingAdd(false)
             }
         }
         catch (err) {
@@ -136,7 +137,7 @@ export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButt
         const createNewBudget = async () => {
             setBudgetButton(prev => ({
                 ...prev,
-                swow: false
+                show: false
             }))
             setLoadingAdd(true)
             try {
@@ -145,7 +146,6 @@ export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButt
                 )
                 if (response.status === 201) {
                     getBudgets();
-                    setLoadingAdd(false)
                 }
             } catch (err) {
                 console.error(err)
@@ -155,15 +155,16 @@ export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButt
     }
 
     const handleDeleteBudget = () => {
+        setBudgetButton(prev => ({
+            ...prev,
+            show: false
+        }))
+        setLoadingAdd(true)
         try {
             const budgetData = budgetButton.oneBudgetData
             const deleteBudget = async () => {
                 const response = await apiClient.delete(`/api/crud/budget/${budgetData._id}`)
                 if (response.status === 201) {
-                    setBudgetButton(prev => ({
-                        ...prev,
-                        show: false
-                    }))
                     getBudgets();
                 }
             }
@@ -198,6 +199,11 @@ export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButt
     }
 
     const handleUpdateBudget = () => {
+        setBudgetButton(prev => ({
+            ...prev,
+            show: false
+        }))
+        setLoadingAdd(true)
         try {
             const budgetData = udpateBudgetData
             const updateBudget = async () => {
@@ -205,10 +211,6 @@ export function AddBudget({ setLoadingAdd, setBudgetData, budgetData, budgetButt
                     budgetData
                 )
                 if (response.status === 200) {
-                    setBudgetButton(prev => ({
-                        ...prev,
-                        show: false
-                    }))
                     getBudgets();
                 }
             }

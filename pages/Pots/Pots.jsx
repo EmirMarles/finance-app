@@ -9,6 +9,7 @@ import apiClient from '../../utils/apiClient';
 import { useWindowWidth } from '../../customHooks/useWindowWidth';
 import { TABLET_WIDTH } from '../../consts/windowWidth';
 import { LoadingContainer } from '../../components/LoadingContainer';
+import { AddLoading } from '../../components/AddLoading';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 
@@ -24,6 +25,8 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         onePotData: null
     })
     const [loading, setLoading] = useState(true)
+
+    const [addLoading, setAddLoading] = useState(false)
 
     const { user } = useAuth();
     const width = useWindowWidth()
@@ -83,6 +86,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                     && <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
                 }
             </div>
+            {addLoading && <AddLoading></AddLoading> }
             {showAddMoneyButton.show &&
                 <AddMoney setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
             }
