@@ -2,8 +2,9 @@ import './BudgetHomePage.css'
 import { PieChart } from '../Budgets/PieChart'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
+import { LoadingContainer } from '../../components/LoadingContainer'
 
-export function BudgetHomePage({ setChosenTab, budgets, moneyData }) {
+export function BudgetHomePage({ loadingBalance, setChosenTab, budgets, moneyData }) {
 
     const transactions = moneyData.transactions
     const budgetData = budgets
@@ -22,22 +23,25 @@ export function BudgetHomePage({ setChosenTab, budgets, moneyData }) {
             {/* <div className="doughnut"> */}
             <div className="budgets-header-home">
                 <h2 className='pot-hh'>Budgets</h2>
-                <button  className='btn-nav' onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
+                <button className='btn-nav' onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
-            <div className="budgets-overview">
-                <PieChart budgetData={budgetData} transactions={transactions} className="doughnut" isSmall={true} />
-                <div className="budget-info">
-                    {Array.isArray(budgetData) && budgetData.length > 0 &&
-                        budgetData.map((budget, index) => {
-                            return <div key={index} className="one-info" style={{ "--color-themes-bud": budget.theme }}>
-                                <div className="color-budget-left" style={{ "--color-themes-bud": budget.theme }}></div>
-                                <div className='info-pie'>
-                                    <p>{budget.category}</p>
-                                    <h4>${budget.maximum}</h4>
+            {loadingBalance
+                ? <LoadingContainer></LoadingContainer>
+                : <div className="budgets-overview">
+                    <PieChart budgetData={budgetData} transactions={transactions} className="doughnut" isSmall={true} />
+                    <div className="budget-info">
+                        {Array.isArray(budgetData) && budgetData.length > 0 &&
+                            budgetData.map((budget, index) => {
+                                return <div key={index} className="one-info" style={{ "--color-themes-bud": budget.theme }}>
+                                    <div className="color-budget-left" style={{ "--color-themes-bud": budget.theme }}></div>
+                                    <div className='info-pie'>
+                                        <p>{budget.category}</p>
+                                        <h4>${budget.maximum}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        })}
+                            })}
+                    </div>
                 </div>
-            </div>
+            }
         </div>)
 }

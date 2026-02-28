@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import apiClient from '../../utils/apiClient'
 import { useWindowWidth } from '../../customHooks/useWindowWidth'
 import { TABLET_WIDTH } from '../../consts/windowWidth'
-import { PHONE_WIDTH } from '../../consts/windowWidth'
 
 export function HomePage({ chosenTab, setChosenTab, moneyData }) {
 
@@ -17,6 +16,7 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
     const [pots, setPots] = useState([])
     const [transactions, setTransactions] = useState([])
     const [budgets, setBudgets] = useState([])
+    const [loadingBalance, setLoadingBalance] = useState(true)
 
     const { user } = useAuth();
 
@@ -33,6 +33,7 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                 const response = await apiClient.get(`/api/crud/balance/${user._id}`)
                 if (response) {
                     setBalance(response.data);
+                    setLoadingBalance(false)
                 }
             }
             getBalance();
@@ -99,22 +100,29 @@ export function HomePage({ chosenTab, setChosenTab, moneyData }) {
                 <div className="grid-cards">
                     <div className="card">
                         <p>Current Balance</p>
-                        <h1>${balance.current}</h1>
+                        <h1> {loadingBalance
+                            ? <span>Loading...</span>
+                            : <span>${balance.current}</span>}
+                        </h1>
                     </div>
                     <div className="card white-card">
                         <p>Income</p>
-                        <h1>${balance.income}</h1>
+                        <h1>{loadingBalance
+                            ? <span>Loading...</span>
+                            : <span>${balance.income}</span>}</h1>
                     </div>
                     <div className="card white-card">
                         <p>Expenses</p>
-                        <h1>${balance.expenses}</h1>
+                        <h1>{loadingBalance
+                            ? <span>Loading...</span>
+                            : <span>${balance.expenses}</span>}</h1>
                     </div>
                 </div>
                 <div className="bento-grid">
-                    <PotsHomePage className="bento-element" setChosenTab={setChosenTab} pots={pots}></PotsHomePage>
-                    <BudgetHomePage className="bento-element" setChosenTab={setChosenTab} budgets={budgets} moneyData={moneyData}></BudgetHomePage>
-                    <TransHomePage className="bento-element" setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData} ></TransHomePage>
-                    <RecurringHomePage className="bento-element" setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData}></RecurringHomePage>
+                    <PotsHomePage className="bento-element" loadingBalance={loadingBalance} setChosenTab={setChosenTab} pots={pots}></PotsHomePage>
+                    <BudgetHomePage className="bento-element" loadingBalance={loadingBalance} setChosenTab={setChosenTab} budgets={budgets} moneyData={moneyData}></BudgetHomePage>
+                    <TransHomePage className="bento-element" loadingBalance={loadingBalance} setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData} ></TransHomePage>
+                    <RecurringHomePage className="bento-element" loadingBalance={loadingBalance} setChosenTab={setChosenTab} transactions={transactions} moneyData={moneyData}></RecurringHomePage>
                 </div>
                 {width < TABLET_WIDTH
                     && <SideBar chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>

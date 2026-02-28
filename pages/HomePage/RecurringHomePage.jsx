@@ -1,8 +1,9 @@
 import './RecurringHomePage.css'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
+import { LoadingContainer } from '../../components/LoadingContainer'
 
-export function RecurringHomePage({ setChosenTab, transactions, moneyData }) {
+export function RecurringHomePage({ loadingBalance, setChosenTab, transactions, moneyData }) {
 
     const recurringTransactions = transactions.filter(transaction => transaction.recurring === true)
     const firstThreeRecurring = recurringTransactions.slice(0, 3)
@@ -28,30 +29,21 @@ export function RecurringHomePage({ setChosenTab, transactions, moneyData }) {
                 <h3 className='pot-hh'>Recurring bills</h3>
                 <button className='btn-nav' onClick={handleNavigateToRecurring}>See more<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
-            <div className="bills-grid-home">
-                {Array.isArray(firstThreeRecurring) && firstThreeRecurring.length > 0 ? (
-                    firstThreeRecurring.map((transaction, index) => (
-                        <div key={index} className='first' style={{ "--recurring-home-color": getThemeForRecurring(transaction) }}>
-                            <p>{transaction.name}</p>
-                            <h3>${transaction.amount}</h3>
-                        </div>
-                    ))
-                ) : (
-                    <p>No recurring bills available</p>
-                )}
-                {/* <div className="first">
-                    <p>Paid bills</p>
-                    <h3>$120.00</h3>
+            {loadingBalance
+                ? <LoadingContainer></LoadingContainer>
+                : <div className="bills-grid-home">
+                    {Array.isArray(firstThreeRecurring) && firstThreeRecurring.length > 0 ? (
+                        firstThreeRecurring.map((transaction, index) => (
+                            <div key={index} className='first' style={{ "--recurring-home-color": getThemeForRecurring(transaction) }}>
+                                <p>{transaction.name}</p>
+                                <h3>${transaction.amount}</h3>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No recurring bills available</p>
+                    )}
                 </div>
-                <div className="first">
-                    <p>Total Upcoming</p>
-                    <h3>$120.00</h3>
-                </div>
-                <div className="first">
-                    <p>Due Soon</p>
-                    <h3>$45.00</h3>
-                </div> */}
-            </div>
+            }
         </div>
     )
 }   
