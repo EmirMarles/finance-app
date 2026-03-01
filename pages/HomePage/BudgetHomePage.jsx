@@ -2,7 +2,7 @@ import './BudgetHomePage.css'
 import { PieChart } from '../Budgets/PieChart'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
-import { LoadingContainer } from '../../components/LoadingContainer'
+import { LoadingIcon } from '../../components/LoadingIcon'
 
 export function BudgetHomePage({ loadingBalance, setChosenTab, budgets, moneyData }) {
 
@@ -26,7 +26,7 @@ export function BudgetHomePage({ loadingBalance, setChosenTab, budgets, moneyDat
                 <button className='btn-nav' onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             {loadingBalance
-                ? <LoadingContainer></LoadingContainer>
+                ? <div className='icon-loading-state'><LoadingIcon></LoadingIcon></div>
                 : <div className="budgets-overview">
                     <PieChart budgetData={budgetData} transactions={transactions} className="doughnut" isSmall={true} />
                     <div className="budget-info">

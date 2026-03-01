@@ -2,7 +2,7 @@ import './TransHomePage.css'
 import { MiniBoard } from '../Transactions/MiniBoard'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
-import { LoadingContainer } from '../../components/LoadingContainer'
+import { LoadingIcon } from '../../components/LoadingIcon'
 
 export function TransHomePage({ loadingBalance, setChosenTab, transactions }) {
     const firstFiveTrans = transactions.slice(0, 5)
@@ -21,7 +21,7 @@ export function TransHomePage({ loadingBalance, setChosenTab, transactions }) {
                 <button className='btn-nav' onClick={handleNavigateToTransactions}>See All<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             {loadingBalance
-                ? <LoadingContainer></LoadingContainer>
+                ? <LoadingIcon></LoadingIcon>
                 : <MiniBoard transactions={firstFiveTrans}></MiniBoard>
             }
         </div>

@@ -1,4 +1,3 @@
-// import data from '../data.json' with { type: 'json' };
 import { themes } from "../consts/thems";
 
 export function formatTime(isoString, short) {

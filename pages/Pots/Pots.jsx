@@ -10,6 +10,7 @@ import { useWindowWidth } from '../../customHooks/useWindowWidth';
 import { TABLET_WIDTH } from '../../consts/windowWidth';
 import { LoadingContainer } from '../../components/LoadingContainer';
 import { AddLoading } from '../../components/AddLoading';
+import { LoadingIcon } from '../../components/LoadingIcon';
 
 export function Pots({ moneyData, chosenTab, setChosenTab }) {
 

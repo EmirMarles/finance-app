@@ -78,7 +78,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
                     <button className='btn-create-budget' onClick={() => toggleBudgetButtonAdd('add')}>Add New Budget</button>
                 </div>
                 <div className="budget-dashboard">
-                    <SpendingSummary budgetData={budgetData} transactions={transactions} />
+                    <SpendingSummary loading={loading} budgetData={budgetData} transactions={transactions} />
                     <div className="budgets-column">
                         {loading
                             ? <LoadingContainer></LoadingContainer>

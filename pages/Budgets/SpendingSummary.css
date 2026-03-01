@@ -76,6 +76,10 @@
     font-size: 0.7rem;
 }
 
+.loading-state{
+    margin-top: 10rem;
+}
+
 
 @media (max-width: 1000px) {
     .spending-summary {

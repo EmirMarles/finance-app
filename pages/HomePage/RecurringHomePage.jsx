@@ -1,7 +1,7 @@
 import './RecurringHomePage.css'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
-import { LoadingContainer } from '../../components/LoadingContainer'
+import { LoadingIcon } from '../../components/LoadingIcon'
 
 export function RecurringHomePage({ loadingBalance, setChosenTab, transactions, moneyData }) {
 
@@ -30,7 +30,7 @@ export function RecurringHomePage({ loadingBalance, setChosenTab, transactions, 
                 <button className='btn-nav' onClick={handleNavigateToRecurring}>See more<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
             {loadingBalance
-                ? <LoadingContainer></LoadingContainer>
+                ? <LoadingIcon></LoadingIcon>
                 : <div className="bills-grid-home">
                     {Array.isArray(firstThreeRecurring) && firstThreeRecurring.length > 0 ? (
                         firstThreeRecurring.map((transaction, index) => (

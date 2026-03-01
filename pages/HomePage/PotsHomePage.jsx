@@ -3,6 +3,7 @@ import IconPot from '../../public/assets/images/icon-pot.svg?react'
 import IconCaretRight from '../../public/assets/images/icon-caret-right.svg?react'
 import { useNavigate } from 'react-router-dom'
 import { LoadingContainer } from '../../components/LoadingContainer'
+import { LoadingIcon } from '../../components/LoadingIcon'
 
 export function PotsHomePage({ loadingBalance, setChosenTab, pots }) {
 
@@ -23,7 +24,7 @@ export function PotsHomePage({ loadingBalance, setChosenTab, pots }) {
                 <h3 className='pot-hh'>Pots</h3>
                 <button className='btn-nav' onClick={handleNavigateToPots}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
             </div>
-            {loadingBalance ? <LoadingContainer></LoadingContainer>
+            {loadingBalance ? <LoadingIcon></LoadingIcon>
                 : <div className="pots-data">
                     <div className="total-saved-info">
                         <IconPot></IconPot>
