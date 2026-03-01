@@ -43,6 +43,22 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
         getBudgets();
     }, [user._id, budgetData.length])
 
+    // even listener to close all the window
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                if (budgetButton.show === false) return
+                setBudgetButton(prev => ({
+                    ...prev,
+                    show: false
+                }))
+            }
+        }
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [budgetButton])
+
     const toggleBudgetButtonAdd = (action) => {
         setBudgetButton({
             action: action,
@@ -85,7 +101,7 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
             {budgetButton.show &&
                 <AddBudget setLoadingAdd={setLoadingAdd} setBudgetData={setBudgetData} budgetData={budgetData} budgetButton={budgetButton} setBudgetButton={setBudgetButton}></AddBudget>
             }
-            {loadingAdd && <AddLoading></AddLoading> }
+            {loadingAdd && <AddLoading></AddLoading>}
         </div>
     )
 }

@@ -48,6 +48,34 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
         }
     }, [user?._id])
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                if (potsButton.show === false) return
+                setPotsButton(prev => ({
+                    ...prev,
+                    show: false
+                }))
+            }
+        }
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [potsButton])
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                if (showAddMoneyButton.show === false) return
+                setShowAddMoneyButton(prev => ({
+                    ...prev,
+                    show: false
+                }))
+            }
+        }
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [showAddMoneyButton])
+
     const togglePotsButtonAdd = (action) => {
         setPotsButton({
             action: action,
@@ -86,7 +114,7 @@ export function Pots({ moneyData, chosenTab, setChosenTab }) {
                     && <SideBar moneyData={moneyData} chosenTab={chosenTab} setChosenTab={setChosenTab}></SideBar>
                 }
             </div>
-            {addLoading && <AddLoading></AddLoading> }
+            {addLoading && <AddLoading></AddLoading>}
             {showAddMoneyButton.show &&
                 <AddMoney setAddLoading={setAddLoading} setPotsData={setPotsData} setShowAddMoneyButton={setShowAddMoneyButton} showAddMoneyButton={showAddMoneyButton}> </AddMoney>
             }

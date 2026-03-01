@@ -68,7 +68,6 @@ export function TransactionsBoard({ transactions }) {
             setLoading(false)
             setTransactionsForDisplay([])
         }
-        console.log('result of search', result)
     }, [searchQuery])
 
     useEffect(() => {

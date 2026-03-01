@@ -70,13 +70,11 @@ export function RecurringList({ recurringBillsData }) {
         if (billsForDisplay.length > 0) return
         const sorted = sortRecurringBills(recurringBillsData, 'Latest')
         setBillsForDisplay(sorted)
-        console.log('first mount', recurringBillsData)
     }, [recurringBillsData])
 
     // filters
     useEffect(() => {
         const sortedList = sortRecurringBills(billsForDisplay, billsFilter.filter);
-        console.log('sorted list:', sortedList)
         setBillsForDisplay(sortedList)
     }, [billsFilter.filter])
 
