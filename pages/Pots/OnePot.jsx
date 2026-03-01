@@ -12,7 +12,6 @@ export function OnePot({ setPotsButton, potData, setShowAddMoneyButton }) {
     }
 
     const handleOpenDeleteOption = (action) => {
-        console.log(action)
         setOpenPotOptions(false)
         setPotsButton({
             action: action,

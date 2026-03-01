@@ -19,7 +19,6 @@ export function Transactions({ moneyData, chosenTab, setChosenTab }) {
             try {
                 const response = await apiClient.get(`/api/crud/transactions/${user._id}`)
                 if (response) {
-                    console.log('response from back', response.data)
                     setTransactions(response.data)
                 }
             } catch (err) {

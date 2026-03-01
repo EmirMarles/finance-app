@@ -29,7 +29,6 @@ export function AddMoney({ setAddLoading, setPotsData, showAddMoneyButton, setSh
 
     const handleWithdrawMoney = () => {
         if (amount >= pot.total) {
-            console.log('not possible to withdraw')
             return
         }
         setShowAddMoneyButton(prev => ({
