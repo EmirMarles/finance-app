@@ -94,7 +94,7 @@ export function AddMoney({ setAddLoading, setPotsData, showAddMoneyButton, setSh
                         ? <h2>Add to 'Savings'</h2>
                         : <h2>Withdraw from 'Savings'</h2>
                 }
-                <IconClose onClick={handleCloseWindow}></IconClose>
+                <IconClose className='close-x' onClick={handleCloseWindow}></IconClose>
             </div>
             {
                 action === 'add'

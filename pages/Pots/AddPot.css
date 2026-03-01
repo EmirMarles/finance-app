@@ -109,7 +109,7 @@
 }
 
 .delete{
-    height: 12rem;
+    height: fit-content;
 }
 
 .theme-options-pot{}

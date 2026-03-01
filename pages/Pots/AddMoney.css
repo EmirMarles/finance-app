@@ -18,6 +18,10 @@
     text-align: left;
 }
 
+.close-x:hover{
+    cursor: pointer;
+}
+
 .money-header {
     display: flex;
     flex-direction: row;
