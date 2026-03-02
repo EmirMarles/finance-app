@@ -20,7 +20,6 @@ export function BudgetHomePage({ loadingBalance, setChosenTab, budgets, moneyDat
 
     return (
         <div className="b budgets" style={{ gridArea: 'box2' }}>
-            {/* <div className="doughnut"> */}
             <div className="budgets-header-home">
                 <h2 className='pot-hh'>Budgets</h2>
                 <button className='btn-nav' onClick={handleNavigateToBudgets}>See details<IconCaretRight className="icon-caret-right"></IconCaretRight></button>
