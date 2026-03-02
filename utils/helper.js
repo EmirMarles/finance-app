@@ -122,7 +122,7 @@ export function calculateMoneySpentOnCategory(category, transactions) {
 }
 
 export function calculatePercentageBudgetSpent(maximum, spent) {
-    const percentage = maximum / spent * 100
+    const percentage = spent / maximum * 100
     return percentage
 }
 
