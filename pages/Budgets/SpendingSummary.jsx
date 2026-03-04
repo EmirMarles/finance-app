@@ -2,10 +2,11 @@ import './SpendingSummary.css'
 import { calculateMoneySpentOnCategory, calculateLimit } from '../../utils/helper'
 import { PieChart } from './PieChart'
 import { LoadingIcon } from '../../components/LoadingIcon'
+import { useMemo } from 'react'
 
 export function SpendingSummary({ loading, budgetData, transactions }) {
 
-    const limit = calculateLimit(budgetData)
+    const limit = useMemo(()=> calculateLimit(budgetData), [budgetData]) 
 
     return (
         <div className="spending-summary width-big">

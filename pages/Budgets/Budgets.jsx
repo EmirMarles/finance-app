@@ -43,8 +43,6 @@ export function Budgets({ moneyData, chosenTab, setChosenTab }) {
         getBudgets();
     }, [user._id, budgetData.length])
 
-    // even listener to close all the window
-
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
